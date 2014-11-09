@@ -7,7 +7,7 @@ cd /var/www/html/skewers
 sed -i 's/DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi/DYhG93b0qyJfIxfs2guVo345WwvniR2G0FgaC9mi/g'  app/Config/core.php
 sed -i 's/76859309657453542496749683645/76859309657453531396749683645/g'  app/Config/core.php
 
-sudo sed -i 's/\/var\/www\/html$/\/var\/www\/html\/skewers\/web\/approot/g' /etc/apache2/sites-enabled/000-default.conf
+sudo sed -i 's/\/var\/www\/html$/\/var\/www\/html\/skewers\/app\/webroot/g' /etc/apache2/sites-enabled/000-default.conf
 sudo sed -i '0,/AllowOverride None/s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf | grep AllowOverride
 
 sudo a2enmod rewrite
