@@ -456,6 +456,10 @@ p.error,
 	background-image: linear-gradient(top, #ee5f5b, #c43c35);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
+
+#goodMessage{
+background-image: -webkit-linear-gradient(top, #80EE5B, #43C435);	
+}
 .success {
 	clear: both;
 	color: #fff;
