@@ -1,5 +1,7 @@
 <?php 
-class Usuario extends AppModel {
+App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
+
+class User extends AppModel {
 	public $validate = array(
 		'name' => array(
 			'rule' =>'/[a-zA-Z0-9 ]*/i',
@@ -13,7 +15,7 @@ class Usuario extends AppModel {
 			'allowEmpty' => false,
 			'message' => 'minimo 8 caracteres/digitos'
         ),
-		'user' => array(
+		'username' => array(
 			'requiredIsUnique' => array(
 				'rule' => 'isUnique',
 				'message' => 'El nombre de usuario se encuentra en uso.'
@@ -25,4 +27,15 @@ class Usuario extends AppModel {
 			)
 		)
 	);
+	
+	
+	public function beforeSave($options = array()) {
+		if (isset($this->data[$this->alias]['password'])) {
+			$passwordHasher = new BlowfishPasswordHasher();
+			$this->data[$this->alias]['password'] = $passwordHasher->hash(
+				$this->data[$this->alias]['password']
+			);
+		}
+		return true;
+	}
 }
