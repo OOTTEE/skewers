@@ -1,4 +1,4 @@
-<h2>Skewers</h2>
+﻿<h2>Skewers</h2>
 <?php
 echo $this->Session->flash('good');
 echo $this->Session->flash('bad');

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-11-2014 a las 16:18:10
+-- Tiempo de generación: 22-11-2014 a las 19:09:05
 -- Versión del servidor: 5.5.40-0ubuntu0.14.04.1
 -- Versión de PHP: 5.5.9-1ubuntu4.5
 
@@ -26,11 +26,11 @@ USE `skewersDB`;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `asignacions`
+-- Estructura de tabla para la tabla `asignaciones`
 --
 
-DROP TABLE IF EXISTS `asignacions`;
-CREATE TABLE IF NOT EXISTS `asignacions` (
+DROP TABLE IF EXISTS `asignaciones`;
+CREATE TABLE IF NOT EXISTS `asignaciones` (
   `pincho_id` int(11) unsigned NOT NULL,
   `usuario_id` int(11) NOT NULL,
   PRIMARY KEY (`pincho_id`,`usuario_id`),
@@ -65,6 +65,22 @@ CREATE TABLE IF NOT EXISTS `comentarios` (
   `comentario` varchar(300) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`usuario_id`,`pincho_id`),
   KEY `fk_comentarios_pinchos1_idx` (`pincho_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `configuracion`
+--
+
+DROP TABLE IF EXISTS `configuracion`;
+CREATE TABLE IF NOT EXISTS `configuracion` (
+  `logo` varchar(250) COLLATE utf8_bin NOT NULL,
+  `nombre` varchar(250) COLLATE utf8_bin NOT NULL,
+  `Decripcion` mediumtext COLLATE utf8_bin NOT NULL,
+  `imagen` varchar(250) COLLATE utf8_bin NOT NULL,
+  `f_incio` date NOT NULL,
+  `f_fin` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -165,9 +181,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`usuario_id`, `name`, `username`, `password`, `role`) VALUES
-(36, 'admin', 'admin', '$2a$10$Du8HpBAncW8QfNexzrwDy.x436NLMGzENMpKJeVN/tssnpRetvLTS', 'popular'),
+(36, 'admin', 'admin', '$2a$10$Du8HpBAncW8QfNexzrwDy.x436NLMGzENMpKJeVN/tssnpRetvLTS', 'administrador'),
 (37, 'popular', 'popular', '$2a$10$2QefGhVnTkW8Iu9zrZMHiuGiKIWjvuJEY/Ceb0CSPeq3IS4FSxqXu', 'popular'),
-(38, 'profesional', 'profesional', '$2a$10$2B710iJVMU7M7azyJqiphep3h8mlW0yqGiVfs6x6eYriOE2S/u5M6', 'popular'),
+(38, 'profesional', 'profesional', '$2a$10$2B710iJVMU7M7azyJqiphep3h8mlW0yqGiVfs6x6eYriOE2S/u5M6', 'profesional'),
 (39, 'Establecimiento', 'Establecimiento', '$2a$10$s1PGXuXaTf.fvjQInWD9W.y71Eu8QNtKT0kU0Uw3Wlws17TLA/J1C', 'establecimiento');
 
 -- --------------------------------------------------------
@@ -190,9 +206,9 @@ CREATE TABLE IF NOT EXISTS `votos` (
 --
 
 --
--- Filtros para la tabla `asignacions`
+-- Filtros para la tabla `asignaciones`
 --
-ALTER TABLE `asignacions`
+ALTER TABLE `asignaciones`
   ADD CONSTRAINT `fk_pinchos_has_usuarios_pinchos1` FOREIGN KEY (`pincho_id`) REFERENCES `pinchos` (`pincho_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_pinchos_has_usuarios_usuarios1` FOREIGN KEY (`usuario_id`) REFERENCES `users` (`usuario_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 

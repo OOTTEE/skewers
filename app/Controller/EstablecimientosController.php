@@ -38,4 +38,8 @@ class EstablecimientosController extends AppController {
         }
 		
 	}
+	
+	public function index(){
+	
+	}
 }
