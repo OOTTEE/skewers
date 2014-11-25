@@ -8,32 +8,31 @@
 	$CONTROLLER = './controller/';
 	$LIB = './lib/';
 	$LIB_PHP = './lib/php/';
-	
+	$BOOTSTRAP = './lib/bootstrap/';
+	$CSS = './lib/css/';
 	
 	include_once($LIB_PHP.'database.php');
+	require_once($TEMPLATES.'header.php');
 	session_start();
+	
+	if(isset($_SESSION['login'] )){
+		require_once($TEMPLATES.'inicio.php');
+	}else{
+		require_once($TEMPLATES.'login.php');
+	}
+	
 	
 	$DB = connection();
 	
-	if($users = $DB->query('SELECT * FROM users')){
-		mysqli_free_result($users);
-		var_dump($users);
+	if($users = mysqli_query($DB,'SELECT * FROM users')){
+		while ($row = mysqli_fetch_row($users)) {
+		}
 	}else{
 		echo "error en la consulta";
 		die();
 	}
 	
 	closeConnection($DB);
-	
-	if(isset($_SESSION['login'] )){
-		echo 'login';
-	}else{
-		echo 'not login';
-	}
-	
-	
-	
-	require_once($TEMPLATES.'header.php');
-	require_once($TEMPLATES.'login.php');
+		
 	require_once($TEMPLATES.'footer.php');
 ?>

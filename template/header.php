@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
     <title>Signin Template for Bootstrap</title>
 	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="/lib/css/estilo.css">
+	<link rel="stylesheet" href=<?php echo $BOOTSTRAP."css/bootstrap.min.css"?>>
+	<link rel="stylesheet" href=<?php echo $BOOTSTRAP."css/bootstrap-theme.min.css"?>>
+	<link rel="stylesheet" href=<?php echo $CSS."estilo.css"?>>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
