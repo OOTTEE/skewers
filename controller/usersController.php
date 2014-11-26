@@ -1,6 +1,6 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
-include_once($MODEL_PATH.'User.php');
+include_once($GLOBALS['MODEL_PATH'].'User.php');
 
 /**
 *	Funcion principal del controlador users, esta funcion redirige a los metodos apropiados.
@@ -46,14 +46,13 @@ function register(){
 *				o de vuelta al inicio si es incorrecto
 */
 function login(){
-	GLOBAL $CONTROLLER_URL;
 	
 	connection();
 	$user = new User();
 	if($usuario = $user->isRegister(array('username' => $_POST['username'], 'password' => $_POST['password']))){
 		$_SESSION['user'] = $usuario[0];
 		$_SESSION['login'] = true;
-		$url = $CONTROLLER_URL.'usersController.php';
+		$url = $GLOBALS['CONTROLLER_URL'].'usersController.php';
 	}else
 		$url = '/';
 	closeConnection();
@@ -66,20 +65,19 @@ function login(){
 *   se mostrará una vista o otra
 */
 function inicio(){
-	GLOBAL $CONTROLLER_URL;
 	
 	switch($_SESSION['user']['role']){
 		case 'administrador':
-			redirecionar($CONTROLLER_URL.'adminController.php');
+			redirecionar($GLOBALS['CONTROLLER_URL'].'adminController.php');
 			break;
 		case 'popular':
-			redirecionar($CONTROLLER_URL.'popularController.php');
+			redirecionar($GLOBALS['CONTROLLER_URL'].'popularController.php');
 			break;
 		case 'profesional':
-			redirecionar($CONTROLLER_URL.'profesionalController.php');
+			redirecionar($GLOBALS['CONTROLLER_URL'].'profesionalController.php');
 			break;
 		case 'establecimiento':
-			redirecionar($CONTROLLER_URL.'establecimientoController.php');
+			redirecionar($GLOBALS['CONTROLLER_URL'].'establecimientoController.php');
 			break;
 	}
 }

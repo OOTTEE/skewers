@@ -1,6 +1,6 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
-include_once($MODEL_PATH.'User.php');
+include_once($GLOBALS['MODEL_PATH'].'User.php');
 
 
 function index(){
@@ -12,13 +12,10 @@ function index(){
 }
 
 function inicio(){
-	GLOBAL $LAYOUT_PATH;
-	GLOBAL $BOOTSTRAP_URL;
-	GLOBAL $CSS_URL;
-	include_once($LAYOUT_PATH.'header.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	
 	echo '<h1>popular</h1>';
 	
-	include_once($LAYOUT_PATH.'footer.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
 index();
