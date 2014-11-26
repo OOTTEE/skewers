@@ -4,11 +4,18 @@ include_once($GLOBALS['MODEL_PATH'].'User.php');
 
 
 function index(){
-	if(isUserLogin()){
+	if(isUserLoginWhithRole('popular')){
+		//filtro por accion del usuario (parametro action recibido por GET o POST
+		/*if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'ACCION' ){
+			ACCION();
+		}else{
+			inicio();
+		}*/
 		inicio();
 	}else{	
 		redirecionar('/');		
 	}
+	closeServerSession();
 }
 
 function inicio(){

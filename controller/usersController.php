@@ -7,7 +7,11 @@ include_once($GLOBALS['MODEL_PATH'].'User.php');
 */
 function index(){
 	if(isUserLogin()){
-		inicio();
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'logout' ){
+			logout();
+		}else{
+			inicio();
+		}
 	}else{
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'register' ){
 			register();
@@ -35,6 +39,7 @@ function register(){
 		'phone' => $_POST['phone']
 	));
 	closeConnection();
+	closeServerSession();
 	redirecionar('/');
 }
 
@@ -46,7 +51,6 @@ function register(){
 *				o de vuelta al inicio si es incorrecto
 */
 function login(){
-	
 	connection();
 	$user = new User();
 	if($usuario = $user->isRegister(array('username' => $_POST['username'], 'password' => $_POST['password']))){
@@ -56,7 +60,16 @@ function login(){
 	}else
 		$url = '/';
 	closeConnection();
+	closeServerSession();
 	redirecionar('usersController.php');
+}
+/**
+*	logout() => el usuario cierra la session en la pagina.
+*/
+function logout(){
+	$_SESSION['user'] = null;
+	$_SESSION['login'] = false;
+	redirecionar('/');
 }
 
 /**
@@ -65,7 +78,6 @@ function login(){
 *   se mostrará una vista o otra
 */
 function inicio(){
-	
 	switch($_SESSION['user']['role']){
 		case 'administrador':
 			redirecionar($GLOBALS['CONTROLLER_URL'].'adminController.php');
@@ -80,6 +92,7 @@ function inicio(){
 			redirecionar($GLOBALS['CONTROLLER_URL'].'establecimientoController.php');
 			break;
 	}
+	closeServerSession();
 }
 
 index();
