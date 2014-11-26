@@ -34,10 +34,6 @@
 	<link rel="stylesheet" href=<?php echo $BOOTSTRAP_URL."css/bootstrap.min.css"?>>
 	<link rel="stylesheet" href=<?php echo $BOOTSTRAP_URL."css/bootstrap-theme.min.css"?>>
 
-    <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
-
-
-  </head>
-
-  <body>
+	<link rel="stylesheet" href=<?php echo $CSS_URL."estilo.css"?>>
+	</head>
+	<body>
