@@ -1,15 +1,21 @@
 <?php
-function connection(){
-	$mysqli = new mysqli('localhost','skewersUser','skewersPass','skewersDB');
 
-	if ($mysqli->connect_errno) {
-		printf("Falló la conexión: %s\n", $mysqli->connect_error);
-		die();
+function connection(){
+	GLOBAL $DB;
+	$dsn = 'mysql:dbname=skewersDB;host=127.0.0.1';
+	$usuario = 'skewersUser';
+	$contraseña = 'skewersPass';
+
+	try {
+		$DB = new PDO($dsn, $usuario, $contraseña);
+		return true;
+	} catch (PDOException $e) {
+		echo 'Falló la conexión: ' . $e->getMessage();
+		return false;
 	}
-	return $mysqli;
-	
 }
 
-function closeConnection($mysqli){
-	$mysqli->close();
+function closeConnection(){	
+	GLOBAL $DB;
+	$DB= null;
 }

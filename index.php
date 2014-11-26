@@ -1,38 +1,39 @@
 ﻿<?php 
-	ini_set('display_errors',1);
-	ini_set('display_startup_errors',1);
-	error_reporting(-1);
-	
-	$TEMPLATES = './template/';
-	$MODEL = './model/';
-	$CONTROLLER = './controller/';
-	$LIB = './lib/';
-	$LIB_PHP = './lib/php/';
-	$BOOTSTRAP = './lib/bootstrap/';
-	$CSS = './lib/css/';
-	
-	include_once($LIB_PHP.'database.php');
+	require_once('./lib/php/includes.php');
 	require_once($TEMPLATES.'header.php');
-	session_start();
+	require_once($MODEL.'User.php');
+	
+	
+	connection();
+	
+	$user = new User();
 	
 	if(isset($_SESSION['login'] )){
-		require_once($TEMPLATES.'inicio.php');
+		
+		header($CONTROLLER.'usersControl.php');
 	}else{
-		require_once($TEMPLATES.'login.php');
+		if(isset($_POST['action']) AND $_POST['action'] == 'register' ){
+			$user->register(array(
+				'name' => $_POST['name'],
+				'username' => $_POST['username'],
+				'password' => $_POST['password'],
+				'role' => (isset($_POST['type'])) ? 'establecimiento' : 'popular',
+				'phone' => $_POST['phone']
+			));
+		}else if(isset($_POST['action']) AND $_POST['action'] = 'login' ){
+			if($usuario = $user->isRegister(array('username' => $_POST['username'], 'password' => $_POST['password']))){
+				$_SESSION['user'] = $usuario;
+				header('Location: '.$CONTROLLER.'usersController.php');
+			}else{
+				header('./');
+			}
+		}else
+			include_once($TEMPLATES.'login.php');
 	}
 	
 	
-	$DB = connection();
-	
-	if($users = mysqli_query($DB,'SELECT * FROM users')){
-		while ($row = mysqli_fetch_row($users)) {
-		}
-	}else{
-		echo "error en la consulta";
-		die();
-	}
-	
-	closeConnection($DB);
+	closeConnection();
 		
 	require_once($TEMPLATES.'footer.php');
+	
 ?>
