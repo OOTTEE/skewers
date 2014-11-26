@@ -1,6 +1,10 @@
 ﻿<?php 
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
 
+if(isUserLogin()){
+	redirecionar($GLOBALS['CONTROLLER_URL'].'usersController.php');		
+}
+
 include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 
 include_once($GLOBALS['LAYOUT_PATH'].'notLoginNav.php');

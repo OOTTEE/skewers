@@ -1,5 +1,5 @@
 <?php 
-include_once($GLOBALS['MODEL_PATH'].'Model.php';
+include_once($GLOBALS['MODEL_PATH'].'Model.php');
 class User extends Model{
 	public $usuario_id;
 	public $name;
