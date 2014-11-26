@@ -13,7 +13,7 @@
 	$GLOBALS['BOOTSTRAP_URL'] = '/lib/bootstrap/';
 	$GLOBALS['CSS_URL'] = '/lib/css/';
 	
-	$GLOBALS['DB'];
+	$GLOBALS['DB'] = null;
 	include_once($LIB_PHP_PATH.'database.php');
 	
 	function redirecionar($destino){
