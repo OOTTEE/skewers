@@ -1,16 +1,16 @@
 ﻿<?php 
-	require_once('./lib/php/includes.php');
-	require_once($TEMPLATES.'header.php');
-	require_once($MODEL.'User.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
+include_once($MODEL_PATH.'User.php');
+
+include_once($LAYOUT_PATH.'header.php');
 	
-	
+	/*
 	connection();
-	
 	$user = new User();
 	
 	if(isset($_SESSION['login'] )){
 		
-		header($CONTROLLER.'usersControl.php');
+		header($CONTROLLER.'usersController.php');
 	}else{
 		if(isset($_POST['action']) AND $_POST['action'] == 'register' ){
 			$user->register(array(
@@ -31,9 +31,12 @@
 			include_once($TEMPLATES.'login.php');
 	}
 	
-	
 	closeConnection();
+	*/
+	include_once($TEMPLATES_PATH.'index/index.php');
 		
-	require_once($TEMPLATES.'footer.php');
+	include_once($LAYOUT_PATH.'footer.php');
+	
+	session_write_close();
 	
 ?>
