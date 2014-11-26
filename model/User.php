@@ -47,9 +47,9 @@ class User extends Model{
 	public function getUser($id){
 		
 		
-		$sentencia= $GLOBALS['DB']->prepare(SELECT usuario_id, name, username, role, phone
+		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, name, username, role, phone
 								FROM users
-								WHERE username = ? );
+								WHERE usuario_id = ? ');
 		$sentencia=$GLOBALS['DB']->execute(array($id));
 		$resul=$sentencia->fetchall()[0];
 		$object= new User();
