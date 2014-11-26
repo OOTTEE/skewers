@@ -21,9 +21,7 @@ function index(){
 function inicio(){
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
-	
-	echo '<h1>establecimiento</h1>';
-	
+	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');	
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
 index();

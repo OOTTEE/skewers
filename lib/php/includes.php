@@ -19,6 +19,8 @@
 		
 		session_start();
 		
+		/**VARIABLES TEMPORALES A REEMPLAZAR POR CONTENIDO DE LA BD**/
+		$_SESSION['conf']['nombre'] = "Concurso de pinchos de ourense";
 	}
 		
 	function redirecionar($destino){
@@ -37,7 +39,7 @@
 		return (isset($_SESSION['login'] ) AND $_SESSION['login']==true);
 	}
 	function isUserLoginWhithRole($role){
-		return (isset($_SESSION['login'] ) AND $_SESSION['login']==true AND $_SESSION[$role]);
+		return (isset($_SESSION['login'] ) AND $_SESSION['login']==true AND $_SESSION['user']['role']==$role);
 	}
 	
 	function closeServerSession(){
