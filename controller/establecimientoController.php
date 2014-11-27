@@ -7,14 +7,14 @@ include_once($GLOBALS['MODEL_PATH'].'Establecimiento.php');
 function index(){
 	if(isUserLoginWhithRole('establecimiento')){
 		//filtro por accion del usuario (parametro action recibido por GET o POST
-		/*if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'ACCION' ){
-			ACCION();
-		}else{*/
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registrarPincho'  ){
+			registrarPincho();
+		}else {
 			inicio();
-		//}		
+		}		
 	}else{	
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registerEstablecimiento' ){
-			register()
+			register();
 		}
 				
 	}
@@ -24,7 +24,7 @@ function register(){
 	connection();
 	//Almacenamento imaxe establecemento
 	if ((($_FILES['imgfile']['type'] == 'image/jpeg') || ($_FILES['imgfile']['type'] == 'image/png')  || ($_FILES['imgfile']['type'] == 'image/pjpeg')) && ($_FILES['imgfile']['size'] < 200000))
-  { 
+	{ 
 	if(file_exists($_FILES['imgfile']['name']))
     {
       echo 'File name exists.';
@@ -54,7 +54,7 @@ function register(){
 		'direccion'=> $_POST['direccion'],
 		'horario'=> $_POST['horario'],
 		'descripcion'=> $_POST['descripcion'],
-		'imagen'=>
+		'imagen'=> ''
 	));
 	
 	closeConnection();
@@ -64,9 +64,28 @@ function register(){
 
 
 function inicio(){
+	connection();
+	$establecimiento = new Establecimiento();
+	$hasPincho = $establecimiento->hasPincho();
+	
+	closeConnection();
+	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');	
+	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
+	echo "<h1>Establecimiento <small>index</small></h1>";
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+}
+
+function registrarPincho(){
+	connection();
+	$establecimiento = new Establecimiento();
+	$hasPincho = $establecimiento->hasPincho();
+	closeConnection();
+	
+	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
+	include_once($GLOBALS['TEMPLATES_PATH'].'establecimiento/registrarPincho.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	
 }
 index();

@@ -1,5 +1,5 @@
 <?php 
-include_once($GLOBALS['MODEL_PATH'].'Model.php';
+include_once($GLOBALS['MODEL_PATH'].'Model.php');
 class User extends Model{
 	public $usuario_id;
 	public $name;
@@ -20,7 +20,7 @@ class User extends Model{
 								WHERE username = :username AND password = :password');
 		$sentencia->execute(array(':username' => $params['username'],
 									':password' => $params['password']));
-		$user = $sentencia->fetchAll();				
+		$user = $sentencia->fetchAll()[0];				
 		if(count($user == 1))
 			return $user;
 		else
@@ -37,10 +37,9 @@ class User extends Model{
 							':username' =>$params['username'],
 							':password' =>$params['password'],
 							':role' =>$params['role'],
-							':phone' =>$params['phone']));
-							':email' =>$params['email']
+							':phone' =>$params['phone'],
+							':email' =>$params['email']));
 	
-		print_r($sentencia->fetch(PDO::FETCH_ASSOC));
 	}
 	
 	

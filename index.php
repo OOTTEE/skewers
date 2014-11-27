@@ -18,6 +18,6 @@ if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'register'){
 }
 	
 include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
-	
+
 session_write_close();
 ?>
