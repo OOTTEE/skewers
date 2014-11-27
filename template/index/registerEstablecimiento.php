@@ -1,5 +1,5 @@
 <div class="container">
-	<form class="form-signin" role="form"  Method="POST" action="<?php echo $CONTROLLER_URL.'establecimientoController.php';?>" >
+	<form class="form-signin" role="form"  Method="POST" enctype="multipart/form-data" action="<?php echo $CONTROLLER_URL.'establecimientoController.php';?>" >
 		<h2 class="form-signin-heading">Registro de Establecimiento</h2>
 		<label for="inputName" class="sr-only">Nombre Completo</label>
 		<input type="text" id="inputName" class="form-control" placeholder="Nombre" name="name" required autofocus>

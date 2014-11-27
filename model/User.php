@@ -1,5 +1,5 @@
 <?php 
-include_once($GLOBALS['MODEL_PATH'].'Model.php');
+include_once($GLOBALS['MODEL_PATH'].'Model.php';
 class User extends Model{
 	public $usuario_id;
 	public $name;
@@ -22,21 +22,25 @@ class User extends Model{
 									':password' => $params['password']));
 		$user = $sentencia->fetchAll();				
 		if(count($user == 1))
-			return $user[0];
+			return $user;
 		else
 			return false;
 	}
 	
 	public function register($params){
+			
 		/* Ejecuta una sentencia preparada pasando un array de valores */
 		
-		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO users (name, username, password, role, phone) VALUES (:name, :username, :password, :role, :phone)");
+		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO users (name, username, password, role, phone,email) VALUES (:name, :username, :password, :role, :phone, :email)");
 
 		$sentencia->execute(array(':name' =>$params['name'],
 							':username' =>$params['username'],
 							':password' =>$params['password'],
 							':role' =>$params['role'],
 							':phone' =>$params['phone']));
+							':email' =>$params['email']
+	
+		print_r($sentencia->fetch(PDO::FETCH_ASSOC));
 	}
 	
 	

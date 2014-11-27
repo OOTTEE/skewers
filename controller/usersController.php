@@ -20,6 +20,7 @@ function index(){
 		}else{		
 			redirecionar('/');
 		}
+			
 	}
 }
 
@@ -35,7 +36,9 @@ function register(){
 		'username' => $_POST['username'],
 		'password' => $_POST['password'],
 		'role' =>  'popular',
-		'phone' => $_POST['phone']
+		'phone' => $_POST['phone'],
+		'email' => $_POST['email']
+		
 	));
 	
 	closeConnection();
@@ -54,7 +57,7 @@ function login(){
 	connection();
 	$user = new User();
 	if($usuario = $user->isRegister(array('username' => $_POST['username'], 'password' => $_POST['password']))){
-		$_SESSION['user'] = $usuario;
+		$_SESSION['user'] = $usuario[0];
 		$_SESSION['login'] = true;
 		$url = $GLOBALS['CONTROLLER_URL'].'usersController.php';
 	}else

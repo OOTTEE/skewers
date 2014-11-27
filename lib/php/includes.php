@@ -9,10 +9,15 @@
 		$GLOBALS['MODEL_PATH'] = $_SERVER['DOCUMENT_ROOT'].'/model/';
 		$GLOBALS['LIB_PATH'] = $_SERVER['DOCUMENT_ROOT'].'/lib/';
 		$GLOBALS['LIB_PHP_PATH'] = $_SERVER['DOCUMENT_ROOT'].'/lib/php/';
+		$GLOBALS['IMAGES_PATH'] = $_SERVER['DOCUMENT_ROOT'].'/imagenes/'
+		$GLOBALS['IMGESTABLECIMIENTOS_PATH'] = $_SERVER['DOCUMENT_ROOT'].'/imagenes/establecimiento/'
+		$GLOBALS['IMGPINCHO_PATH'] = $_SERVER['DOCUMENT_ROOT'].'/imagenes/pincho/'
 		
 		$GLOBALS['CONTROLLER_URL'] = '/controller/';
 		$GLOBALS['BOOTSTRAP_URL'] = '/lib/bootstrap/';
 		$GLOBALS['CSS_URL'] = '/lib/css/';
+		
+		
 		
 		$GLOBALS['DB'] = null;
 		include_once($GLOBALS['LIB_PHP_PATH'].'database.php');
