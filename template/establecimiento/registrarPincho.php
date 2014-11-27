@@ -10,7 +10,7 @@
 		<label for="inputDescripcion" class="sr-only">Descripción</label>
 		<textarea id="inputDescripcion"  class="form-control"  placeholder="Descripcion" name="descripcionPincho" required></textarea>
 		<label for="inputPassword" class="sr-only">imagen</label>
-		<input type="file" id="inputPassword" class="form-control" placeholder="Password" name="password" >
+		<input type="file" id="inputPassword" class="form-control" name="imagen" >
 		<button class="btn btn-lg btn-primary btn-block" type="submit"  value="registrarPincho" name="action" >Registrar</button>
 	</form>
 </div> 

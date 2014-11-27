@@ -80,7 +80,7 @@
 	*		$level indica el tipo de notificacion (success, info, warning, danger)
 	*		$message indica el contenido del mensaje a mostrar
 	*/
-	function addNotificacion($level, $message){
+	function addNotificacion($message, $level){
 		if(!isset($_SESSION['notificaciones']))
 			$_SESSION['notificaciones']=array();
 		array_push($_SESSION['notificaciones'],array('level' => $level, 'message' => $message));	
