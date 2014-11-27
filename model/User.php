@@ -20,23 +20,26 @@ class User extends Model{
 								WHERE username = :username AND password = :password');
 		$sentencia->execute(array(':username' => $params['username'],
 									':password' => $params['password']));
-		$user = $sentencia->fetchAll();				
+		$user = $sentencia->fetchAll()[0];				
 		if(count($user == 1))
-			return $user[0];
+			return $user;
 		else
 			return false;
 	}
 	
 	public function register($params){
+			
 		/* Ejecuta una sentencia preparada pasando un array de valores */
 		
-		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO users (name, username, password, role, phone) VALUES (:name, :username, :password, :role, :phone)");
+		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO users (name, username, password, role, phone,email) VALUES (:name, :username, :password, :role, :phone, :email)");
 
 		$sentencia->execute(array(':name' =>$params['name'],
 							':username' =>$params['username'],
 							':password' =>$params['password'],
 							':role' =>$params['role'],
-							':phone' =>$params['phone']));
+							':phone' =>$params['phone'],
+							':email' =>$params['email']));
+	
 	}
 	
 	

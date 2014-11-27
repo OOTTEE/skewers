@@ -37,10 +37,10 @@ class Pincho extends Model{
 	}
 	
 	public function getPinchoByUsuarioId($id){
-		$sentencia= $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
+		$sentencia = $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
 								FROM pinchos
 								WHERE usuario_id = ?' );
-		$sentencia=$GLOBALS['DB']->execute(array($id));
+		$sentencia = $GLOBALS['DB']->execute(array($id));
 		$resul=$sentencia->fetchall()[0];
 		
 		if(count($result)){

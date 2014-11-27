@@ -20,6 +20,7 @@ function index(){
 		}else{		
 			redirecionar('/');
 		}
+			
 	}
 }
 
@@ -35,7 +36,9 @@ function register(){
 		'username' => $_POST['username'],
 		'password' => $_POST['password'],
 		'role' =>  'popular',
-		'phone' => $_POST['phone']
+		'phone' => $_POST['phone'],
+		'email' => $_POST['email']
+		
 	));
 	
 	closeConnection();
