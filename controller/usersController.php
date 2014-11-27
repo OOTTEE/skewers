@@ -35,9 +35,10 @@ function register(){
 		'name' => $_POST['name'],
 		'username' => $_POST['username'],
 		'password' => $_POST['password'],
-		'role' => (isset($_POST['type'])) ? 'establecimiento' : 'popular',
+		'role' =>  'popular',
 		'phone' => $_POST['phone']
 	));
+	
 	closeConnection();
 	closeServerSession();
 	redirecionar('/');

@@ -8,15 +8,33 @@ function index(){
 		//filtro por accion del usuario (parametro action recibido por GET o POST
 		/*if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'ACCION' ){
 			ACCION();
-		}else{
+		}else{*/
 			inicio();
-		}*/
-			inicio();		
+		//}		
 	}else{	
-		redirecionar('/');		
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registerEstablecimiento' ){
+			register()
+		}
+				
 	}
 	closeServerSession();
 }
+function register(){
+	connection();
+	$establecimiento = new Establecimiento();
+	$establecimiento->register(array(
+		'name' => $_POST['name'],
+		'username' => $_POST['username'],
+		'password' => $_POST['password'],
+		'role' =>  'popular',
+		'phone' => $_POST['phone']
+	));
+	
+	closeConnection();
+	closeServerSession();
+	redirecionar('/');
+}
+
 
 function inicio(){
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
