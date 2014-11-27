@@ -1,16 +1,32 @@
 ﻿<div class="container">
-	<form class="form-signin" role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'pinchoController.php';?>" >
-		<h2 class="form-signin-heading">Registro Pincho</h2>
-		<label for="inputNombre" class="sr-only">Nombre del Pincho</label>
-		<input type="text" id="inputNombre" class="form-control" placeholder="Nombre del pincho" name="nombrePincho" required autofocus>
-		<label for="inputIngredientes" class="sr-only">Ingredientes</label>
-		<input type="text" id="inputPhone" class="form-control" placeholder="Ingredientes" name="ingredientes" required>
-		<label for="inputPrecio" class="sr-only">Precio</label>
-		<input type="text" id="inputEmail" class="form-control" placeholder="Precio" name="precio" required>
-		<label for="inputDescripcion" class="sr-only">Descripción</label>
-		<textarea id="inputDescripcion"  class="form-control"  placeholder="Descripcion" name="descripcionPincho" required></textarea>
-		<label for="inputPassword" class="sr-only">imagen</label>
-		<input type="file" id="inputPassword" class="form-control" name="imagen" >
+	<form role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'pinchoController.php';?>" >
+		<h2>Registro Pincho</h2>
+		<div class="form-group">
+			<label for="inputNombre">Nombre del Pincho</label>
+			<input type="text" id="inputNombre" class="form-control" placeholder="Nombre del pincho" name="nombrePincho" required autofocus>
+		</div>
+		
+		<div class="form-group">
+			<label for="inputIngredientes" >Ingredientes</label>
+			<input type="text" id="inputPhone" class="form-control" placeholder="Ingredientes" name="ingredientes" required>
+		</div>
+		
+		<div class="form-group">
+			<label for="inputPrecio" >Precio</label>
+			<input type="text" id="inputEmail" class="form-control" placeholder="Precio" name="precio" required>
+		</div>
+		
+		<div class="form-group">
+			<label for="inputDescripcion" >Descripción</label>
+			<textarea id="inputDescripcion"  class="form-control"  placeholder="Descripcion" name="descripcionPincho" required></textarea>	
+		</div>
+		
+		<div class="form-group">
+			<label for="inputPassword">imagen</label>
+			<input type="file" id="inputPassword" name="imagen" >
+			<p class="help-block">Imagen del Pincho (Formatos: jpg, png)</p>
+		</div>
+		
 		<button class="btn btn-lg btn-primary btn-block" type="submit"  value="registrarPincho" name="action" >Registrar</button>
 	</form>
 </div> 
