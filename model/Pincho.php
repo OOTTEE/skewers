@@ -23,19 +23,17 @@ class Pincho extends Model{
 		}
 		
 		$resul = $resul[0];
-		
-		$object= new Pincho();
-		
-		$object->usuario_id=$resul['usuario_id'];
-		$object->imagen=$resul['imagen'];
-		$object->pincho_id=$resul['pincho_id'];
-		$object->descripcion=$resul['descripcion'];
-		$object->ingredientes=$resul['ingredientes'];
-		$object->nombre=$resul['nombre'];
-		$object->precio=$resul['precio'];
-		$object->finalista=$resul['finalista'];
-		$object->validado=$resul['validado'];
-		return $object;
+	
+		$this->usuario_id=$resul['usuario_id'];
+		$this->imagen=$resul['imagen'];
+		$this->pincho_id=$resul['pincho_id'];
+		$this->descripcion=$resul['descripcion'];
+		$this->ingredientes=$resul['ingredientes'];
+		$this->nombre=$resul['nombre'];
+		$this->precio=$resul['precio'];
+		$this->finalista=$resul['finalista'];
+		$this->validado=$resul['validado'];
+		return $this;
 	}
 	
 	public function getPinchoByUsuarioId($id){
@@ -50,19 +48,18 @@ class Pincho extends Model{
 		}
 		
 		$resul = $resul[0];
+	
 		
-		$object= new Pincho();
-		
-		$object->usuario_id=$resul['usuario_id'];
-		$object->imagen=$resul['imagen'];
-		$object->pincho_id=$resul['pincho_id'];
-		$object->descripcion=$resul['descripcion'];
-		$object->ingredientes=$resul['ingredientes'];
-		$object->nombre=$resul['nombre'];
-		$object->precio=$resul['precio'];
-		$object->finalista=$resul['finalista'];
-		$object->validado=$resul['validado'];
-		return $object;
+		$this->usuario_id=$resul['usuario_id'];
+		$this->imagen=$resul['imagen'];
+		$this->pincho_id=$resul['pincho_id'];
+		$this->descripcion=$resul['descripcion'];
+		$this->ingredientes=$resul['ingredientes'];
+		$this->nombre=$resul['nombre'];
+		$this->precio=$resul['precio'];
+		$this->finalista=$resul['finalista'];
+		$this->validado=$resul['validado'];
+		return $this;
 	}
 	
 	public function register($params){
@@ -89,11 +86,11 @@ class Pincho extends Model{
 	}
 	
 	public function votar(){
-		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO `votos`(`codigo_id`, `usuario_id`) 
+		/*$sentencia = $GLOBALS['DB']->prepare("INSERT INTO `votos`(`codigo_id`, `usuario_id`) 
 									VALUES($_REQUEST['pincho'], $_SESSION['usuario_id'])");
 		
 		if($sentencia->execute()){ echo "votado"}
 		else{
-		echo "fallo en la votacion"}
+		echo "fallo en la votacion"}*/
 	}
 }

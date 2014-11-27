@@ -52,15 +52,15 @@ class User extends Model{
 								WHERE usuario_id = ? ');
 		$sentencia=$GLOBALS['DB']->execute(array($id));
 		$resul=$sentencia->fetchall()[0];
-		$object= new User();
 		
-		$object->usuario_id=$resul['usuario_id'];
-		$object->name=$resul['name'];
-		$object->user=$resul['username'];
-		$object->role=$resul['role'];
-		$object->phone=$resul['phone'];
 		
-		return $object;
+		$this->usuario_id=$resul['usuario_id'];
+		$this->name=$resul['name'];
+		$this->user=$resul['username'];
+		$this->role=$resul['role'];
+		$this->phone=$resul['phone'];
+		
+		return $this;
 			
 	}
 

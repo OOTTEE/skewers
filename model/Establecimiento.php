@@ -15,15 +15,14 @@ class Establecimiento extends Model{
 								WHERE usuario_id = ?' );
 		$sentencia=$GLOBALS['DB']->execute(array($id));
 		$resul=$sentencia->fetchall()[0];
-		$object= new Establecimiento();
 		
-		$object->usuario_id=$resul['usuario_id'];
-		$object->imagen=$resul['imagen'];
-		$object->horario=$resul['horario'];
-		$object->descripcion=$resul['descripcion'];
-		$object->web=$resul['web'];
-		$object->direccion=$resul['direccion'];
-		return $object;
+		$this->usuario_id=$resul['usuario_id'];
+		$this->imagen=$resul['imagen'];
+		$this->horario=$resul['horario'];
+		$this->descripcion=$resul['descripcion'];
+		$this->web=$resul['web'];
+		$this->direccion=$resul['direccion'];
+		return $this;
 			
 	}
 	
