@@ -20,12 +20,14 @@ function addPincho(){
 
 	connection();
 	$user = new Pincho();
-	$user->register(array(
-		'name' => $_POST['name'],
-		'username' => $_POST['username'],
-		'password' => $_POST['password'],
-		'role' => (isset($_POST['type'])) ? 'establecimiento' : 'popular',
-		'phone' => $_POST['phone']
+	$user->register(array( 'usuario_id' => $_POST['usuario_id'],
+							'ingredientes' => $_POST['ingredientes'],
+							'nombre' => $_POST['nombre'],
+							'precio' => $_POST['precio'],
+							'finalista' => $_POST['finalista'],
+							'imagen' => $_POST['imagen'],
+							'descripcion' => $_POST['descripcion'],
+							'validado' => 0)
 	));
 	closeConnection();
 	closeServerSession();
