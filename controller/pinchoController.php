@@ -15,6 +15,7 @@ function index(){
 	}else{	
 		redirecionar('/');		
 	}
+	
 }
 
 function registrarPincho(){
@@ -33,6 +34,15 @@ function registrarPincho(){
 	closeConnection();
 	closeServerSession();
 	redirecionar('/');
+}
+
+//Aqui hacemos la funcion votar pincho
+function votarPincho()
+{
+	//connection();
+	echo "si"
+	votar();
+	
 }
 
 index();

@@ -53,4 +53,13 @@ class Pincho extends Model{
 								':validado' => '0'));
 	
 	}
+	
+	public function votar(){
+		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO `votos`(`codigo_id`, `usuario_id`) 
+									VALUES($_REQUEST['pincho'], $_SESSION['usuario_id'])");
+		
+		if($sentencia->execute()){ echo "votado"}
+		else{
+		echo "fallo en la votacion"}
+	}
 }

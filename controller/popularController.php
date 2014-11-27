@@ -21,7 +21,7 @@ function index(){
 function inicio(){
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');
+	include_once($GLOBALS['TEMPLATES_PATH'].'popular/index.php'); //accedemos al index de popular.
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
 index();
