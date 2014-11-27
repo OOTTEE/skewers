@@ -1,11 +1,12 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
-include_once($GLOBALS['MODEL_PATH'].'User.php');
 include_once($GLOBALS['MODEL_PATH'].'Establecimiento.php');
+include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
 
 function index(){
 	if(isUserLoginWhithRole('establecimiento')){
+		$GLOBALS['configuracion'] = new Configuracion()->get();
 		//filtro por accion del usuario (parametro action recibido por GET o POST
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registrarPincho'  ){
 			registrarPincho();
@@ -21,6 +22,7 @@ function index(){
 	closeServerSession();
 }
 function register(){
+	//PENDIENTE EL GUARDADO DE LAS IMAGENES
 	connection();
 	//Almacenamento imaxe establecemento
 	if ((($_FILES['imgfile']['type'] == 'image/jpeg') || ($_FILES['imgfile']['type'] == 'image/png')  || ($_FILES['imgfile']['type'] == 'image/pjpeg')) && ($_FILES['imgfile']['size'] < 200000))
@@ -65,9 +67,9 @@ function register(){
 
 function inicio(){
 	connection();
+	$conf = (new Configuracion())->get();
 	$establecimiento = new Establecimiento();
 	$hasPincho = $establecimiento->hasPincho();
-	
 	closeConnection();
 	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
@@ -78,6 +80,7 @@ function inicio(){
 
 function registrarPincho(){
 	connection();
+	$conf = (new Configuracion())->get();
 	$establecimiento = new Establecimiento();
 	$hasPincho = $establecimiento->hasPincho();
 	closeConnection();

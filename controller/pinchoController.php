@@ -1,6 +1,7 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
+include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
 
 function index(){
@@ -18,6 +19,7 @@ function index(){
 }
 
 function registrarPincho(){
+	//PENDIENTE EL GUARDADO DE LAS IMAGENES
 
 	$valido=true;
 	if( !(isset($_POST['nombrePincho']) AND (strlen(str_replace(' ', '', $_POST['nombrePincho'])) > 4))){
@@ -68,8 +70,8 @@ function votarPincho()
 	*	$pincho->getPincho($id_del_pincho)->votar($id_del_usuario_que_vota);
 	*/
 	//connection();
-	echo "si"
-	votar();
+	//echo "si"
+	//votar();
 	
 }
 

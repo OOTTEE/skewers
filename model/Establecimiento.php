@@ -13,7 +13,7 @@ class Establecimiento extends Model{
 		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, imagen, horario, descripcion, web,direccion
 								FROM establecimientos
 								WHERE usuario_id = ?' );
-		$sentencia=$GLOBALS['DB']->execute(array($id));
+		$sentencia->execute(array($id));
 		$resul=$sentencia->fetchall()[0];
 		
 		$this->usuario_id=$resul['usuario_id'];

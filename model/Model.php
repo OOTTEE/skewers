@@ -8,7 +8,7 @@ class Model{
 				die();
 			}			
 		 } catch(Exception $e){
-			 echo "<b>line:</b> ".$e->getLine()."<b> - Error:</b> ".$e->getMessage();
+			 echo "<b>line:</b> ".$e->getLine()." - ".$e->getMessage();
 		}
 	}
 

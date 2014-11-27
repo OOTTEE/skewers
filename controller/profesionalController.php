@@ -1,6 +1,7 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'User.php');
+include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
 
 function index(){
@@ -19,7 +20,9 @@ function index(){
 }
 
 function inicio(){
-
+	connection();
+	$conf = (new Configuracion())->get();
+	closeConnection();
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');

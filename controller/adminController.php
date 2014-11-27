@@ -1,17 +1,13 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
-include_once($GLOBALS['MODEL_PATH'].'User.php');
+include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
 
 // CONTROLADOR DE ACCIONES 
 
 function index(){
 	if(isUserLoginWhithRole('administrador')){
-		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'verConfiguracion' ){
-			verConfiguracion();
-		}else{
-			inicio();
-		}
+		inicio();
 	}else{	
 		redirecionar('/');		
 	}
@@ -21,19 +17,16 @@ function index(){
 // FUNCIONES (CASOS DE USO); 
 
 function inicio(){
+	connection();
+	$conf = (new Configuracion())->get();
+	closeConnection();
+	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
 	
 	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');
 	echo '<h1>administrador</h1>';
 	
-	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
-}
-
-function verConfiguracion(){
-	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'administrador/configurarWeb.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
 

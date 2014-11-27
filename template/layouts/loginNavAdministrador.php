@@ -8,21 +8,15 @@
 		<span class="icon-bar"></span>
 	  </button>
 	  <a class="navbar-brand" href="/"><?php echo $conf->nombre;?></a>
+	  
 	</div>
 	<div id="navbar" class="navbar-collapse collapse">
 	  <ul class="nav navbar-nav navbar-right">
-		<li><a href="/?action=register">Registrate</a></li>
-		<li><a href="/?action=registerEstablecimiento">Establecimiento</a></li>
+		<li><p class="navbar-text" href="#"><a href="" ><?php echo $_SESSION['user']['name'];?></a></p></li>
+		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'configuracionController.php'?>">Configuracion <span class="glyphicon glyphicon-cog" aria-hidden="true"/></a></li>
+		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'usersController.php?action=logout'?>">Salir <span class="glyphicon glyphicon-off" aria-hidden="true"/></a></li>
 	  </ul>
-	  <form class="navbar-form navbar-right" role="form" Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'usersController.php'; ?>">
-		<div class="form-group">
-		  <input type="text" placeholder="Usuario"  name="username" class="form-control">
-		</div>
-		<div class="form-group">
-		  <input type="password" placeholder="Password" name="password" class="form-control">
-		</div>
-		<button type="submit" class="btn btn-success" value="login" name="action" >Login</button>
-	  </form>
 	</div>
   </div>
 </nav>
+<?php include_once($GLOBALS['LAYOUT_PATH'].'notificacion.php'); ?>

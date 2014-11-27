@@ -7,7 +7,7 @@
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="/"><?php echo $_SESSION['conf']['nombre'];?></a>
+	  <a class="navbar-brand" href="/"><?php echo $conf->nombre;?></a>
 	  
 	</div>
 	<div id="navbar" class="navbar-collapse collapse">

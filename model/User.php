@@ -39,6 +39,8 @@ class User extends Model{
 							':role' =>$params['role'],
 							':phone' =>$params['phone'],
 							':email' =>$params['email']));
+							
+		//PENDIENTE COMPROBACION DE ERRORES
 	
 	}
 	

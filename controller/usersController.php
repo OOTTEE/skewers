@@ -65,7 +65,7 @@ function login(){
 		$url = '/';
 	closeConnection();
 	closeServerSession();
-	redirecionar('usersController.php');
+	redirecionar($url);
 }
 /**
 *	logout() => el usuario cierra la session en la pagina.
