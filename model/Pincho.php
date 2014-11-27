@@ -1,24 +1,20 @@
 <?php 
-include_once($GLOBALS['MODEL_PATH'].'Model.php';
-
+include_once($GLOBALS['MODEL_PATH'].'Model.php');
 class Pincho extends Model{
-		
-		public $usuario_id;
-		public $pincho_id;	
-		public $ingredientes;
-		public $nombre;
-		public $precio;
-		public $finalista;
-		public $imagen;
-		public $descripcion;
-		public $validado
-		
-		
-		
-public function getPincho($id){
-		$sentencia= $GLOBALS['DB']->prepare(SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
+	public $pincho_id;
+	public $usuario_id;
+	public $indredientes;
+	public $nombre;
+	public $precio;
+	public $finalista;
+	public $imagen;
+	public $descripcion;
+	public $validado;
+	
+	public function getPincho($id){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
 								FROM pinchos
-								WHERE usuario_id = ? );
+								WHERE usuario_id = ?' );
 		$sentencia=$GLOBALS['DB']->execute(array($id));
 		$resul=$sentencia->fetchall()[0];
 		$object= new Pincho();
@@ -34,11 +30,27 @@ public function getPincho($id){
 		$object->validado=$resul['validado'];
 		return $object;
 
-}
-public function registrarPincho(){
+	}
+	
+	public function register(){
+		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO `pinchos`(`usuario_id`, `ingredientes`, `nombre`, `precio`, `finalista`, `imagen`, `descripcion`, `validado`) 
+												VALUES (:usuario_id,
+														:ingredientes,
+														:nombre,
+														:precio,
+														:finalista,
+														:imagen,
+														:descripcion,
+														:validado)");
 
-
-}
-
-
+		$sentencia->execute(array(':usuario_id' => $params['usuario_id'],
+								':ingredientes' => $params['ingredientes'],
+								':nombre' => $params['nombre'],
+								':precio' => $params['precio'],
+								':finalista' => $params['finalista'],
+								':imagen' => $params['imagen'],
+								':descripcion' => $params['descripcion'],
+								':validado' => '0'));
+	
+	}
 }
