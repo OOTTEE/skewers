@@ -1,5 +1,5 @@
 <?php 
-include_once($GLOBALS['MODEL_PATH'].'Model.php');
+include_once($GLOBALS['MODEL_PATH'].'Model.php';
 class User extends Model{
 	public $usuario_id;
 	public $name;
@@ -13,9 +13,9 @@ class User extends Model{
 	
 	
 	public function isRegister($params){
-		GLOBAL $DB;	
+			
 		/* Ejecuta una sentencia preparada pasando un array de valores */
-		$sentencia = $DB->prepare('SELECT usuario_id, name, username, role, phone
+		$sentencia = $GLOBALS['DB']->prepare('SELECT usuario_id, name, username, role, phone
 								FROM users
 								WHERE username = :username AND password = :password');
 		$sentencia->execute(array(':username' => $params['username'],

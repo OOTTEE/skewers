@@ -28,6 +28,12 @@ class Establecimiento extends Model{
 		return $object;
 			
 	}
+	
+	public function registerEstablecimiento($params){
+	
+	
+	
+	}
 		
 		
 		
