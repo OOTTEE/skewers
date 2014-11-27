@@ -54,6 +54,7 @@ function login(){
 	connection();
 	$user = new User();
 	if($usuario = $user->isRegister(array('username' => $_POST['username'], 'password' => $_POST['password']))){
+		//$_SESSION => variable de session con la informacion del usuario registrador [usuario_id, name, username, role, phone]
 		$_SESSION['user'] = $usuario;
 		$_SESSION['login'] = true;
 		$url = $GLOBALS['CONTROLLER_URL'].'usersController.php';

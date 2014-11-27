@@ -1,12 +1,12 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
-include_once($GLOBALS['MODEL_PATH'].'User.php');
+include_once($GLOBALS['MODEL_PATH'].'Establecimiento.php');
 
 
 function index(){
 	if(isUserLoginWhithRole('establecimiento')){
 		//filtro por accion del usuario (parametro action recibido por GET o POST
-		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registrarPincho' ){
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registrarPincho'  ){
 			registrarPincho();
 		}else{
 			inicio();
@@ -39,6 +39,12 @@ function register(){
 
 function inicio(){
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+	connection();
+	$establecimiento = new Establecimiento();
+	$hasPincho = $establecimiento->hasPincho();
+	
+	closeConnection();
+	
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
 	echo "<h1>Establecimiento <small>index</small></h1>";
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');

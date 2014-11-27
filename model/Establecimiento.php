@@ -1,4 +1,5 @@
 <?php
+include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
 class Establecimiento extends Model{
 		
 		public $usuario_id;
@@ -6,15 +7,15 @@ class Establecimiento extends Model{
 		public $horario;
 		public $descripcion;
 		public $web;
-		public $direccion
+		public $direccion;
 		
 		
 		
 		
-		public function getEstablecimiento($id){
-		$sentencia= $GLOBALS['DB']->prepare(SELECT usuario_id, imagen, horario, descripcion, web,direccion
+	public function getEstablecimiento($id){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, imagen, horario, descripcion, web,direccion
 								FROM establecimientos
-								WHERE usuario_id = ? );
+								WHERE usuario_id = ?' );
 		$sentencia=$GLOBALS['DB']->execute(array($id));
 		$resul=$sentencia->fetchall()[0];
 		$object= new Establecimiento();
@@ -34,7 +35,15 @@ class Establecimiento extends Model{
 	
 	
 	}
-		
+	
+	public function hasPincho(){
+		$pincho = new Pincho();
+		if($pincho->getPinchoByUsuarioId($_SESSION['user']['usuario_id']))
+			return true;
+		else
+			return false;
+			
+	}
 		
 		
 		

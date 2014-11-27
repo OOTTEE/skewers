@@ -14,9 +14,14 @@ class Pincho extends Model{
 	public function getPincho($id){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
 								FROM pinchos
-								WHERE usuario_id = ?' );
+								WHERE pincho_id = ?' );
 		$sentencia=$GLOBALS['DB']->execute(array($id));
 		$resul=$sentencia->fetchall()[0];
+		
+		if(count($result)){
+			return false;
+		}
+		
 		$object= new Pincho();
 		
 		$object->usuario_id=$resul['usuario_id'];
@@ -29,10 +34,34 @@ class Pincho extends Model{
 		$object->finalista=$resul['finalista'];
 		$object->validado=$resul['validado'];
 		return $object;
-
 	}
 	
-	public function register(){
+	public function getPinchoByUsuarioId($id){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
+								FROM pinchos
+								WHERE usuario_id = ?' );
+		$sentencia=$GLOBALS['DB']->execute(array($id));
+		$resul=$sentencia->fetchall()[0];
+		
+		if(count($result)){
+			return false;
+		}
+		
+		$object= new Pincho();
+		
+		$object->usuario_id=$resul['usuario_id'];
+		$object->imagen=$resul['imagen'];
+		$object->pincho_id=$resul['pincho_id'];
+		$object->descripcion=$resul['descripcion'];
+		$object->ingredientes=$resul['ingredientes'];
+		$object->nombre=$resul['nombre'];
+		$object->precio=$resul['precio'];
+		$object->finalista=$resul['finalista'];
+		$object->validado=$resul['validado'];
+		return $object;
+	}
+	
+	public function register($params){
 		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO `pinchos`(`usuario_id`, `ingredientes`, `nombre`, `precio`, `finalista`, `imagen`, `descripcion`, `validado`) 
 												VALUES (:usuario_id,
 														:ingredientes,
@@ -43,14 +72,13 @@ class Pincho extends Model{
 														:descripcion,
 														:validado)");
 
-		$sentencia->execute(array(':usuario_id' => $params['usuario_id'],
+		$argumentos = array(':usuario_id' => $params['usuario_id'],
 								':ingredientes' => $params['ingredientes'],
 								':nombre' => $params['nombre'],
 								':precio' => $params['precio'],
-								':finalista' => $params['finalista'],
+								':finalista' => false,
 								':imagen' => $params['imagen'],
 								':descripcion' => $params['descripcion'],
-								':validado' => '0'));
-	
+								':validado' => false);
 	}
 }
