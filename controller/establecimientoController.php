@@ -24,7 +24,7 @@ function register(){
 	connection();
 	//Almacenamento imaxe establecemento
 	if ((($_FILES['imgfile']['type'] == 'image/jpeg') || ($_FILES['imgfile']['type'] == 'image/png')  || ($_FILES['imgfile']['type'] == 'image/pjpeg')) && ($_FILES['imgfile']['size'] < 200000))
-  { 
+	{ 
 	if(file_exists($_FILES['imgfile']['name']))
     {
       echo 'File name exists.';

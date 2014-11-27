@@ -21,3 +21,4 @@
 	</div>
   </div>
 </nav>
+<?php include_once($GLOBALS['LAYOUT_PATH'].'notificacion.php'); ?>
