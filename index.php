@@ -11,8 +11,10 @@ include_once($GLOBALS['LAYOUT_PATH'].'notLoginNav.php');
 	
 if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'register'){
 	include_once($GLOBALS['TEMPLATES_PATH'].'index/register.php');
+}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registerEstablecimiento'){
+	include_once($GLOBALS['TEMPLATES_PATH'].'index/registerEstablecimiento.php');
 }else{
-	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');
+		include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');
 }
 	
 include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
