@@ -22,24 +22,21 @@ class User extends Model{
 									':password' => $params['password']));
 		$user = $sentencia->fetchAll();				
 		if(count($user == 1))
-			return $user;
+			return $user[0];
 		else
 			return false;
 	}
 	
 	public function register($params){
-		 GLOBAL $DB;	
 		/* Ejecuta una sentencia preparada pasando un array de valores */
 		
-		$sentencia = $DB->prepare("INSERT INTO users (name, username, password, role, phone) VALUES (:name, :username, :password, :role, :phone)");
+		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO users (name, username, password, role, phone) VALUES (:name, :username, :password, :role, :phone)");
 
 		$sentencia->execute(array(':name' =>$params['name'],
 							':username' =>$params['username'],
 							':password' =>$params['password'],
 							':role' =>$params['role'],
 							':phone' =>$params['phone']));
-	
-		print_r($sentencia->fetch(PDO::FETCH_ASSOC));
 	}
 	
 	
