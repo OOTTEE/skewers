@@ -15,12 +15,14 @@ class Pincho extends Model{
 		$sentencia= $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
 								FROM pinchos
 								WHERE pincho_id = ?' );
-		$sentencia=$GLOBALS['DB']->execute(array($id));
-		$resul=$sentencia->fetchall()[0];
+		$sentencia->execute(array($id));
+		$resul=$sentencia->fetchall();
 		
-		if(count($result)){
+		if(count($resul) == 0){
 			return false;
 		}
+		
+		$resul = $resul[0];
 		
 		$object= new Pincho();
 		
@@ -40,12 +42,14 @@ class Pincho extends Model{
 		$sentencia = $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
 								FROM pinchos
 								WHERE usuario_id = ?' );
-		$sentencia = $GLOBALS['DB']->execute(array($id));
-		$resul=$sentencia->fetchall()[0];
+		$sentencia->execute(array($id));
+		$resul=$sentencia->fetchall();
 		
-		if(count($result)){
+		if(count($resul) == 0){
 			return false;
 		}
+		
+		$resul = $resul[0];
 		
 		$object= new Pincho();
 		
@@ -80,5 +84,7 @@ class Pincho extends Model{
 								':imagen' => $params['imagen'],
 								':descripcion' => $params['descripcion'],
 								':validado' => false);
+		$sentencia->execute($argumentos);
+		
 	}
 }

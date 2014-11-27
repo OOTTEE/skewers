@@ -13,7 +13,7 @@
 	<div id="navbar" class="navbar-collapse collapse">
 	  <ul class="nav navbar-nav navbar-right">
 		<li><p class="navbar-text" href="#"><a href="" ><?php echo $_SESSION['user']['name'];?></a></p></li>
-		<?php if($hasPincho):?>
+		<?php if(!$hasPincho):?>
 		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'establecimientoController.php?action=registrarPincho'?>">Registrar Pincho <span class="glyphicon glyphicon-cutlery" aria-hidden="true"/></a></li>
 		<?php endif;?>
 		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'usersController.php?action=logout'?>">Salir <span class="glyphicon glyphicon-off" aria-hidden="true"/></a></li>

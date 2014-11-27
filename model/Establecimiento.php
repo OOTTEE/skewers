@@ -9,9 +9,6 @@ class Establecimiento extends Model{
 		public $web;
 		public $direccion;
 		
-		
-		
-		
 	public function getEstablecimiento($id){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, imagen, horario, descripcion, web,direccion
 								FROM establecimientos

@@ -26,8 +26,6 @@ function registrarPincho(){
 							'imagen' => (isset($_POST['imagen'])) ?  '' : isset($_POST['imagen']),
 							'descripcion' => $_POST['descripcionPincho'])
 	);
-	die();
-	
 	closeConnection();
 	closeServerSession();
 	redirecionar('/');

@@ -75,4 +75,17 @@ function inicio(){
 	echo "<h1>Establecimiento <small>index</small></h1>";
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
+
+function registrarPincho(){
+	connection();
+	$establecimiento = new Establecimiento();
+	$hasPincho = $establecimiento->hasPincho();
+	closeConnection();
+	
+	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
+	include_once($GLOBALS['TEMPLATES_PATH'].'establecimiento/registrarPincho.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	
+}
 index();
