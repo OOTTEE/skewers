@@ -1,5 +1,5 @@
 ﻿<div class="container">
-	<form class="form-signin" role="form"  Method="POST" action="<?php echo $_GLOBALS['CONTROLLER_URL'].'pinchoController.php';?>" >
+	<form class="form-signin" role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'pinchoController.php';?>" >
 		<h2 class="form-signin-heading">Registro Pincho</h2>
 		<label for="inputNombre" class="sr-only">Nombre del Pincho</label>
 		<input type="text" id="inputNombre" class="form-control" placeholder="Nombre del pincho" name="Nombre" required autofocus>

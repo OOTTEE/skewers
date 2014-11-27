@@ -14,12 +14,12 @@ function index(){
 
 	}else{	
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registerEstablecimiento' ){
-			register()
-		}
-				
+			register();
+		}	
 	}
 	closeServerSession();
 }
+
 function register(){
 	connection();
 	$establecimiento = new Establecimiento();
@@ -40,7 +40,7 @@ function register(){
 function inicio(){
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
-	echo "<h1>Establecimiento</h1>";
+	echo "<h1>Establecimiento <small>index</small></h1>";
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
 

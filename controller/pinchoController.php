@@ -6,6 +6,7 @@ include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
 function index(){
 	if(isUserLoginWhithRole('establecimiento')){
 		//filtro por accion del usuario (parametro action recibido por GET o POST
+		echo 'hola';
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registrarPincho' ){
 			registrarPincho();
 		}else{
@@ -16,7 +17,7 @@ function index(){
 	}
 }
 
-function addPincho(){
+function registrarPincho(){
 
 	connection();
 	$user = new Pincho();
@@ -25,10 +26,10 @@ function addPincho(){
 							'nombre' => $_POST['nombre'],
 							'precio' => $_POST['precio'],
 							'finalista' => $_POST['finalista'],
-							'imagen' => $_POST['imagen'],
+							'imagen' => (isset($_POST['imagen'])) ?  '' : isset($_POST['imagen']),
 							'descripcion' => $_POST['descripcion'],
 							'validado' => 0)
-	));
+	);
 	closeConnection();
 	closeServerSession();
 	redirecionar('/');
