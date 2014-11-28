@@ -40,15 +40,16 @@ class User extends Model{
 							':phone' =>$params['phone'],
 							':email' =>$params['email']));
 							
-		//PENDIENTE COMPROBACION DE ERRORES
-	
+		if($sentencia->rowCount() == 0){
+			return false;
+		}else{
+			return $GLOBALS['DB']->lastInsertId();
+		}	
 	}
 	
 	
 	
 	public function getUser($id){
-		
-		
 		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, name, username, role, phone
 								FROM users
 								WHERE usuario_id = ? ');
@@ -63,7 +64,6 @@ class User extends Model{
 		$this->phone=$resul['phone'];
 		
 		return $this;
-			
 	}
 
 }

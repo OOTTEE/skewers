@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `asignaciones`;
 CREATE TABLE IF NOT EXISTS `asignaciones` (
-  `pincho_id` int(11) unsigned NOT NULL,
+  `pincho_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `usuario_id` int(11) NOT NULL,
   PRIMARY KEY (`pincho_id`,`usuario_id`),
   KEY `fk_pinchos_has_usuarios_usuarios1_idx` (`usuario_id`),
