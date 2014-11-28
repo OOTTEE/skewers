@@ -6,7 +6,6 @@ include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
 function index(){
 	if(isUserLoginWhithRole('establecimiento')){
-		$GLOBALS['configuracion'] = new Configuracion()->get();
 		//filtro por accion del usuario (parametro action recibido por GET o POST
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registrarPincho'  ){
 			registrarPincho();

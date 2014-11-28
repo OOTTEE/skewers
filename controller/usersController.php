@@ -43,6 +43,7 @@ function register(){
 	
 	closeConnection();
 	closeServerSession();
+	die();
 	redirecionar('/');
 }
 

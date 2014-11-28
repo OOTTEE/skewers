@@ -49,6 +49,7 @@ function registrarPincho(){
 								'descripcion' => $_POST['descripcionPincho'])
 		);
 		closeConnection();
+		addNotificacion('Pincho enviado, pendiente de validacion', 'success');
 		closeServerSession();
 		redirecionar('/');
 	}else{
