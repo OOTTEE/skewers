@@ -1,19 +1,20 @@
 <?php 
 include_once($GLOBALS['MODEL_PATH'].'Model.php');
 class Asignacion extends Model{
-	$pincho_id;
-	$usuario_id;
+	public $pincho_id;
+	public $usuario_id;
 		
-	public function getListAllAsignaciones($usuario_id){
-		$sentencia= $GLOBALS['DB']->prepare("SELECT u.usuario_id, u.name AS nombreUsuario, u.username, p.pincho_id, p.nombre AS nombrePincho, p.pincho_id
+	public function getListAllAsignaciones(){
+		$sentencia= $GLOBALS['DB']->prepare("SELECT u.name as nombreUsuario, u.usuario_id,p.nombre as nombrePincho, p.pincho_id, (SELECT a.pincho_id FROM asignaciones a WHERE a.pincho_id = p.pincho_id AND a.usuario_id = u.usuario_id) as asignado
 											FROM users u
-											LEFT JOIN asignaciones a ON u.usuario_id = a.usuario_id
-											LEFT JOIN pinchos p ON a.pincho_id = p.pincho_id
-											WHERE u.role = 'profesional'");
-		$sentencia=$GLOBALS['DB']->execute(array($usuario_id));
+											LEFT JOIN pinchos p ON 1
+											WHERE u.role = 'profesional'
+											ORDER BY u.usuario_id ASC");
+											
+		$sentencia->execute();
 		
 		if($sentencia->rowCount() > 0){
-			return sentencia->fetchall();
+			return $sentencia->fetchall();
 		}
 		
 		return false;
@@ -24,10 +25,10 @@ class Asignacion extends Model{
 		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, pincho_id
 											 FROM asignaciones
 											 WHERE usuario_id = ? ');
-		$sentencia=$GLOBALS['DB']->execute(array($usuario_id));
+		$sentencia->execute(array($usuario_id));
 		
 		if($sentencia->rowCount() > 0){
-			return sentencia->fetchall();
+			return $sentencia->fetchall();
 		}
 		
 		return false;
@@ -37,7 +38,7 @@ class Asignacion extends Model{
 		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, pincho_id
 											 FROM asignaciones
 											 WHERE usuario_id = ? AND pincho_id = ? ');
-		$sentencia=$GLOBALS['DB']->execute(array($usuario_id, $pincho_id));
+		$sentencia->execute(array($usuario_id, $pincho_id));
 		
 		if($sentencia->rowCount() == 1){
 			$resul=$sentencia->fetchall()[0];
@@ -57,7 +58,7 @@ class Asignacion extends Model{
 							':pincho_id' =>$pincho_id));
 		
 		if($sentencia->rowCount() == 0){
-			return false
+			return false;
 		}else{
 			return true;
 		}	
@@ -68,10 +69,10 @@ class Asignacion extends Model{
 		$sentencia = $GLOBALS['DB']->prepare("DELETE FROM asignaciones 
 											  WHERE usuario_id = ? AND pincho_id = ? ");
 											  
-		$sentencia = $GLOBALS['DB']->execute(array($usuario_id, $pincho_id));
+		$sentencia->execute(array($usuario_id, $pincho_id));
 		
 		if($sentencia->rowCount() == 0){
-			return false
+			return false;
 		}else{
 			return true;
 		}	

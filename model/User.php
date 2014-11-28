@@ -53,7 +53,8 @@ class User extends Model{
 		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, name, username, role, phone
 								FROM users
 								WHERE usuario_id = ? ');
-		$sentencia=$GLOBALS['DB']->execute(array($id));
+		//MANTENER $sentencia->execute(array($id)); y boorrar este comentario
+		$sentencia->execute(array($id));
 		$resul=$sentencia->fetchall()[0];
 		
 		
