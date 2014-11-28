@@ -2,6 +2,7 @@
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'Establecimiento.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
+include_once($GLOBALS['MODEL_PATH'].'User.php');
 
 
 function index(){
@@ -20,44 +21,63 @@ function index(){
 	}
 	closeServerSession();
 }
+function UpImagen($Id,$establecimiento){
+	//Almacenamento imaxe establecemento
+	
+	$Image_Path = $GLOBALS['IMGESTABLECIMIENTOS_URL'] . $Id . basename($_FILES['imagen']['name']);
+	if(($_FILES['imagen']['type'] == 'image/jpeg') || ($_FILES['imagen']['type'] == 'image/png') || ($_FILES['imagen']['type'] == 'image/jpg')){
+		
+		if($_FILES['imagen']['size'] < 200000){
+			move_uploaded_file($_FILES["imagen"]["tmp_name"],'/var/www/html/skewers'.$Image_Path);
+			$establecimiento->regImagen(array(
+						'imagen' => $Image_Path,
+						'usuario_id' => $Id));
+			return true;
+		}
+		else{
+		addNotificacion("No se pudo insertar la imagen,Tamaño demasiado grande","Danger");
+		return false;
+		}
+	}else{
+		addNotificacion("No se pudo insertar la imagen,Formato no soportado","Danger");
+			return false;
+		}	
+}
+
 function register(){
 	//PENDIENTE EL GUARDADO DE LAS IMAGENES
+	
 	connection();
-	//Almacenamento imaxe establecemento
-	if ((($_FILES['imgfile']['type'] == 'image/jpeg') || ($_FILES['imgfile']['type'] == 'image/png')  || ($_FILES['imgfile']['type'] == 'image/pjpeg')) && ($_FILES['imgfile']['size'] < 200000))
-	{ 
-	if(file_exists($_FILES['imgfile']['name']))
-    {
-      echo 'File name exists.';
-    }
-    else
-    {
-      move_uploaded_file($_FILES["imgfile"]["tmp_name"],$GLOBALS['IMGESTABLECIMIENTOS_PATH'].$_FILES['imgfile']['name']);
-      
-    }
-  }
-  else
-  {
-    echo "invalid file.";
-  }
 	
-	
-	
-	$establecimiento = new Establecimiento();
-	$establecimiento->register(array(
+	$user = new User();
+	$User_Id=$user->register(array(
 		'name' => $_POST['name'],
 		'username' => $_POST['username'],
 		'password' => $_POST['password'],
-		'role' =>  'popular',
+		'role' =>  'establecimiento',
 		'phone' => $_POST['phone'],
-		'email' => $_POST['email'],
+		'email' => $_POST['email'],));
+	if(!$User_Id){
+			addNotificacion("No se pudo crear el usuario","Danger");
+			return false;
+	}
+	$establecimiento = new Establecimiento();
+	$est=$establecimiento->register(array(
+		'usuario_id'=>$User_Id,
 		'web' => $_POST['web'],
 		'direccion'=> $_POST['direccion'],
 		'horario'=> $_POST['horario'],
-		'descripcion'=> $_POST['descripcion'],
-		'imagen'=> ''
-	));
-	
+		'descripcion'=> $_POST['descripcion']));
+	if(!$est){
+			addNotificacion("No se pudo crear el establecimiento","Danger");
+			return false;
+	}
+	$img=UpImagen($User_Id,$establecimiento);
+	if(!$est){
+			addNotificacion("No se pudo insertar la Imagen","Danger");
+			return false;
+	}
+
 	closeConnection();
 	closeServerSession();
 	redirecionar('/');
