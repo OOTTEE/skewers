@@ -1,4 +1,4 @@
-<div class="container">
+﻿<div class="container">
 <?php
 	foreach($asignaciones as $row):
 ?>

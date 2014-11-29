@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 	/** Control de notificaciones del usaurio 
 	*	
 	*/

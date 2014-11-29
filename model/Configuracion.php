@@ -9,6 +9,7 @@ class Configuracion extends Model{
 	public $f_fin;
 	public $votacionesFinalistas ;
 	public $votacionesGanadores ;
+	public $votacionesPopulares ;
 	private $id;
 	
 	function __construct(){
@@ -34,6 +35,7 @@ class Configuracion extends Model{
 		$this->f_fin=$resul['f_fin'];
 		$this->votacionesFinalistas=$resul['votacionesFinalistas'];
 		$this->votacionesGanadores=$resul['votacionesGanadores'];
+		$this->votacionesPopulares=$resul['votacionesPopulares'];
 		
 		return $this;
 	}
@@ -49,7 +51,8 @@ class Configuracion extends Model{
 																		`f_inicio` = :f_inicio, 
 																		`f_fin` = :f_fin,
 																		`votacionesFinalistas` = :votacionesFinalistas,
-																		`votacionesGanadores` = :votacionesGanadores ".
+																		`votacionesGanadores` = :votacionesGanadores,
+																		`votacionesPopulares` = :votacionesPopulares ".
 																		(isset($params['imagen'])? ", `imagen` = :imagen ": '').
 																		(isset($params['logo'])? ", `logo` = :logo " : '').
 																	"WHERE `id` = :id ");
@@ -60,6 +63,7 @@ class Configuracion extends Model{
 							':f_fin' => $params['f_fin'],
 							':votacionesFinalistas' => $params['votacionesFinalistas'],
 							':votacionesGanadores' => $params['votacionesGanadores'],
+							':votacionesPopulares' => $params['votacionesPopulares'],
 							':id' => $this->id);
 		if(isset($params['imagen'])){
 			$argumentos[':imagen'] = $params['imagen'];

@@ -7,14 +7,12 @@
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="/"><?php echo $GLOBALS['conf']->nombre;?> <small  class="hidden-xs hidden-sm"><?php echo $_SESSION['user']['role'];?></small></a>
+	  <a class="navbar-brand" href="/"><?php echo $GLOBALS['conf']->nombre;?> <small class="hidden-xs hidden-sm"><?php echo $_SESSION['user']['role'];?></small></a>
 	  
 	</div>
 	<div id="navbar" class="navbar-collapse collapse">
 	  <ul class="nav navbar-nav navbar-right">
 		<li><p class="navbar-text" href="#"><a href="" ><?php echo $_SESSION['user']['name'];?></a></p></li>
-		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'asignacionesController.php'?>">Asignar Pinchos <span class="glyphicon glyphicon-magnet" aria-hidden="true"/></a></li>
-		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'configuracionController.php'?>">Configuracion <span class="glyphicon glyphicon-cog" aria-hidden="true"/></a></li>
 		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'usersController.php?action=logout'?>">Salir <span class="glyphicon glyphicon-off" aria-hidden="true"/></a></li>
 	  </ul>
 	</div>

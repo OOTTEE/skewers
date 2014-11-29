@@ -28,6 +28,7 @@
 		/**
 		*	Conjunto de variables globlales que definen las URL de los distintos componentes del sistema
 		*/
+		$GLOBALS['IMGCONCURSO_URL'] = '/imagenes/concurso/';
 		$GLOBALS['IMGESTABLECIMIENTOS_URL'] = '/imagenes/establecimiento/';
 		$GLOBALS['IMGPINCHO_URL'] = '/imagenes/pincho/';
 		$GLOBALS['CONTROLLER_URL'] = '/controller/';

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
@@ -7,10 +7,14 @@ include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
 function index(){
 	if(isUserLoginWhithRole('administrador')){
-		$GLOBALS['conf']=(new Configuracion())->get();		
+		$GLOBALS['conf']=(new Configuracion())->get();	
+		if($GLOBALS['conf']->votacionesFinalistas == 1 AND $GLOBALS['conf']->votacionesGanadores == 1){
+				addNotificacion('<strong>ATENCION: </strong>Tanto como la votación de <u>pinchos finalistas</u> 
+									y <u>pinchos ganadores</u> se <u>activada</u>.','warning');
+		}	
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'editarConfiguracion' ){
 			editarConfiguracion();
-		}else{
+		}else{	
 			verConfiguracion();
 		}
 	}else{	
@@ -51,6 +55,7 @@ function editarConfiguracion(){
 						'descripcion' => $_POST['descripcionConcurso'],
 						'f_inicio' => $_POST['fechaInicio'],
 						'f_fin' => $_POST['fechaFin'],
+						'votacionesPopulares' => ((isset($_POST['votacionesPopulares']))? 1 : 0),
 						'votacionesFinalistas' => ((isset($_POST['votacionesFinalistas']))? 1 : 0),
 						'votacionesGanadores' => ((isset($_POST['votacionesGanadores']))? 1 : 0));
 					
@@ -72,11 +77,7 @@ function editarConfiguracion(){
 	}else{
 		addNotificacion('<strong>Error: </strong>Se ha producido un error al guardar la configuración.','danger');	
 	}
-	
-	if(isset($_POST['votacionesFinalistas']) AND isset($_POST['votacionesGanadores'])){
-		addNotificacion('<strong>ATENCION: </strong>Tanto como la votación de <u>pinchos finalistas</u> 
-							y <u>pinchos ganadores</u> se <u>activada</u>.','warning');
-	}
+
 	redirecionar($GLOBALS['CONTROLLER_URL'].'configuracionController.php');
 }
 

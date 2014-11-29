@@ -4,3 +4,9 @@ body {
   padding-bottom: 20px;
 }
 
+div#imgPrincipal{
+	padding-left: 0px;
+	padding-right: 0px;
+	background: none;
+}
+

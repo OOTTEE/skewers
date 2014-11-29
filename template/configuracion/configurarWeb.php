@@ -1,4 +1,4 @@
-<div class="container">
+﻿<div class="container">
 	<form role="form"  Method="POST" action="<?= $GLOBALS['CONTROLLER_URL'].'configuracionController.php';?>" >
 		<h2>Configurar Web</h2>
 		
@@ -30,9 +30,16 @@
 				Activar Votaciones Ganadores
 			</label>
 		</div>
+		<div class="input-group">
+			<label>
+				<input type="checkbox" name="votacionesPopulares" value="<?= $conf->votacionesPopulares?>"  <?php if( $conf->votacionesPopulares == 1){ echo 'checked' ;}?> >
+				
+				Activar Votaciones Populares
+			</label>
+		</div>
 		
 		<div class="form-group">
-			<label for="inputDescripcion" class="sr-only">Descripci�n</label>
+			<label for="inputDescripcion" class="sr-only">Descripción</label>
 			<textarea id="inputDescripcion"  class="form-control"  placeholder="Descripcion" name="descripcionConcurso" > <?= $conf->descripcion ?></textarea>			
 		</div>
 		

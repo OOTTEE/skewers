@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
@@ -8,6 +8,10 @@ include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 function index(){
 	if(isUserLoginWhithRole('administrador')){
 		$GLOBALS['conf'] = (new Configuracion())->get();
+		if($GLOBALS['conf']->votacionesFinalistas == 1 AND $GLOBALS['conf']->votacionesGanadores == 1){
+				addNotificacion('<strong>ATENCION: </strong>Tanto como la votación de <u>pinchos finalistas</u> 
+									y <u>pinchos ganadores</u> se <u>activada</u>.','warning');
+		}	
 		inicio();
 	}else{	
 		redirecionar('/');		

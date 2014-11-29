@@ -1,13 +1,11 @@
-
+﻿
 // Tendremos que controlar que sea del jurado popular
 
- <div class="jumbotron">
-      <div class="container">
-        <h1>Jurado Popular</h1>
-       
-        
-      </div>
-    </div>
+<div class="jumbotron" id="imgPrincipal">
+  <div class="container">
+	<img src="<?= $GLOBALS['IMGCONCURSO_URL'].$GLOBALS['conf']->imagen;?>" class="img-responsive" alt="Responsive image">
+  </div>
+</div>
 
     <div class="container">
       <!-- Example row of columns -->
