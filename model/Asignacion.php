@@ -64,12 +64,12 @@ class Asignacion extends Model{
 		}	
 	}
 	
-	public function delete($pincho_id, $usuario_id){
+	public function deleteAllFromUser($usuario_id){
 		
-		$sentencia = $GLOBALS['DB']->prepare("DELETE FROM asignaciones 
-											  WHERE usuario_id = ? AND pincho_id = ? ");
+		$sentencia = $GLOBALS['DB']->prepare("DELETE FROM  `asignaciones` 
+											  WHERE usuario_id = ?");
 											  
-		$sentencia->execute(array($usuario_id, $pincho_id));
+		$sentencia->execute(array($usuario_id));
 		
 		if($sentencia->rowCount() == 0){
 			return false;

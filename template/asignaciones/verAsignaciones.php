@@ -15,7 +15,7 @@
 		}else{
 			if($close){
 				$close=false;
-				echo '<button type="submit" class="btn btn-default">Guardar</button>';
+				echo '<button type="submit" class="btn btn-default" name="usuario_id" value='.$row['usuario_id'].'>Guardar</button>';
 				echo '</form>';
 				echo '</div>';
 				echo '</div>';
@@ -25,7 +25,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading"><?= $row['nombreUsuario'] ?></div>
 				<div class="panel-body">
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'asignacionesController.php?action=editarAsignaciones'?>">
 						<div class="form-group col-md-2">
 							<div class="input-group">
 								<label>
@@ -38,7 +38,7 @@
 
 	<?php } 
 		endforeach; ?>
-					<button type="submit" class="btn btn-default">Guardar</button>
+					<button type="submit" class="btn btn-default" name="usuario_id" value="<?= $user_id ?>">Guardar</button>
 				</form>
 			</div>
 		</div>	

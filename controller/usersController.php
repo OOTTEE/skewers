@@ -29,7 +29,7 @@ function index(){
 *					Al finalizar se redirecciona (POST->Redirect) a la pagina de inicio para que el usuario se pueda loguea
 */
 function register(){
-	connection();
+	
 	$user = new User();
 	$user->register(array(
 		'name' => $_POST['name'],
@@ -41,7 +41,7 @@ function register(){
 		
 	));
 	
-	closeConnection();
+	
 	closeServerSession();
 	redirecionar('/');
 }
@@ -54,7 +54,7 @@ function register(){
 *				o de vuelta al inicio si es incorrecto
 */
 function login(){
-	connection();
+	
 	$user = new User();
 	if($usuario = $user->isRegister(array('username' => $_POST['username'], 'password' => $_POST['password']))){
 		//$_SESSION => variable de session con la informacion del usuario registrador [usuario_id, name, username, role, phone]
@@ -63,7 +63,7 @@ function login(){
 		$url = $GLOBALS['CONTROLLER_URL'].'usersController.php';
 	}else
 		$url = '/';
-	closeConnection();
+	
 	closeServerSession();
 	redirecionar($url);
 }

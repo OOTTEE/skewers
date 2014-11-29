@@ -17,9 +17,7 @@ function index(){
 // FUNCIONES (CASOS DE USO); 
 
 function inicio(){
-	connection();
 	$conf = (new Configuracion())->get();
-	closeConnection();
 	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');

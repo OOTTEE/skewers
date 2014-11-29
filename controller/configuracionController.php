@@ -21,9 +21,9 @@ function index(){
 
 
 function verConfiguracion(){
-	connection();
+	
 	$conf = (new Configuracion())->get();
-	closeConnection();
+	
 
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
@@ -34,7 +34,7 @@ function verConfiguracion(){
 function editarConfiguracion(){
 
 	//PENDIENTE EL GUARDADO DE LAS IMAGENES
-	connection();
+	
 	$conf = new Configuracion();
 	$conf->set(array('logo' => isset($_POST['logoConcurso']) ? $_POST['logoConcurso'] : '',
 					'nombre' => $_POST['nombreConcurso'],
@@ -43,7 +43,7 @@ function editarConfiguracion(){
 					'f_inicio' => $_POST['fechaInicio'],
 					'f_fin' => $_POST['fechaFin'])
 				);
-	closeConnection();
+	
 	redirecionar($GLOBALS['CONTROLLER_URL'].'configuracionController.php');
 }
 

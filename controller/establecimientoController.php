@@ -47,7 +47,7 @@ function UpImagen($Id,$establecimiento){
 function register(){
 	//PENDIENTE EL GUARDADO DE LAS IMAGENES
 	
-	connection();
+	
 	
 	$user = new User();
 	$User_Id=$user->register(array(
@@ -78,18 +78,18 @@ function register(){
 			return false;
 	}
 
-	closeConnection();
+	
 	closeServerSession();
 	redirecionar('/');
 }
 
 
 function inicio(){
-	connection();
+	
 	$conf = (new Configuracion())->get();
 	$establecimiento = new Establecimiento();
 	$hasPincho = $establecimiento->hasPincho();
-	closeConnection();
+	
 	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
@@ -98,11 +98,11 @@ function inicio(){
 }
 
 function registrarPincho(){
-	connection();
+	
 	$conf = (new Configuracion())->get();
 	$establecimiento = new Establecimiento();
 	$hasPincho = $establecimiento->hasPincho();
-	closeConnection();
+	
 	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');

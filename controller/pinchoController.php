@@ -39,7 +39,7 @@ function registrarPincho(){
 		addNotificacion('Tiene que subir una imagen para el pincho', 'danger');
 	}
 	if($valido){
-		connection();
+		
 		$pincho = new Pincho();
 		$pincho->register(array( 'usuario_id' => $_SESSION['user']['usuario_id'],
 								'ingredientes' => $_POST['ingredientes'],
@@ -48,7 +48,7 @@ function registrarPincho(){
 								'imagen' => (isset($_POST['imagen'])) ?  '' : isset($_POST['imagen']),
 								'descripcion' => $_POST['descripcionPincho'])
 		);
-		closeConnection();
+		
 		addNotificacion('Pincho enviado, pendiente de validacion', 'success');
 		closeServerSession();
 		redirecionar('/');
@@ -70,7 +70,7 @@ function votarPincho()
 	*	$pincho = new Pincho();
 	*	$pincho->getPincho($id_del_pincho)->votar($id_del_usuario_que_vota);
 	*/
-	//connection();
+	//
 	//echo "si"
 	//votar();
 	

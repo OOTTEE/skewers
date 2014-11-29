@@ -18,13 +18,13 @@ function index(){
 }
 
 function verAsignaciones(){
-	connection();
+	
 	$conf = (new Configuracion())->get();
 	$asignacion = new Asignacion();
 	$asignaciones = $asignacion->getListAllAsignaciones();
 	
 	
-	closeConnection();
+	
 	closeServerSession();
 	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
@@ -36,10 +36,15 @@ function verAsignaciones(){
 }
 
 function editarAsignaciones(){
-	connection();
-	//
-	closeConnection();
+	var_dump($_POST);
+	$profesional_id = $_POST['usuario_id'];
+	unset($_POST['usuario_id']);
+	echo '<br/>';
+	var_dump($_POST);
+	
+	
 
+	die();
 	redirecionar($GLOBALS['CONTROLLER_URL'].'asignacionesController.php');
 }
 

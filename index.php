@@ -2,9 +2,7 @@
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
-connection();
 $conf = (new Configuracion())->get();
-closeConnection();
 
 if(isUserLogin()){
 	redirecionar($GLOBALS['CONTROLLER_URL'].'usersController.php');		

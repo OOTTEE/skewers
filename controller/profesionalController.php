@@ -20,9 +20,9 @@ function index(){
 }
 
 function inicio(){
-	connection();
+	
 	$conf = (new Configuracion())->get();
-	closeConnection();
+	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');
