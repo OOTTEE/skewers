@@ -14,7 +14,6 @@ function index(){
 	}else{	
 		redirecionar('/');		
 	}
-	closeServerSession();
 }
 
 function verAsignaciones(){
@@ -24,7 +23,6 @@ function verAsignaciones(){
 	
 	
 	
-	closeServerSession();
 	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
@@ -32,6 +30,7 @@ function verAsignaciones(){
 	include_once($GLOBALS['TEMPLATES_PATH'].'asignaciones/verAsignaciones.php');
 	
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	closeServerSession();
 }
 
 function editarAsignaciones(){
@@ -42,11 +41,12 @@ function editarAsignaciones(){
 	$Asignacion->deleteAllFromUser($profesional_id);
 	if(count($_POST) > 0){
 		if(!$Asignacion->create($_POST, $profesional_id)){
-			//addNotificacion('Se ha producido un error durante el guardado, intentelo de nuevo.','danger');
+			addNotificacion('Se ha producido un error durante el guardado, intentelo de nuevo.','danger');
 			redirecionar($GLOBALS['CONTROLLER_URL'].'asignacionesController.php');
 		}
 	}
-	//addNotificacion('Cambios Guardados Correctamente','success');
+	addNotificacion('Cambios Guardados Correctamente','success');
+	closeServerSession();
 	redirecionar($GLOBALS['CONTROLLER_URL'].'asignacionesController.php');
 }
 

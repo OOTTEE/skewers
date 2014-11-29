@@ -73,6 +73,7 @@ function login(){
 function logout(){
 	$_SESSION['user'] = null;
 	$_SESSION['login'] = false;
+	session_destroy();
 	redirecionar('/');
 }
 

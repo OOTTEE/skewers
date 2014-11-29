@@ -4,6 +4,12 @@ class Asignacion extends Model{
 	public $pincho_id;
 	public $usuario_id;
 		
+	
+	
+	/**
+	*	devuelve una lista de todas las asignaciones de todos los usuario profesionales
+	*	la lista está agrupada por usuario.
+	*/	
 	public function getListAllAsignaciones(){
 		$sentencia= $GLOBALS['DB']->prepare("SELECT  u.usuario_id as indice ,u.name as nombreUsuario, u.usuario_id ,p.nombre nombrePincho, p.pincho_id,
 		(SELECT a.pincho_id FROM asignaciones a WHERE a.pincho_id = p.pincho_id AND a.usuario_id = u.usuario_id) as asignado
@@ -22,6 +28,10 @@ class Asignacion extends Model{
 		
 	}
 	
+	/**
+	*	devuelve una lista de las asignaciones asociadas a un usuario profesional determinado
+	*	$usuario_id(int) el id del usuario.
+	*/	
 	public function getListAsignaciones($usuario_id){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, pincho_id
 											 FROM asignaciones
@@ -35,6 +45,11 @@ class Asignacion extends Model{
 		return false;
 	}
 	
+	/**
+	*	devuelve una asignacion determinada por el id del usuario profesional y del pincho
+	*	$usuario_id(int) el id del usuario.
+	*	$pincho_id(int) id del pincho.
+	*/
 	public function get($usuario_id, $pincho_id){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, pincho_id
 											 FROM asignaciones
@@ -50,19 +65,19 @@ class Asignacion extends Model{
 		return false;
 	}
 	
+	
+	/**
+	*	Crea las asignaciones del los pinchos pasados en un array a un usuario profesional indicado.
+	*	$usuario_id(int) el id del usuario al que queremos añadir las asignaciones.
+	*	$pincho_id(array(int,..)) id de los pinchos que queremos asociar al usuario.
+	*/
 	public function create($pincho_id, $usuario_id){
-		$params = array();
 		
-		foreach($pincho_id as $p){
-			array_push($params, $usuario_id,$p);
-		}
-		
-		$args = array_fill(0, count($params ), '?');
-		
-		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO asignaciones (usuario_id, pincho_id) 
-											VALUES (".implode(',', $args).") ");
+		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO asignaciones (usuario_id, pincho_id) VALUES (:usuario_id, :pincho_id) ");
 											
-		$sentencia->execute($params);
+		foreach($pincho_id as $p){
+			$sentencia->execute(array( ':usuario_id' => $usuario_id, ':pincho_id' => $p));
+		}
 		
 		if($sentencia->rowCount() == 0){
 			return false;
@@ -71,6 +86,11 @@ class Asignacion extends Model{
 		}	
 	}
 	
+	
+	/**
+	*	Borra todas las asignaciones de pinchos de un usuario profesional determinado por parametro
+	*   $usuario_id(int)  id del usuario
+	*/
 	public function deleteAllFromUser($usuario_id){
 		
 		$sentencia = $GLOBALS['DB']->prepare("DELETE FROM  `asignaciones` 
