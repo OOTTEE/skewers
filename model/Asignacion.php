@@ -5,16 +5,17 @@ class Asignacion extends Model{
 	public $usuario_id;
 		
 	public function getListAllAsignaciones(){
-		$sentencia= $GLOBALS['DB']->prepare("SELECT u.name as nombreUsuario, u.usuario_id,p.nombre as nombrePincho, p.pincho_id, (SELECT a.pincho_id FROM asignaciones a WHERE a.pincho_id = p.pincho_id AND a.usuario_id = u.usuario_id) as asignado
+		$sentencia= $GLOBALS['DB']->prepare("SELECT  u.usuario_id as indice ,u.name as nombreUsuario, u.usuario_id ,p.nombre nombrePincho, p.pincho_id,
+		(SELECT a.pincho_id FROM asignaciones a WHERE a.pincho_id = p.pincho_id AND a.usuario_id = u.usuario_id) as asignado
 											FROM users u
 											LEFT JOIN pinchos p ON 1
 											WHERE u.role = 'profesional'
-											ORDER BY u.usuario_id ASC");
+											ORDER BY u.usuario_id ASC, p.pincho_id ASC");
 											
 		$sentencia->execute();
 		
 		if($sentencia->rowCount() > 0){
-			return $sentencia->fetchall();
+			return $sentencia->fetchall(PDO::FETCH_GROUP);
 		}
 		
 		return false;
@@ -50,12 +51,18 @@ class Asignacion extends Model{
 	}
 	
 	public function create($pincho_id, $usuario_id){
+		$params = array();
+		
+		foreach($pincho_id as $p){
+			array_push($params, $usuario_id,$p);
+		}
+		
+		$args = array_fill(0, count($params ), '?');
 		
 		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO asignaciones (usuario_id, pincho_id) 
-											VALUES (:usuario_id, :pincho_id) ");
-
-		$sentencia->execute(array(':usuario_id' =>$usuario_id,
-							':pincho_id' =>$pincho_id));
+											VALUES (".implode(',', $args).") ");
+											
+		$sentencia->execute($params);
 		
 		if($sentencia->rowCount() == 0){
 			return false;

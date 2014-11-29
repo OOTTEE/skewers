@@ -18,7 +18,6 @@ function index(){
 }
 
 function verAsignaciones(){
-	
 	$conf = (new Configuracion())->get();
 	$asignacion = new Asignacion();
 	$asignaciones = $asignacion->getListAllAsignaciones();
@@ -36,15 +35,18 @@ function verAsignaciones(){
 }
 
 function editarAsignaciones(){
-	var_dump($_POST);
 	$profesional_id = $_POST['usuario_id'];
 	unset($_POST['usuario_id']);
-	echo '<br/>';
-	var_dump($_POST);
 	
-	
-
-	die();
+	$Asignacion = new Asignacion();
+	$Asignacion->deleteAllFromUser($profesional_id);
+	if(count($_POST) > 0){
+		if(!$Asignacion->create($_POST, $profesional_id)){
+			//addNotificacion('Se ha producido un error durante el guardado, intentelo de nuevo.','danger');
+			redirecionar($GLOBALS['CONTROLLER_URL'].'asignacionesController.php');
+		}
+	}
+	//addNotificacion('Cambios Guardados Correctamente','success');
 	redirecionar($GLOBALS['CONTROLLER_URL'].'asignacionesController.php');
 }
 
