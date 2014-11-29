@@ -78,7 +78,9 @@ CREATE TABLE IF NOT EXISTS `configuracion` (
   `Decripcion` mediumtext COLLATE utf8_bin NOT NULL,
   `imagen` varchar(250) COLLATE utf8_bin NOT NULL,
   `f_incio` date NOT NULL,
-  `f_fin` date NOT NULL
+  `f_fin` date NOT NULL,
+  `votacionesFinalistas` BOOLEAN NOT NULL DEFAULT FALSE,
+  `votacionesGanadores` BOOLEAN NOT NULL DEFAULT FALSE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------

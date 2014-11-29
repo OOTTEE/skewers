@@ -7,7 +7,7 @@
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="/"><?php echo $conf->nombre;?> <small><?php echo $_SESSION['user']['role'];?></a>
+	  <a class="navbar-brand" href="/"><?php echo $GLOBALS['conf']->nombre;?> <small><?php echo $_SESSION['user']['role'];?></a>
 	  
 	</div>
 	<div id="navbar" class="navbar-collapse collapse">

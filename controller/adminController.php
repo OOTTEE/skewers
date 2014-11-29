@@ -7,6 +7,7 @@ include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
 function index(){
 	if(isUserLoginWhithRole('administrador')){
+		$GLOBALS['conf'] = (new Configuracion())->get();
 		inicio();
 	}else{	
 		redirecionar('/');		
@@ -17,7 +18,6 @@ function index(){
 // FUNCIONES (CASOS DE USO); 
 
 function inicio(){
-	$conf = (new Configuracion())->get();
 	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');

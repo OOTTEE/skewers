@@ -5,6 +5,7 @@ include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
 function index(){
 	if(isUserLoginWhithRole('administrador')){
+		$GLOBALS['conf'] = (new Configuracion())->get();
 		//filtro por accion del usuario (parametro action recibido por GET o POST
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'editarAsignaciones' ){
 			editarAsignaciones();
@@ -18,7 +19,6 @@ function index(){
 }
 
 function verAsignaciones(){
-	$conf = (new Configuracion())->get();
 	$asignacion = new Asignacion();
 	$asignaciones = $asignacion->getListAllAsignaciones();
 	

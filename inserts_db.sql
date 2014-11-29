@@ -1,5 +1,5 @@
-INSERT INTO `configuracion`(`id`, `logo`, `nombre`, `descripcion`, `imagen`, `f_inicio`, `f_fin`) 
-			VALUES (1,'logo.png','Pinchos Ourense','Descripcion del concurso de Ourense','portada.png','2014-01-01','2014-01-01');
+INSERT INTO `configuracion`(`id`, `logo`, `nombre`, `descripcion`, `imagen`, `f_inicio`, `f_fin`, `votacionesGanadores`, `votacionesFinalistas`) 
+			VALUES (1,'logo.png','Pinchos Ourense','Descripcion del concurso de Ourense','portada.png','2014-01-01','2014-01-01', 0, 0);
 
 INSERT INTO `users`(`usuario_id`, `name`, `username`, `password`, `role`, `phone`, `email`) 
 	VALUES ( 1,'Jurado Profesional 1','Jurado1','1234','profesional','600600001','jurado1@correo.es'),

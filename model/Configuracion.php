@@ -7,6 +7,8 @@ class Configuracion extends Model{
 	public $imagen;
 	public $f_inicio;
 	public $f_fin;
+	public $votacionesFinalistas ;
+	public $votacionesGanadores ;
 	private $id;
 	
 	function __construct(){
@@ -30,6 +32,8 @@ class Configuracion extends Model{
 		$this->imagen=$resul['imagen'];
 		$this->f_inicio=$resul['f_inicio'];
 		$this->f_fin=$resul['f_fin'];
+		$this->votacionesFinalistas=$resul['votacionesFinalistas'];
+		$this->votacionesGanadores=$resul['votacionesGanadores'];
 		
 		return $this;
 	}
@@ -40,29 +44,36 @@ class Configuracion extends Model{
 	*	Es necesario pasar todos los parametros
 	*/
 	public function set($params){
-		if(isset($params['logo']) AND isset($params['nombre']) AND isset($params['descripcion']) AND
-		   isset($params['imagen']) AND isset($params['f_inicio']) AND isset($params['f_fin'])){
-			$sentencia = $GLOBALS['DB']->prepare("UPDATE `configuracion` SET `logo` = :logo,
-																			`nombre` = :nombre, 
-																			`descripcion` = :descripcion, 
-																			`imagen` = :imagen, 
-																			`f_inicio` = :f_inicio, 
-																			`f_fin` = :f_fin
-																		WHERE `id` = :id ");
+		$sentencia = $GLOBALS['DB']->prepare("UPDATE `configuracion` SET `nombre` = :nombre, 
+																		`descripcion` = :descripcion, 
+																		`f_inicio` = :f_inicio, 
+																		`f_fin` = :f_fin,
+																		`votacionesFinalistas` = :votacionesFinalistas,
+																		`votacionesGanadores` = :votacionesGanadores ".
+																		(isset($params['imagen'])? ", `imagen` = :imagen ": '').
+																		(isset($params['logo'])? ", `logo` = :logo " : '').
+																	"WHERE `id` = :id ");
 
-			$argumentos = array(':logo' => $params['logo'],
-								':nombre' => $params['nombre'],
-								':descripcion' => $params['descripcion'],
-								':imagen' => $params['imagen'],
-								':f_inicio' => $params['f_inicio'],
-								':f_fin' => $params['f_fin'],
-								':id' => $this->id);
-			$sentencia->execute($argumentos);
-			
-			return true;
-		}else{
-			return false;
+		$argumentos = array(':nombre' => $params['nombre'],
+							':descripcion' => $params['descripcion'],
+							':f_inicio' => $params['f_inicio'],
+							':f_fin' => $params['f_fin'],
+							':votacionesFinalistas' => $params['votacionesFinalistas'],
+							':votacionesGanadores' => $params['votacionesGanadores'],
+							':id' => $this->id);
+		if(isset($params['imagen'])){
+			$argumentos[':imagen'] = $params['imagen'];
 		}
+		if(isset($params['logo'])){
+			$argumentos[':logo'] = $params['logo'];
+		}
+		$sentencia->execute($argumentos);
+
+		if($sentencia->rowCount() > 0)
+			return true;
+		else
+			return false;
+
 	}
 	
 	

@@ -6,6 +6,7 @@ include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
 function index(){
 	if(isUserLoginWhithRole('popular')){
+		$GLOBALS['conf'] = (new Configuracion())->get();
 		//filtro por accion del usuario (parametro action recibido por GET o POST
 		/*if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'ACCION' ){
 			ACCION();
@@ -20,9 +21,7 @@ function index(){
 }
 
 function inicio(){
-	
-	$conf = (new Configuracion())->get();
-	
+
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'popular/index.php'); //accedemos al index de popular.
