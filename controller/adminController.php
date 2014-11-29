@@ -27,8 +27,6 @@ function inicio(){
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
 	
 	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');
-	echo '<h1>administrador</h1>';
-	
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
 
