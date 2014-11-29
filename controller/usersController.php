@@ -19,9 +19,9 @@ function index(){
 			login();
 		}else{		
 			redirecionar('/');
-		}
-			
+		}	
 	}
+	closeServerSession();	
 }
 
 /**
@@ -42,7 +42,6 @@ function register(){
 	));
 	
 	
-	closeServerSession();
 	redirecionar('/');
 }
 
@@ -64,7 +63,6 @@ function login(){
 	}else
 		$url = '/';
 	
-	closeServerSession();
 	redirecionar($url);
 }
 /**
@@ -96,8 +94,7 @@ function inicio(){
 		case 'establecimiento':
 			redirecionar($GLOBALS['CONTROLLER_URL'].'establecimientoController.php');
 			break;
-	}
-	closeServerSession();
+	}	
 }
 
 index();

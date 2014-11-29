@@ -78,8 +78,6 @@ function register(){
 			return false;
 	}
 
-	
-	closeServerSession();
 	redirecionar('/');
 }
 

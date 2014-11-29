@@ -14,6 +14,7 @@ function index(){
 	}else{	
 		redirecionar('/');		
 	}
+	closeServerSession();
 }
 
 function verAsignaciones(){
@@ -30,7 +31,6 @@ function verAsignaciones(){
 	include_once($GLOBALS['TEMPLATES_PATH'].'asignaciones/verAsignaciones.php');
 	
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
-	closeServerSession();
 }
 
 function editarAsignaciones(){
@@ -46,7 +46,6 @@ function editarAsignaciones(){
 		}
 	}
 	addNotificacion('Cambios Guardados Correctamente','success');
-	closeServerSession();
 	redirecionar($GLOBALS['CONTROLLER_URL'].'asignacionesController.php');
 }
 
