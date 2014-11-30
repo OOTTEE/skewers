@@ -34,6 +34,7 @@
 		$GLOBALS['CONTROLLER_URL'] = '/controller/';
 		$GLOBALS['BOOTSTRAP_URL'] = '/lib/bootstrap/';
 		$GLOBALS['CSS_URL'] = '/lib/css/';
+		$GLOBALS['JS_URL'] = '/lib/js/';
 		
 		
 		

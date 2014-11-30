@@ -22,9 +22,14 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="inputPassword" >Password</label>
-			<input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+			<label for="inputPassword1" >Contraseña</label>
+			<input type="password" id="inputPassword1" class="form-control" placeholder="Password" required>
 		</div>
+		<div class="form-group">
+			<label for="inputPassword2" >Repita la contraseña</label>
+			<input type="password" id="inputPassword2" class="form-control" placeholder="Password" required>
+		</div>
+		<input type="hidden" id="inputPassword3" name="password" >
 		<button class="btn btn-lg btn-primary btn-block" type="submit"  value="register" name="action" >Registrar</button>
 	</form>
 </div> 

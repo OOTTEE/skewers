@@ -16,13 +16,15 @@
 	  </ul>
 	  <form class="navbar-form navbar-right" role="form" Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'usersController.php'; ?>">
 		<div class="form-group">
-		  <input type="text" placeholder="Usuario"  name="username" class="form-control">
+		  <input type="text" placeholder="Usuario"  name="username" class="form-control" required>
 		</div>
 		<div class="form-group">
-		  <input type="password" placeholder="Password" name="password" class="form-control">
+		  <input id="pass" type="password" placeholder="Password" class="form-control" required>
 		</div>
+		<input id="passEncrypt" type="hidden" name="password">
 		<button type="submit" class="btn btn-success" value="login" name="action" >Login</button>
 	  </form>
 	</div>
   </div>
 </nav>
+<?php include_once($GLOBALS['LAYOUT_PATH'].'notificacion.php'); ?>
