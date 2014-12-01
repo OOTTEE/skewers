@@ -28,38 +28,38 @@ class Establecimiento extends Model{
 	
 
 	
-public function register($params){
+	public function register($params){
+			
+		/* Ejecuta una sentencia preparada pasando un array de valores */
 		
-	/* Ejecuta una sentencia preparada pasando un array de valores */
-	
-	$sentencia = $GLOBALS['DB']->prepare("INSERT INTO establecimientos (usuario_id, imagen, horario, descripcion, web,direccion) VALUES (:usuario_id,:imagen , :horario, :descripcion, :web,:direccion)");
+		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO establecimientos (usuario_id, imagen, horario, descripcion, web,direccion) VALUES (:usuario_id,:imagen , :horario, :descripcion, :web,:direccion)");
 
-	$sentencia->execute(array(':usuario_id' =>$params['usuario_id'],
-						':horario' =>$params['horario'],
-						':descripcion' =>$params['descripcion'],
-						':web' =>$params['web'],
-						':imagen' =>"",
-						':direccion' =>$params['direccion']));
-						
-	if($sentencia->rowCount() == 0){
-			return false;
-		}else{
-			return true;
-		}	
+		$sentencia->execute(array(':usuario_id' =>$params['usuario_id'],
+							':horario' =>$params['horario'],
+							':descripcion' =>$params['descripcion'],
+							':web' =>$params['web'],
+							':imagen' =>"",
+							':direccion' =>$params['direccion']));
+							
+		if($sentencia->rowCount() == 0){
+				return false;
+			}else{
+				return true;
+			}	
 
-}
-public function regImagen($params){
-		$sentencia = $GLOBALS['DB']->prepare("UPDATE establecimientos SET imagen=:imagen WHERE usuario_id=:usuario_id");
+	}
+	public function regImagen($params){
+			$sentencia = $GLOBALS['DB']->prepare("UPDATE establecimientos SET imagen=:imagen WHERE usuario_id=:usuario_id");
 
-	$sentencia->execute(array(':usuario_id' => $params['usuario_id'],
-				':imagen' =>$params['imagen']));
+		$sentencia->execute(array(':usuario_id' => $params['usuario_id'],
+					':imagen' =>$params['imagen']));
 
-}
+	}
 	
 	public function hasPincho(){
 		$pincho = new Pincho();
 		if($pincho->getPinchoByUsuarioId($_SESSION['user']['usuario_id']))
-			return true;
+			return $pincho;
 		else
 			return false;
 			

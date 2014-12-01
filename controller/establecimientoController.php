@@ -11,6 +11,8 @@ function index(){
 		//filtro por accion del usuario (parametro action recibido por GET o POST
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registrarPincho'  ){
 			registrarPincho();
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'verPincho'  ){
+			verPincho();
 		}else {
 			inicio();
 		}		
@@ -86,8 +88,7 @@ function register(){
 function inicio(){
 	
 	$establecimiento = new Establecimiento();
-	$hasPincho = $establecimiento->hasPincho();
-	
+	$Pincho = $establecimiento->hasPincho();
 	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
@@ -98,13 +99,25 @@ function inicio(){
 function registrarPincho(){
 	
 	$establecimiento = new Establecimiento();
-	$hasPincho = $establecimiento->hasPincho();
-	
-	
+	$Pincho = $establecimiento->hasPincho();
+		
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'establecimiento/registrarPincho.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 	
 }
+
+function verPincho(){
+	$establecimiento = new Establecimiento();
+	$Pincho = $establecimiento->hasPincho();
+	
+	if($Pincho){	
+		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+		include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
+		include_once($GLOBALS['TEMPLATES_PATH'].'establecimiento/editarPincho.php');
+		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	}
+}
+
 index();

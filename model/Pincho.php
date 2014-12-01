@@ -11,29 +11,30 @@ class Pincho extends Model{
 	public $descripcion;
 	public $validado;
 	
-	public function getPincho($id){
+	public function getPincho($pincho_id){
+		var_dump($this);echo '<br>';
 		$sentencia= $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
 								FROM pinchos
 								WHERE pincho_id = ?' );
-		$sentencia->execute(array($id));
-		$resul=$sentencia->fetchall();
+		$sentencia->execute(array($usuario_id));
+		$result=$sentencia->fetchall(PDO::FETCH_CLASS, "Pincho");
 		
-		if(count($resul) == 0){
+		
+		if($sentencia->rowCount() == 1){
+			$result = $result[0];
+			$this->usuario_id=$result->usuario_id;
+			$this->imagen=$result->imagen;
+			$this->pincho_id=$result->pincho_id;
+			$this->descripcion=$result->descripcion;
+			$this->ingredientes=$result->ingredientes;
+			$this->nombre=$result->nombre;
+			$this->precio=$result->precio;
+			$this->finalista=$result->finalista;
+			$this->validado=$result->validado;
+			return $this;
+		}else{
 			return false;
-		}
-		
-		$resul = $resul[0];
-	
-		$this->usuario_id=$resul['usuario_id'];
-		$this->imagen=$resul['imagen'];
-		$this->pincho_id=$resul['pincho_id'];
-		$this->descripcion=$resul['descripcion'];
-		$this->ingredientes=$resul['ingredientes'];
-		$this->nombre=$resul['nombre'];
-		$this->precio=$resul['precio'];
-		$this->finalista=$resul['finalista'];
-		$this->validado=$resul['validado'];
-		return $this;
+		}		
 	}
 	
 	public function getPinchoByUsuarioId($id){
@@ -41,48 +42,83 @@ class Pincho extends Model{
 								FROM pinchos
 								WHERE usuario_id = ?' );
 		$sentencia->execute(array($id));
-		$resul=$sentencia->fetchall();
+		$result=$sentencia->fetchall(PDO::FETCH_CLASS, "Pincho");
 		
-		if(count($resul) == 0){
+		if($sentencia->rowCount() == 1){
+			$result = $result[0];
+			$this->usuario_id=$result->usuario_id;
+			$this->imagen=$result->imagen;
+			$this->pincho_id=$result->pincho_id;
+			$this->descripcion=$result->descripcion;
+			$this->ingredientes=$result->ingredientes;
+			$this->nombre=$result->nombre;
+			$this->precio=$result->precio;
+			$this->finalista=$result->finalista;
+			$this->validado=$result->validado;
+			return $this;
+		}else{
 			return false;
-		}
-		
-		$resul = $resul[0];
-	
-		
-		$this->usuario_id=$resul['usuario_id'];
-		$this->imagen=$resul['imagen'];
-		$this->pincho_id=$resul['pincho_id'];
-		$this->descripcion=$resul['descripcion'];
-		$this->ingredientes=$resul['ingredientes'];
-		$this->nombre=$resul['nombre'];
-		$this->precio=$resul['precio'];
-		$this->finalista=$resul['finalista'];
-		$this->validado=$resul['validado'];
-		return $this;
+		}		
 	}
 	
 	public function register($params){
-		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO `pinchos`(`usuario_id`, `ingredientes`, `nombre`, `precio`, `finalista`, `imagen`, `descripcion`, `validado`) 
-												VALUES (:usuario_id,
-														:ingredientes,
-														:nombre,
-														:precio,
-														:finalista,
-														:imagen,
-														:descripcion,
-														:validado)");
+		if(isset($params)){
+			$sentencia = $GLOBALS['DB']->prepare("INSERT INTO `pinchos`(`usuario_id`, `ingredientes`, `nombre`, `precio`, `finalista`, `imagen`, `descripcion`, `validado`) 
+													VALUES (:usuario_id,
+															:ingredientes,
+															:nombre,
+															:precio,
+															:finalista,
+															:imagen,
+															:descripcion,
+															:validado)");
 
-		$argumentos = array(':usuario_id' => $params['usuario_id'],
-								':ingredientes' => $params['ingredientes'],
-								':nombre' => $params['nombre'],
-								':precio' => $params['precio'],
-								':finalista' => false,
-								':imagen' => $params['imagen'],
-								':descripcion' => $params['descripcion'],
-								':validado' => false);
-		$sentencia->execute($argumentos);
-		
+			$argumentos = array(':usuario_id' => $params['usuario_id'],
+									':ingredientes' => $params['ingredientes'],
+									':nombre' => $params['nombre'],
+									':precio' => $params['precio'],
+									':finalista' => false,
+									':imagen' => $params['imagen'],
+									':descripcion' => $params['descripcion'],
+									':validado' => false);
+			$sentencia->execute($argumentos);
+			if($sentencia->rowCount() == 1){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		return false;
+	}
+	
+	
+	public function edit($params){
+		if(isset($this->usuario_id)){
+			$sentencia = $GLOBALS['DB']->prepare("UPDATE `pinchos` SET
+												`ingredientes` = :ingredientes,
+												`nombre` = :nombre ,
+												`precio` = :precio ,".
+												((isset($params['imagen']))? '`imagen` = :imagen ,' : '').
+												"`descripcion` = :descripcion
+												WHERE `usuario_id` = :usuario_id");
+
+			$argumentos = array(':ingredientes' => $params['ingredientes'],
+									':nombre' => $params['nombre'],
+									':precio' => $params['precio'],
+									':descripcion' => $params['descripcion'],
+									':usuario_id' => $this->usuario_id);
+			if(isset($params['imagen'])){
+				$argumentos[':imagen'] = $params['imagen'];
+			}
+			$sentencia->execute($argumentos);
+						
+			if($sentencia->rowCount() == 1){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		return false;
 	}
 	
 	public function votar(){

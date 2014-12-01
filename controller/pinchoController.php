@@ -10,6 +10,8 @@ function index(){
 		//filtro por accion del usuario (parametro action recibido por GET o POST
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registrarPincho' ){
 			registrarPincho();
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'editarPincho' ){
+			editarPincho();
 		}else{
 			redirecionar('/');		
 		}
@@ -18,6 +20,7 @@ function index(){
 	}
 	
 }
+
 
 function registrarPincho(){
 	//PENDIENTE EL GUARDADO DE LAS IMAGENES
@@ -51,12 +54,44 @@ function registrarPincho(){
 		);
 		
 		addNotificacion('Pincho enviado, pendiente de validacion', 'success');
-		closeServerSession();
 		redirecionar('/');
 	}else{
-		closeServerSession();
+		addNotificacion('<strong>Error: </strong>El pincho no puedo ser enviado.', 'danger');
 		redirecionar($GLOBALS['CONTROLLER_URL'].'establecimientoController.php?action=registrarPincho');
 	}
+	closeServerSession();
+}
+function editarPincho(){
+	//PENDIENTE EL GUARDADO DE LAS IMAGENES
+	$valido=true;
+	if( !(isset($_POST['nombrePincho']) AND (strlen(str_replace(' ', '', $_POST['nombrePincho'])) > 4))){
+		$valido=false;
+		addNotificacion('El nombre del pincho deben tener como minimo 4 caracteres', 'warning');
+	}
+	if( !(isset($_POST['ingredientes']) AND strlen(str_replace(' ', '', $_POST['ingredientes'])) > 8 )){
+		$valido=false;
+		addNotificacion('Los ingredientes deben tener como minimo 8 caracteres', 'warning');
+	}
+	if( !(isset($_POST['precio']) AND floatval($_POST['precio']) > 0 )){
+		$valido=false;
+		addNotificacion('El precio del pincho debe ser mayor que 0', 'warning');
+	}
+	if($valido){
+		$pincho = new Pincho();
+		$pincho->usuario_id= $_SESSION['user']['usuario_id'];
+		$pincho->edit(array('ingredientes' => $_POST['ingredientes'],
+							'nombre' => $_POST['nombrePincho'],
+							'precio' => $_POST['precio'],
+							'imagen' => (isset($_POST['imagen'])) ? $_POST['imagen'] : NULL,
+							'descripcion' => $_POST['descripcionPincho'])
+		);
+		addNotificacion('El pincho fue editado, pendiente de validacion', 'success');
+		redirecionar('/');
+	}else{
+		addNotificacion('El pincho no fue editado', 'danger');
+		redirecionar($GLOBALS['CONTROLLER_URL'].'establecimientoController.php?action=editarPincho');
+	}
+	closeServerSession();
 }
 
 //Aqui hacemos la funcion votar pincho
