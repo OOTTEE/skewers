@@ -1,4 +1,4 @@
-﻿<div class="container">
+<div class="container">
 	<form role="form"  Method="POST" action="<?php echo $CONTROLLER_URL.'usersController.php';?>" >
 		<h2>Registro</h2>
 		<div class="form-group">

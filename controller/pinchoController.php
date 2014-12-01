@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
@@ -9,8 +9,10 @@ function index(){
 		$GLOBALS['conf']=(new Configuracion())->get();
 		//filtro por accion del usuario (parametro action recibido por GET o POST
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registrarPincho' ){
+			echo 'registrar';
 			registrarPincho();
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'editarPincho' ){
+			echo 'editar';
 			editarPincho();
 		}else{
 			redirecionar('/');		
@@ -61,37 +63,43 @@ function registrarPincho(){
 	}
 	closeServerSession();
 }
+
 function editarPincho(){
 	//PENDIENTE EL GUARDADO DE LAS IMAGENES
-	$valido=true;
-	if( !(isset($_POST['nombrePincho']) AND (strlen(str_replace(' ', '', $_POST['nombrePincho'])) > 4))){
-		$valido=false;
-		addNotificacion('El nombre del pincho deben tener como minimo 4 caracteres', 'warning');
-	}
-	if( !(isset($_POST['ingredientes']) AND strlen(str_replace(' ', '', $_POST['ingredientes'])) > 8 )){
-		$valido=false;
-		addNotificacion('Los ingredientes deben tener como minimo 8 caracteres', 'warning');
-	}
-	if( !(isset($_POST['precio']) AND floatval($_POST['precio']) > 0 )){
-		$valido=false;
-		addNotificacion('El precio del pincho debe ser mayor que 0', 'warning');
-	}
-	if($valido){
 		$pincho = new Pincho();
-		$pincho->usuario_id= $_SESSION['user']['usuario_id'];
-		$pincho->edit(array('ingredientes' => $_POST['ingredientes'],
-							'nombre' => $_POST['nombrePincho'],
-							'precio' => $_POST['precio'],
-							'imagen' => (isset($_POST['imagen'])) ? $_POST['imagen'] : NULL,
-							'descripcion' => $_POST['descripcionPincho'])
-		);
-		addNotificacion('El pincho fue editado, pendiente de validacion', 'success');
-		redirecionar('/');
-	}else{
-		addNotificacion('El pincho no fue editado', 'danger');
-		redirecionar($GLOBALS['CONTROLLER_URL'].'establecimientoController.php?action=editarPincho');
-	}
-	closeServerSession();
+		$pincho->getPinchoByUsuarioId($_SESSION['user']['usuario_id']);
+		if(!$pincho->getPinchoByUsuarioId($_SESSION['user']['usuario_id'])->validado){
+			$valido=true;
+			if( !(isset($_POST['nombrePincho']) AND (strlen(str_replace(' ', '', $_POST['nombrePincho'])) > 4))){
+				$valido=false;
+				addNotificacion('El nombre del pincho deben tener como minimo 4 caracteres', 'warning');
+			}
+			if( !(isset($_POST['ingredientes']) AND strlen(str_replace(' ', '', $_POST['ingredientes'])) > 8 )){
+				$valido=false;
+				addNotificacion('Los ingredientes deben tener como minimo 8 caracteres', 'warning');
+			}
+			if( !(isset($_POST['precio']) AND floatval($_POST['precio']) > 0 )){
+				$valido=false;
+				addNotificacion('El precio del pincho debe ser mayor que 0', 'warning');
+			}
+			if($valido){
+				$pincho->edit(array('ingredientes' => $_POST['ingredientes'],
+									'nombre' => $_POST['nombrePincho'],
+									'precio' => $_POST['precio'],
+									'imagen' => (isset($_POST['imagen'])) ? $_POST['imagen'] : NULL,
+									'descripcion' => $_POST['descripcionPincho'])
+				);
+				addNotificacion('El pincho fue editado, pendiente de validacion', 'success');
+				redirecionar('/');
+			}else{
+				addNotificacion('El pincho no fue editado', 'danger');
+				redirecionar($GLOBALS['CONTROLLER_URL'].'establecimientoController.php?action=editarPincho');
+			}
+		}else{
+			addNotificacion('El pincho ya fue validado y no puede ser editado', 'danger');
+			redirecionar('/');
+		}
+		closeServerSession();
 }
 
 //Aqui hacemos la funcion votar pincho

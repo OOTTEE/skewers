@@ -1,4 +1,4 @@
-﻿<div class="container">
+<div class="container">
 	<form  role="form"  Method="POST" enctype="multipart/form-data" action="<?php echo $CONTROLLER_URL.'establecimientoController.php';?>" >
 		<h2>Registro de Establecimiento</h2>
 		<div class="form-group">

@@ -1,4 +1,4 @@
-﻿
+
 // Tendremos que controlar que sea del jurado popular
 
 <div class="jumbotron" id="imgPrincipal">

@@ -1,8 +1,8 @@
-﻿<?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
-include_once($GLOBALS['MODEL_PATH'].'Establecimiento.php');
-include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
-include_once($GLOBALS['MODEL_PATH'].'User.php');
+<?php
+require($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
+require($GLOBALS['MODEL_PATH'].'Establecimiento.php');
+require($GLOBALS['MODEL_PATH'].'Configuracion.php');
+require($GLOBALS['MODEL_PATH'].'User.php');
 
 
 function index(){

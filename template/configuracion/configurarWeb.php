@@ -1,4 +1,4 @@
-﻿<div class="container">
+<div class="container">
 	<form role="form"  Method="POST" action="<?= $GLOBALS['CONTROLLER_URL'].'configuracionController.php';?>" >
 		<h2>Configurar Web</h2>
 		

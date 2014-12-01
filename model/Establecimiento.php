@@ -64,9 +64,4 @@ class Establecimiento extends Model{
 			return false;
 			
 	}
-		
-		
-		
-
-
 }
