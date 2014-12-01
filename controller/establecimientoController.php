@@ -5,6 +5,10 @@ require($GLOBALS['MODEL_PATH'].'Configuracion.php');
 require($GLOBALS['MODEL_PATH'].'User.php');
 
 
+/**
+*	Author: Javier Lorenzo Martin
+*	Controlador de acciones para el establecimiento.
+*/
 function index(){
 	if(isUserLoginWhithRole('establecimiento')){
 		$GLOBALS['conf']=(new Configuracion())->get();
@@ -24,6 +28,11 @@ function index(){
 	}
 	closeServerSession();
 }
+
+/**
+*	Author: Hector Novoa Novoa
+*	Funcion para el guardado de imagenes del establecimiento
+*/
 function UpImagen($Id,$establecimiento){
 	//Almacenamento imaxe establecemento
 	
@@ -47,6 +56,11 @@ function UpImagen($Id,$establecimiento){
 		}	
 }
 
+
+/**
+*	Author: Javier Lorenzo Martin
+*	En este caso se crea el usuario para el establecimiento y el establecimiento asociado.
+*/
 function register(){
 	//PENDIENTE EL GUARDADO DE LAS IMAGENES
 	
@@ -85,6 +99,10 @@ function register(){
 }
 
 
+/**
+*	Author: Javier Lorenzo Martin
+*	Se muestra la interfaz principal del usuario administrador
+*/
 function inicio(){
 	
 	$establecimiento = new Establecimiento();
@@ -96,6 +114,10 @@ function inicio(){
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
 
+/**
+*	Author: Javier Lorenzo Martin
+*	Se muestra la interfaz de registro de un pincho para un establecimiento dado
+*/
 function registrarPincho(){
 	
 	$establecimiento = new Establecimiento();
@@ -108,6 +130,10 @@ function registrarPincho(){
 	
 }
 
+/**
+*	Author: Javier Lorenzo Martin
+*	Se muestra la interfaz para ver el pincho y poder editarlo.
+*/
 function verPincho(){
 	$establecimiento = new Establecimiento();
 	$Pincho = $establecimiento->hasPincho();

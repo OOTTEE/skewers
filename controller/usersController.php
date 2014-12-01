@@ -3,6 +3,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'User.php');
 
 /**
+*	Author: Javier Lorenzo Martin
 *	Funcion principal del controlador users, esta funcion redirige a los metodos apropiados.
 */
 function index(){
@@ -25,6 +26,7 @@ function index(){
 }
 
 /**
+*	Author: Javier Lorenzo Martin
 *	register() => registra un usuario en el sistema si la informacion es correcta
 *					Al finalizar se redirecciona (POST->Redirect) a la pagina de inicio para que el usuario se pueda loguea
 */
@@ -46,6 +48,7 @@ function register(){
 }
 
 /**
+*	Author: Javier Lorenzo Martin
 *	login() => verifica que un usuario esta logueado en el sitema
 *				Si el usuario esta logueado en el sistema almacena en variables de sesion la informacion de usuario
 *				y una variable booleana login que indica si el usuario esta logueado.
@@ -65,7 +68,9 @@ function login(){
 	
 	redirecionar($url);
 }
+
 /**
+*	Author: Javier Lorenzo Martin
 *	logout() => el usuario cierra la session en la pagina.
 */
 function logout(){
@@ -75,7 +80,9 @@ function logout(){
 	redirecionar('/');
 }
 
+
 /**
+*	Author: Javier Lorenzo Martin
 *	Aqui se muestra la pagina de inicio del usuario, 
 *	dependiendo del tipo de usuario registrado en el sistema
 *   se mostrará una vista o otra

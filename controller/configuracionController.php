@@ -3,8 +3,10 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
 
-// CONTROLADOR DE ACCIONES 
-
+/**
+*	Author: Javier Lorenzo Martin
+*	Controlador de acciones para la configuración, solo se permite el acceso al usuario administrador
+*/
 function index(){
 	if(isUserLoginWhithRole('administrador')){
 		$GLOBALS['conf']=(new Configuracion())->get();	
@@ -15,7 +17,7 @@ function index(){
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'editarConfiguracion' ){
 			editarConfiguracion();
 		}else{	
-			verConfiguracion();
+			redirecionar('/');	
 		}
 	}else{	
 		redirecionar('/');		
@@ -25,15 +27,11 @@ function index(){
 
 
 
-function verConfiguracion(){
-	
-	$conf = (new Configuracion())->get();
-
-	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'configuracion/configurarWeb.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
-}
+/**
+*	Author: Javier Lorenzo Martin
+*	En este caso, se editan la configuracion de la pagina
+*	se validan todos los campo, que sean correctos, y se notifica al usuario.
+*/
 
 function editarConfiguracion(){
 	
@@ -78,7 +76,7 @@ function editarConfiguracion(){
 		addNotificacion('<strong>Error: </strong>Se ha producido un error al guardar la configuración.','danger');	
 	}
 
-	redirecionar($GLOBALS['CONTROLLER_URL'].'configuracionController.php');
+	redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','verConfiguracion')));
 }
 
 index();

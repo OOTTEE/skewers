@@ -13,8 +13,8 @@
 	<div id="navbar" class="navbar-collapse collapse">
 	  <ul class="nav navbar-nav navbar-right">
 		<li><p class="navbar-text" href="#"><a href="" ><?php echo $_SESSION['user']['name'];?></a></p></li>
-		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'asignacionesController.php'?>">Asignar Pinchos <span class="glyphicon glyphicon-magnet" aria-hidden="true"/></a></li>
-		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'configuracionController.php'?>">Configuracion <span class="glyphicon glyphicon-cog" aria-hidden="true"/></a></li>
+		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=verAsignaciones'?>">Asignar Pinchos <span class="glyphicon glyphicon-magnet" aria-hidden="true"/></a></li>
+		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=verConfiguracion'?>">Configuracion <span class="glyphicon glyphicon-cog" aria-hidden="true"/></a></li>
 		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'usersController.php?action=logout'?>">Salir <span class="glyphicon glyphicon-off" aria-hidden="true"/></a></li>
 	  </ul>
 	</div>
