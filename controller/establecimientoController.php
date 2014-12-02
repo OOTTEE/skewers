@@ -104,8 +104,8 @@ function register(){
 *	Se muestra la interfaz principal del usuario administrador
 */
 function inicio(){
-	
 	$establecimiento = new Establecimiento();
+	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
 	$Pincho = $establecimiento->hasPincho();
 	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
@@ -119,8 +119,8 @@ function inicio(){
 *	Se muestra la interfaz de registro de un pincho para un establecimiento dado
 */
 function registrarPincho(){
-	
 	$establecimiento = new Establecimiento();
+	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
 	$Pincho = $establecimiento->hasPincho();
 		
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
@@ -136,6 +136,7 @@ function registrarPincho(){
 */
 function verPincho(){
 	$establecimiento = new Establecimiento();
+	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
 	$Pincho = $establecimiento->hasPincho();
 	
 	if($Pincho){	
@@ -143,6 +144,8 @@ function verPincho(){
 		include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
 		include_once($GLOBALS['TEMPLATES_PATH'].'establecimiento/editarPincho.php');
 		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	}else{
+		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'establecimientoController.php', array(array('action','registrarPincho'	)));
 	}
 }
 

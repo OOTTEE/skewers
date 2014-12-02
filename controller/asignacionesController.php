@@ -1,7 +1,6 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'Asignacion.php');
-include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
 /**
 *	Author: Javier Lorenzo Martin
@@ -9,7 +8,6 @@ include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 */
 function index(){
 	if(isUserLoginWhithRole('administrador')){
-		$GLOBALS['conf'] = (new Configuracion())->get();
 		//filtro por accion del usuario (parametro action recibido por GET o POST
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'editarAsignaciones' ){
 			editarAsignaciones();
@@ -36,7 +34,8 @@ function editarAsignaciones(){
 	if(count($_POST) > 0){
 		if(!$Asignacion->create($_POST, $profesional_id)){
 			addNotificacion('Se ha producido un error durante el guardado, intentelo de nuevo.','danger');
-			redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php', array(array('action','verAsignaciones'	)));
+		}else{
+			addNotificacion('Cambios Guardados Correctamente','success');
 		}
 	}
 	addNotificacion('Cambios Guardados Correctamente','success');
