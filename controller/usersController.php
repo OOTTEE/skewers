@@ -32,17 +32,29 @@ function index(){
 *					Al finalizar se redirecciona (POST->Redirect) a la pagina de inicio para que el usuario se pueda loguea
 */
 function register(){
-	
-	$user = new User();
-	$user->register(array(
-		'name' => $_POST['name'],
-		'username' => $_POST['username'],
-		'password' => $_POST['password'],
-		'role' =>  'popular',
-		'phone' => $_POST['phone'],
-		'email' => $_POST['email']
-		
-	));
+	$camposValidos=true;
+	if(!isset($_POST['phone'])){
+		addNotificacion('El numero de telefono no es correcto', 'danger');
+		$camposValidos=false;
+	}
+	if(!isset($_POST['email'])){
+		addNotificacion('El email no es correcto', 'danger');
+		$camposValidos=false;
+	}
+	if($camposValidos){
+		$user = new User();
+		$user->register(array(
+			'name' => $_POST['name'],
+			'username' => $_POST['username'],
+			'password' => $_POST['password'],
+			'role' =>  'popular',
+			'phone' => $_POST['phone'],
+			'email' => $_POST['email']
+			
+		));	
+	}else{
+		addNotificacion('No se creo el usuario', 'danger');
+	}
 	
 	
 	redirecionar('/');

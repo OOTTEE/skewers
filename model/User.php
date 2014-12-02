@@ -67,4 +67,65 @@ class User extends Model{
 		return $this;
 	}
 
+	//FUNCIONES EDGAR
+	public function modifyUser($usuario_id, $name, $username, $password, $role, $phone){
+		GLOBAL $DB;	
+		$sentencia = $DB->prepare("UPDATE users SET name=?, username=?, password=?, phone=?, role=? WHERE usuario_id=?");			
+		$sentencia->execute(array($name,$username, $password, $phone, $role,$usuario_id));			
+		if($sentencia->rowCount() > 0) 
+			return true;
+		else 
+			return false;
+	}
+	
+	public function countUsers(){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT  COUNT(*) as Number FROM users WHERE role <> "administrador" ');
+		$sentencia->execute();
+		$resul=$sentencia->fetchall()[0];
+		
+		
+		
+		return $resul;
+	}
+	public function getUsers(){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT *
+											FROM users
+											WHERE role <> "administrador" ');
+		$sentencia->execute();
+		$result=$sentencia->fetchall(); 
+		return $result;
+			
+	}
+	public function deleteUser($nameUser){
+		$sentencia= $GLOBALS['DB']->prepare('DELETE FROM users WHERE name = ? ');
+		
+			$sentencia->execute(array($nameUser));
+			if($sentencia->rowCount() > 0) 
+				return true;
+
+			else 
+				return false;
+		
+		
+	}
+	public function getName($id){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT  name FROM users WHERE usuario_id = ? ');
+		$sentencia->execute(array($id));
+		$resul=$sentencia->fetchall()[0];
+		$name = $resul['name'];
+		
+		
+		return $name;
+	}
+	public function getID($nameUser){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT  usuario_id FROM users WHERE name = ? ');
+		$sentencia->execute(array($nameUser));
+		$resul=$sentencia->fetchall()[0];
+		$id = $resul['usuario_id'];
+		
+		
+		return $id;
+	}
+	//FUNCIONES EDGAR FIN
 }
+

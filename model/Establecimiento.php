@@ -25,7 +25,32 @@ class Establecimiento extends Model{
 		return $this;
 
 	}
-
+	public function getEstablecimientos(){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT *
+											 FROM establecimientos  e , users u 
+											 WHERE e.usuario_id = u.usuario_id');
+		$sentencia->execute();
+		
+		if($sentencia->rowCount() > 0){
+			return $sentencia->fetchall();
+		}
+		
+		return false;
+	
+	}
+		public function getEstablecimientosByID($Id){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT *
+											 FROM establecimientos  e , users u 
+											 WHERE e.usuario_id = u.usuario_id=?');
+		$sentencia->execute(array($Id));
+		
+		if($sentencia->rowCount() > 0){
+			return $sentencia->fetchall();
+		}
+		
+		return false;
+	
+	}
 
 
 	public function register($params){

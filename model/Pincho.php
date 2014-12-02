@@ -35,6 +35,30 @@ class Pincho extends Model{
 			return false;
 		}		
 	}
+		public function getPinchoVotoProfesional(){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
+								FROM pinchos
+								WHERE pincho_id = ?' );
+		$sentencia->execute(array($this->pincho_id));
+		$result=$sentencia->fetchall(PDO::FETCH_CLASS, "Pincho");
+		
+		
+		if($sentencia->rowCount() == 1){
+			$result = $result[0];
+			$this->usuario_id=$result->usuario_id;
+			$this->imagen=$result->imagen;
+			$this->pincho_id=$result->pincho_id;
+			$this->descripcion=$result->descripcion;
+			$this->ingredientes=$result->ingredientes;
+			$this->nombre=$result->nombre;
+			$this->precio=$result->precio;
+			$this->finalista=$result->finalista;
+			$this->validado=$result->validado;
+			return $this;
+		}else{
+			return false;
+		}		
+	}
 	
 	public function getPinchoByUsuarioId(){
 		$sentencia = $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
@@ -77,7 +101,7 @@ class Pincho extends Model{
 									':nombre' => $params['nombre'],
 									':precio' => $params['precio'],
 									':finalista' => false,
-									':imagen' => $params['imagen'],
+									':imagen' => "",
 									':descripcion' => $params['descripcion'],
 									':validado' => false);
 			$sentencia->execute($argumentos);
@@ -119,5 +143,45 @@ class Pincho extends Model{
 		}
 		return false;
 	}
+	public function setImagen($params){
+			$sentencia = $GLOBALS['DB']->prepare("UPDATE pinchos SET imagen=:imagen WHERE usuario_id=:usuario_id");
+
+		$sentencia->execute(array(':usuario_id' => $params['usuario_id'],
+					':imagen' =>$params['imagen']));
 	
+	}
+
+	//FUNCIONES PINCHO
+	public function validarPincho($idPincho){
+		 GLOBAL $DB;	
+		/* Ejecuta una sentencia preparada pasando un array de valores */
+		
+		$sentencia = $DB->prepare("UPDATE pinchos SET validado=1 WHERE pincho_id=?");		
+		$sentencia->execute(array($idPincho));
+		if($sentencia->rowCount() > 0) 
+			return true;
+		else 
+			return false;
+	}
+	
+	public function getPinchos(){		
+		$sentencia= $GLOBALS['DB']->prepare('SELECT * 
+								FROM pinchos
+								WHERE validado = 0 ');
+		$sentencia->execute();
+		$result=$sentencia->fetchall(); 
+		return $result;
+			
+	}
+	public function countPinchos(){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT  COUNT(*) as Number FROM pinchos WHERE validado = 0 ');
+		$sentencia->execute();
+		$resul=$sentencia->fetchall()[0];
+		
+		
+		
+		return $resul;
+	}
+
+	// FIN
 }

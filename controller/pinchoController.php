@@ -64,9 +64,10 @@ function registrarPincho(){
 								'ingredientes' => $_POST['ingredientes'],
 								'nombre' => $_POST['nombrePincho'],
 								'precio' => $_POST['precio'],
-								'imagen' => (isset($_POST['imagen'])) ?  '' : isset($_POST['imagen']),
 								'descripcion' => $_POST['descripcionPincho'])
 		);
+		//subida imaxe
+		UpImagen($_SESSION['user']['usuario_id'],'p');
 		
 		addNotificacion('Pincho enviado, pendiente de validacion', 'success');
 		redirecionar('/');

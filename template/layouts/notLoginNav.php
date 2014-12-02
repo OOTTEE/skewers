@@ -14,7 +14,7 @@
 		<li><a href="/?action=register">Registrate</a></li>
 		<li><a href="/?action=registerEstablecimiento">Establecimiento</a></li>
 	  </ul>
-	  <form class="navbar-form navbar-right" role="form" Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'usersController.php'; ?>">
+	  <form class="navbar-form navbar-right" id="validarPasswordLogin" role="form" Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'usersController.php'; ?>">
 		<div class="form-group">
 		  <input type="text" placeholder="Usuario"  name="username" class="form-control" required>
 		</div>
