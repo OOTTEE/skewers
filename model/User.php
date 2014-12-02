@@ -84,27 +84,6 @@ class User extends Model{
 	}
 	
 	
-	
-	public function getUser($id){
-		
-		
-		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, name, username, role, phone, password
-								FROM users
-								WHERE usuario_id = ? ');
-		$sentencia->execute(array($id));
-		$resul=$sentencia->fetchall()[0];
-		$object= new User();
-		
-		$object->usuario_id=$resul['usuario_id'];
-		$object->name=$resul['name'];
-		$object->user=$resul['username'];
-		$object->password=$resul['password'];
-		$object->role=$resul['role'];
-		$object->phone=$resul['phone'];
-		
-		return $object;
-			
-	}
 	public function countUsers(){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT  COUNT(*) as Number FROM users WHERE role <> "administrador" ');
 		$sentencia->execute();

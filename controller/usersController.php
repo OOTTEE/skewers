@@ -32,17 +32,31 @@ function index(){
 *					Al finalizar se redirecciona (POST->Redirect) a la pagina de inicio para que el usuario se pueda loguea
 */
 function register(){
+	var_dump(filter_var($_POST['phone'],FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>'/0/'))));
+	die();
+	$camposValidos=true;
+	if( !(isset($_POST['phone']) AND filter_var($_POST['phone'],FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>'/0/'))))){
+		echo 'no';
+		addNotificacion('El numero de telefono no es correcto', 'danger');
+		$camposValidos=false;
+	}else{
+		echo 'si';
+	}
+	die();
 	
-	$user = new User();
-	$user->register(array(
-		'name' => $_POST['name'],
-		'username' => $_POST['username'],
-		'password' => $_POST['password'],
-		'role' =>  'popular',
-		'phone' => $_POST['phone'],
-		'email' => $_POST['email']
-		
-	));
+	
+	if($camposValidos){
+		$user = new User();
+		$user->register(array(
+			'name' => $_POST['name'],
+			'username' => $_POST['username'],
+			'password' => $_POST['password'],
+			'role' =>  'popular',
+			'phone' => $_POST['phone'],
+			'email' => $_POST['email']
+			
+		));	
+	}
 	
 	
 	redirecionar('/');
