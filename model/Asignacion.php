@@ -33,9 +33,9 @@ class Asignacion extends Model{
 	*	$usuario_id(int) el id del usuario.
 	*/	
 	public function getListAsignaciones($usuario_id){
-		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, pincho_id
-											 FROM asignaciones
-											 WHERE usuario_id = ? ');
+		$sentencia= $GLOBALS['DB']->prepare('SELECT *
+											 FROM asignaciones  a , pinchos p
+											 WHERE a.usuario_id = ? AND a.pincho_id=p.pincho_id ');
 		$sentencia->execute(array($usuario_id));
 		
 		if($sentencia->rowCount() > 0){
