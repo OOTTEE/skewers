@@ -7,23 +7,23 @@
 
     <div class="container">
 	<form class="form-signin" role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php';?>" >      
-	<?php 	echo "Pinchos_id : "; print_r($datosPincho[0][0]); echo "<br>";
-		echo "Usuario_id : "; print_r($datosPincho[0][1]); echo "<br>";
-		echo "Ingredientes : "; print_r($datosPincho[0][2]); echo "<br>";
-		echo "Nombre : "; print_r($datosPincho[0][3]); echo "<br>";
-		echo "Precio : "; print_r($datosPincho[0][4]); echo "€";echo "<br>";
-		echo "Finalista : "; if($datosPincho[0][5]==0)
+	<?php 	echo "Pinchos_id : ".$pincho->pincho_id."<br>";
+		echo "Usuario_id : ".$pincho->usuario_id."<br>";
+		echo "Ingredientes : ".$pincho->ingredientes."<br>";
+		echo "Nombre : ".$pincho->nombre."<br>";
+		echo "Precio : ".$pincho->precio."€";echo "<br>";
+		echo "Finalista : "; if($pincho->finalista==0)
 					echo "No";
 				     else 
 					echo "Si";
 
 ; echo "<br>";
-		if($datosPincho[0][6]<>null){
-			echo "Imagen : "; print_r($datosPincho[0][6]);echo "<br>";
+		if($pincho->imagen<>null){
+			echo "Imagen : ".$pincho->imagen."<br>";
 		}
-		echo "Descripcion : "; print_r($datosPincho[0][7]);echo "<br>";
+		echo "Descripcion : ".$pincho->descripcion."<br>";
 		?>
-<input type="hidden" name="pincho_id" value="<?php print_r($datosPincho[0][0]) ?>">
+<input type="hidden" name="pincho_id" value="<?php echo $pincho->pincho_id ?>">
 <button class="btn btn-lg btn-primary btn-block" type="submit"  value="validar" name="action" >VALIDAR PINCHO</button>
 <button class="btn btn-lg btn-primary btn-block" type="submit"  value="volver" name="action" >VOLVER</button>
 		

@@ -42,7 +42,7 @@ function index(){
 			modificarUsuario($_GET['nameUser']);
 		}
 		else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'realizarValidacionPincho' ){						
-			realizarValidacionPincho($_GET['namePincho']);
+			realizarValidacionPincho();
 		}
 		else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'register' ){
 			darAltaJuradoProfesional();			
@@ -138,7 +138,6 @@ function verAltaJuradoProfesional(){
 *	Aqui se muestra el menu de modificacion de usuarios (lista de usuarios)
 */
 function verModificarUsuario(){
-	connection();
 	$usuario = new User();
 	$idUsers = $usuario->getUsers();
 	$countUsers = $usuario->countUsers()[0];
@@ -152,7 +151,6 @@ function verModificarUsuario(){
 *	Aqui se muestra el menu de eliminacion de usuarios (lista de usuarios)
 */
 function verEliminarUsuario(){
-	connection();
 	$usuario = new User();
 	$idUsers = $usuario->getUsers();
 	$countUsers = $usuario->countUsers()[0];		
@@ -167,8 +165,6 @@ function verEliminarUsuario(){
 *	Aqui se muestra el formulario de modificacion del usuario seleccionado
 */
 function modificarUsuario(){
-	
-	connection();
 	$usuario = new User();
 	$idUsuario = $usuario->getID($_GET['nameUser']);
 	$datosUsuario = $usuario->getUser($idUsuario); 
@@ -182,17 +178,15 @@ function modificarUsuario(){
 *	Aqui se realiza la modificacion de los datos del usuario
 */
 function realizarModificacion(){
-	connection();
 	$user = new User();
 	if($user->modifyUser($_POST['usuario_id'],$_POST['name'],$_POST['username'],$_POST['password'],$_POST['role'],$_POST['phone'])){
 		addNotificacion("Usuario modificado","succcess");
-		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','verModificarUsuario')));
+		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','gestionarUsuario')));
 	}
 	else{
 		addNotificacion("Usuario no modificado","danger");
-		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','verModificarUsuario')));
-	}
-	
+		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','gestionarUsuario')));
+	}	
 
 }
 /**
@@ -200,7 +194,6 @@ function realizarModificacion(){
 *	Aqui se realiza la eliminacion del usaurio seleccionado
 */
 function eliminarUsuario($nombreUsuario){
-	connection();
 	$usuario = new User();
 	if($usuario->deleteUser($nombreUsuario)){
 		addNotificacion("Usuario eliminado","succcess");
@@ -217,46 +210,62 @@ function eliminarUsuario($nombreUsuario){
 *	Aqui se muestra el menu de validacion de pinchos
 */
 function validarPinchoEstablecimiento(){
-	connection();
 	$pincho = new Pincho();
-	$nombresPinchos = $pincho->getPinchos();
+	$datosPinchos = $pincho->getPinchos();
 	$numPinchos = $pincho->countPinchos()[0];
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'admin/validarPinchoEstablecimiento.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
-function realizarValidacionPincho($namePincho){
-	connection();
+/**
+*	Author: Edgar Guitian Rey
+*	Aqui se muestran los datos del pincho seleccionado
+*/
+function realizarValidacionPincho(){
 	$pincho = new Pincho();
-	$numPinchos = $pincho->countPinchos()[0];
-	$datosPincho = $pincho->getPincho($namePincho);
+	$pincho->pincho_id=$_GET['idPincho'];
+	$pincho->getPincho();
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'admin/realizarValidacionPincho.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
+/**
+*	Author: Edgar Guitian Rey
+*	Aqui se realiza la validacion del pincho seleccionado
+*/
 function validarPincho(){
-	connection();
 	$pincho = new Pincho();
-	$resultado = $pincho->validarPincho($_POST['pincho_id']);
-	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'admin/resultadoValidacion.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	if($pincho->validarPincho($_POST['pincho_id'])){
+		addNotificacion("Pincho validado","succcess");
+		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','validarPinchoEstablecimiento')));
+	}
+	else{
+		addNotificacion("Pincho no validado","danger");
+		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','validarPinchoEstablecimiento')));
+	}
 }
+/**
+*	Author: Edgar Guitian Rey
+*	Aqui se realiza el alta de un miembro del jurado profesional
+*/
 function darAltaJuradoProfesional(){
-	connection();
 	$user = new User();
-	$user->register(array(
+	if($user->register(array(
 		'name' => $_POST['name'],
 		'username' => $_POST['username'],
 		'password' => $_POST['password'],
 		'role' =>  'profesional',
-		'phone' => $_POST['phone']
-	));
-	closeConnection();
-	closeServerSession();
-	redirecionar('/');
+		'phone' => $_POST['phone'],
+		'email' => $_POST['email']
+	))){
+		addNotificacion("Usuario dado de alta","succcess");
+		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','gestionarUsuario')));
+	}
+	else{
+		addNotificacion("Usuario no dado de alta","danger");
+		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','gestionarUsuario')));
+	}
 }
 index();

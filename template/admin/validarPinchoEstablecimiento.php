@@ -9,11 +9,11 @@
 	
       <form class="form-signin" role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php';?>" >
 	<?php 
-	for($i = 0; $i < $numPinchos; $i++){
-		print_r($nombresPinchos[$i][0]);
+	foreach($datosPinchos as $pincho){
+		echo($pincho['nombre']);
 		echo("<br>");
 		?>
-		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=realizarValidacionPincho&namePincho='.$nombresPinchos[$i][0]?>">VER INFORMACION PINCHO<span class="glyphicon glyphicon-cog" aria-hidden="true"/></a></li><?php
+		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=realizarValidacionPincho&idPincho='.$pincho['pincho_id']?>">VER INFORMACION PINCHO<span class="glyphicon glyphicon-cog" aria-hidden="true"/></a></li><?php
 		
 	}
 

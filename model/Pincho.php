@@ -139,23 +139,16 @@ class Pincho extends Model{
 		 GLOBAL $DB;	
 		/* Ejecuta una sentencia preparada pasando un array de valores */
 		
-		$sentencia = $DB->prepare("UPDATE pinchos SET validado=1 WHERE pincho_id=?");
-	
-		try{		
-			$sentencia->execute(array($idPincho));
-			return "PINCHO VALIDADO";
-		}
-		catch(PDOException $e){
-			return "PINCHO NO VALIDADO";
-		}
+		$sentencia = $DB->prepare("UPDATE pinchos SET validado=1 WHERE pincho_id=?");		
+		$sentencia->execute(array($idPincho));
+		if($sentencia->rowCount() > 0) 
+			return true;
+		else 
+			return false;
 	}
 	
-	public function getPinchos(){
-		$sentencia1= $GLOBALS['DB']->prepare('SELECT  COUNT(*) as Number FROM pinchos WHERE validado = 0 ');
-		$sentencia1->execute();
-		$resul1=$sentencia1->fetchall()[0];
-		$countUsers = $resul1;
-		$sentencia2= $GLOBALS['DB']->prepare('SELECT nombre 
+	public function getPinchos(){		
+		$sentencia2= $GLOBALS['DB']->prepare('SELECT * 
 								FROM pinchos
 								WHERE validado = 0 ');
 		$sentencia2->execute();
@@ -172,5 +165,6 @@ class Pincho extends Model{
 		
 		return $resul;
 	}
+
 	// FIN
 }

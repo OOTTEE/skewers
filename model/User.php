@@ -68,7 +68,7 @@ class User extends Model{
 	}
 
 	//FUNCIONES EDGAR
-	public function modifyUser($usuario_id, $name, $username, $password, $phone, $role){
+	public function modifyUser($usuario_id, $name, $username, $password, $role, $phone){
 		GLOBAL $DB;	
 		$sentencia = $DB->prepare("UPDATE users SET name=?, username=?, password=?, phone=?, role=? WHERE usuario_id=?");			
 		$sentencia->execute(array($name,$username, $password, $phone, $role,$usuario_id));			
