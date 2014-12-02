@@ -80,6 +80,14 @@ class Configuracion extends Model{
 
 	}
 	
-	
-	
+	public  function setImagen($params){
+			$sentencia = $GLOBALS['DB']->prepare("UPDATE configuracion SET imagen=:imagen WHERE id=1");
+
+		$sentencia->execute(array(':imagen' =>$params['imagen']));
+	}
+	public function setLogo($params){
+				$sentencia = $GLOBALS['DB']->prepare("UPDATE configuracion SET logo:=logo WHERE id=1");
+
+		$sentencia->execute(array(':logo' =>$params['logo']));
+	}
 }

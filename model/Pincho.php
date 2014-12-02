@@ -77,7 +77,7 @@ class Pincho extends Model{
 									':nombre' => $params['nombre'],
 									':precio' => $params['precio'],
 									':finalista' => false,
-									':imagen' => $params['imagen'],
+									':imagen' => "",
 									':descripcion' => $params['descripcion'],
 									':validado' => false);
 			$sentencia->execute($argumentos);
@@ -118,6 +118,13 @@ class Pincho extends Model{
 			}
 		}
 		return false;
+	}
+	public function setImagen($params){
+			$sentencia = $GLOBALS['DB']->prepare("UPDATE pinchos SET imagen=:imagen WHERE usuario_id=:usuario_id");
+
+		$sentencia->execute(array(':usuario_id' => $params['usuario_id'],
+					':imagen' =>$params['imagen']));
+	
 	}
 	
 	public function votar(){
