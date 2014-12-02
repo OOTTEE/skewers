@@ -69,42 +69,15 @@ class User extends Model{
 
 	//FUNCIONES EDGAR
 	public function modifyUser($usuario_id, $name, $username, $password, $phone, $role){
-		 GLOBAL $DB;	
-		/* Ejecuta una sentencia preparada pasando un array de valores */
-		
-		$sentencia = $DB->prepare("UPDATE users SET name=?, username=?, password=?, phone=?, role=? WHERE usuario_id=?");
-	
-		try{		
-			$sentencia->execute(array($name,$username, $password, $phone, $role,$usuario_id));
-			return "REALIZADO";
-		}
-		catch(PDOException $e){
-			return "NO REALIZADO";
-		}
+		GLOBAL $DB;	
+		$sentencia = $DB->prepare("UPDATE users SET name=?, username=?, password=?, phone=?, role=? WHERE usuario_id=?");			
+		$sentencia->execute(array($name,$username, $password, $phone, $role,$usuario_id));			
+		if($sentencia->rowCount() > 0) 
+			return true;
+		else 
+			return false;
 	}
 	
-	
-	
-	public function getUser($id){
-		
-		
-		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, name, username, role, phone, password
-								FROM users
-								WHERE usuario_id = ? ');
-		$sentencia->execute(array($id));
-		$resul=$sentencia->fetchall()[0];
-		$object= new User();
-		
-		$object->usuario_id=$resul['usuario_id'];
-		$object->name=$resul['name'];
-		$object->user=$resul['username'];
-		$object->password=$resul['password'];
-		$object->role=$resul['role'];
-		$object->phone=$resul['phone'];
-		
-		return $object;
-			
-	}
 	public function countUsers(){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT  COUNT(*) as Number FROM users WHERE role <> "administrador" ');
 		$sentencia->execute();

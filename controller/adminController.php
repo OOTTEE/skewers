@@ -111,75 +111,111 @@ function verAsignaciones(){
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
 
+/**
+*	Author: Edgar Guitian Rey
 
+*	Aqui se muestra el menu de gestion de usuarios
+*/
 function gestionarUsuario(){
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'admin/gestionUsuario.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 
 }
+/**
+*	Author: Edgar Guitian Rey
+*	Aqui se muestra el menu de alta de miembros del jurado profesional
+*/
 function verAltaJuradoProfesional(){
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'admin/verAltaJuradoProfesional.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
+/**
+*	Author: Edgar Guitian Rey
+*	Aqui se muestra el menu de modificacion de usuarios (lista de usuarios)
+*/
 function verModificarUsuario(){
 	connection();
 	$usuario = new User();
 	$idUsers = $usuario->getUsers();
 	$countUsers = $usuario->countUsers()[0];
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'admin/verModificarUsuario.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
+/**
+*	Author: Edgar Guitian Rey
+*	Aqui se muestra el menu de eliminacion de usuarios (lista de usuarios)
+*/
 function verEliminarUsuario(){
 	connection();
 	$usuario = new User();
 	$idUsers = $usuario->getUsers();
 	$countUsers = $usuario->countUsers()[0];		
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'admin/verEliminarUsuario.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 	
 }
-function modificarUsuario($nombreUsuario){
+/**
+*	Author: Edgar Guitian Rey
+*	Aqui se muestra el formulario de modificacion del usuario seleccionado
+*/
+function modificarUsuario(){
+	
 	connection();
 	$usuario = new User();
-	$idUsuario = $usuario->getID($nombreUsuario);
+	$idUsuario = $usuario->getID($_GET['nameUser']);
 	$datosUsuario = $usuario->getUser($idUsuario); 
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'admin/modificarUsuario.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
+/**
+*	Author: Edgar Guitian Rey
+*	Aqui se realiza la modificacion de los datos del usuario
+*/
 function realizarModificacion(){
 	connection();
 	$user = new User();
-	$resultado = $user->modifyUser($_POST['usuario_id'],$_POST['name'],$_POST['username'],$_POST['password'],$_POST['role'],$_POST['phone']);
-	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'admin/realizarModificacion.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	if($user->modifyUser($_POST['usuario_id'],$_POST['name'],$_POST['username'],$_POST['password'],$_POST['role'],$_POST['phone'])){
+		addNotificacion("Usuario modificado","succcess");
+		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','verModificarUsuario')));
+	}
+	else{
+		addNotificacion("Usuario no modificado","danger");
+		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','verModificarUsuario')));
+	}
+	
 
 }
+/**
+*	Author: Edgar Guitian Rey
+*	Aqui se realiza la eliminacion del usaurio seleccionado
+*/
 function eliminarUsuario($nombreUsuario){
 	connection();
 	$usuario = new User();
 	if($usuario->deleteUser($nombreUsuario)){
-
-		addNotificacion("","succcess");
-		redireccionar('/');
-
+		addNotificacion("Usuario eliminado","succcess");
+		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','verEliminarUsuario')));
 	}
-	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'admin/eliminarUsuario.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	else{
+		addNotificacion("Usuario no eliminado","danger");
+		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','verEliminarUsuario')));
+	}
+	
 }
+/**
+*	Author: Edgar Guitian Rey
+*	Aqui se muestra el menu de validacion de pinchos
+*/
 function validarPinchoEstablecimiento(){
 	connection();
 	$pincho = new Pincho();
