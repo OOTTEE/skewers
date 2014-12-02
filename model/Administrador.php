@@ -10,14 +10,14 @@ class Administrador extends Model{
 	private $database;
 	
 	
-	public function getUser(){
+	public function getUsuarios($id){
 		
 		
 		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, name, username, role, phone
 								FROM users
-								WHERE role <> "administrador" ');
+								WHERE usuario_id = ? ');
 		$sentencia=$GLOBALS['DB']->execute(array($id));
-		$resul=$sentencia->fetchall();
+		$resul=$sentencia->fetchall()[0];
 		$object= new User();
 		
 		$object->usuario_id=$resul['usuario_id'];

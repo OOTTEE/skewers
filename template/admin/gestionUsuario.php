@@ -1,7 +1,7 @@
     <div class="jumbotron">
       <div class="container">
         <h1>Gestion de Usuarios</h1>
-        <p>Seleccione el usuario que quiere dar de alta (Jurado Profesional), modificar sus datos o eliminar (Jurado Popular, Establecimiento)</p>    
+        <p>Seleccione el usuario que quiere dar de alta (Jurado Profesional), modificar sus datos o eliminar</p>    
       </div>
     </div>
 

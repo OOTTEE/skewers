@@ -7,28 +7,16 @@
 
     <div class="container">
 	
-      <!-- Example row of columns 
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
+      <form class="form-signin" role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php';?>" >
+	<?php 
+	for($i = 0; $i < $numPinchos; $i++){
+		print_r($nombresPinchos[$i][0]);
+		echo("<br>");
+		?>
+		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=realizarValidacionPincho&namePincho='.$nombresPinchos[$i][0]?>">VER INFORMACION PINCHO<span class="glyphicon glyphicon-cog" aria-hidden="true"/></a></li><?php
+		
+	}
 
-      <hr>
+	 ?>
 
-      <footer>
-        <p>&copy; Company 2014</p>
-      </footer>-->
     </div>
