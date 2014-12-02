@@ -58,7 +58,8 @@ class Establecimiento extends Model{
 	
 	public function hasPincho(){
 		$pincho = new Pincho();
-		if($pincho->getPinchoByUsuarioId($this->usuario_id))
+		$pincho->usuario_id = $this->usuario_id;
+		if($pincho->getPinchoByUsuarioId())
 			return $pincho;
 		else
 			return false;

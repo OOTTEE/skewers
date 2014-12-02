@@ -84,9 +84,10 @@ function editarPincho(){
 	//PENDIENTE EL GUARDADO DE LAS IMAGENES
 	//Recuperamos el pincho del establecimiento en cuestion
 	$pincho = new Pincho();
-	$pincho->getPinchoByUsuarioId($_SESSION['user']['usuario_id']);
+	$pincho->usuario_id = $_SESSION['user']['usuario_id'];
+	$pincho->getPinchoByUsuarioId();
 	//comprobamos que el campo aun no esté el validado
-	if(!$pincho->getPinchoByUsuarioId($_SESSION['user']['usuario_id'])->validado){
+	if(!$pincho->validado){
 		//Comprobacion de campos validos
 		$valido=true;
 		if( !(isset($_POST['nombrePincho']) AND (strlen(str_replace(' ', '', $_POST['nombrePincho'])) > 4))){

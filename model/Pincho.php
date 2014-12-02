@@ -11,12 +11,11 @@ class Pincho extends Model{
 	public $descripcion;
 	public $validado;
 	
-	public function getPincho($pincho_id){
-		var_dump($this);echo '<br>';
+	public function getPincho(){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
 								FROM pinchos
 								WHERE pincho_id = ?' );
-		$sentencia->execute(array($usuario_id));
+		$sentencia->execute(array($this->pincho_id));
 		$result=$sentencia->fetchall(PDO::FETCH_CLASS, "Pincho");
 		
 		
@@ -37,11 +36,11 @@ class Pincho extends Model{
 		}		
 	}
 	
-	public function getPinchoByUsuarioId($id){
+	public function getPinchoByUsuarioId(){
 		$sentencia = $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
 								FROM pinchos
 								WHERE usuario_id = ?' );
-		$sentencia->execute(array($id));
+		$sentencia->execute(array($this->usuario_id));
 		$result=$sentencia->fetchall(PDO::FETCH_CLASS, "Pincho");
 		
 		if($sentencia->rowCount() == 1){
