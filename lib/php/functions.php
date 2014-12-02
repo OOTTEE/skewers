@@ -61,30 +61,40 @@
 		$Usuario;
 		//Definicion Establecemento
 		if($tipo=='e'){
-		$Image_Path = $GLOBALS['IMGESTABLECIMIENTOS_URL'] . $Id . basename($_FILES['imagen']['name']);
+		$Image_Path = $GLOBALS['IMGESTABLECIMIENTOS_URL'] . $Id .'_E_'. basename($_FILES['imagen']['name']);
 		$Usuario= new Establecimiento();
 		  }
 		//Definicion Pincho
 		if($tipo=='p'){
-			$Image_Path = $GLOBALS['IMGPINCHO_URL'] . $Id . basename($_FILES['imagen']['name']);
+			$Image_Path = $GLOBALS['IMGPINCHO_URL'] . $Id .'_P_'. basename($_FILES['imagen']['name']);
 			$Usuario= new Pincho();
 		}
 		//Definicion Configuracion
-		if($tipo=='c'){
-			$Image_Path = $GLOBALS['IMGCONCURSO_URL'] . $Id . basename($_FILES['imagen']['name']);
+		if($tipo=='ci'){
+			$Image_Path = $GLOBALS['IMGCONCURSO_URL'] . $Id .'_CI_'. basename($_FILES['imagen']['name']);
 			$Usuario= new Configuracion();
-
+		}
+		if($tipo=='cl'){
+			$Image_Path = $GLOBALS['IMGCONCURSO_URL'] . $Id .'_CL_'. basename($_FILES['imagen']['name']);
+			$Usuario= new Configuracion();
 		}
 		//Almacenamiento imagen
 		if(($_FILES['imagen']['type'] == 'image/jpeg') || ($_FILES['imagen']['type'] == 'image/png') || ($_FILES['imagen']['type'] == 'image/jpg')){
 
 			if($_FILES['imagen']['size'] < 200000){
 				move_uploaded_file($_FILES["imagen"]["tmp_name"],'/var/www/html/skewers'.$Image_Path);
-				$Usuario->setImagen(array(
-					'imagen' => $Image_Path,
-					'usuario_id' => $Id));
-					return true;
+					if($tipo=='cl'){
+						$Usuario->setLogo(array(
+						'imagen' => $Image_Path));
+						return true;
+					}else{
+						$Usuario->setImagen(array(
+						'imagen' => $Image_Path,
+						'usuario_id' => $Id));
+						return true;					
+					}
 				}
+
 				else{
 					addNotificacion("No se pudo insertar la imagen,Tamaño demasiado grande","Danger");
 					return false;

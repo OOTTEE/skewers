@@ -66,7 +66,7 @@ function register(){
 			return false;
 	}
 	$img=UpImagen($User_Id,'e');
-	if(!$est){
+	if(!$img){
 			addNotificacion("No se pudo insertar la Imagen","Danger");
 			return false;
 	}

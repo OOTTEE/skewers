@@ -32,19 +32,15 @@ function index(){
 *					Al finalizar se redirecciona (POST->Redirect) a la pagina de inicio para que el usuario se pueda loguea
 */
 function register(){
-	var_dump(filter_var($_POST['phone'],FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>'/0/'))));
-	die();
 	$camposValidos=true;
-	if( !(isset($_POST['phone']) AND filter_var($_POST['phone'],FILTER_VALIDATE_REGEXP,array("options"=>array("regexp"=>'/0/'))))){
-		echo 'no';
+	if(!isset($_POST['phone'])){
 		addNotificacion('El numero de telefono no es correcto', 'danger');
 		$camposValidos=false;
-	}else{
-		echo 'si';
 	}
-	die();
-	
-	
+	if(!isset($_POST['email'])){
+		addNotificacion('El email no es correcto', 'danger');
+		$camposValidos=false;
+	}
 	if($camposValidos){
 		$user = new User();
 		$user->register(array(
@@ -56,6 +52,8 @@ function register(){
 			'email' => $_POST['email']
 			
 		));	
+	}else{
+		addNotificacion('No se creo el usuario', 'danger');
 	}
 	
 	

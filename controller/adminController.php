@@ -73,10 +73,8 @@ function index(){
 *	Aqui se muestra la vista principal del usuario administrador
 */
 function inicio(){
-	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
-	
 	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
