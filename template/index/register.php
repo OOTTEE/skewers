@@ -1,5 +1,5 @@
 <div class="container">
-	<form role="form"  Method="POST" action="<?php echo $CONTROLLER_URL.'usersController.php';?>" >
+	<form role="form" id="validarPassword" Method="POST" action="<?php echo $CONTROLLER_URL.'usersController.php';?>" >
 		<h2>Registro</h2>
 		<div class="form-group">
 			<label for="inputName" >Nombre Completo</label>

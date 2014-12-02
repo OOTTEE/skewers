@@ -6,17 +6,17 @@
     </div>
 
     <div class="container">
-      
+     
 	
-<form class="form-signin" role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php';?>" >
-	<?php 
-	for($i = 0; $i < $countUsers; $i++){
-		print_r($idUsers[$i][0]);
-		echo("<br>");
-		?>
-		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=eliminarUsuario&nameUser='.$idUsers[$i][0]?>">ELIMINAR<span class="glyphicon glyphicon-cog" aria-hidden="true"/></a></li><?php
-		
-	}
-
-	 ?>
-    </div>
+	<?php foreach($Users as $usuario):?>
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=eliminarUsuario&nameUser='.$usuario['usuario_id']?>"><?= $usuario['name'] ?> <span class="glyphicon glyphicon-trash" aria-hidden="true"/></a>
+				</div>	
+			</div>
+		</div>
+	<?php endforeach; ?>
+	
+    <div class="container">
+	

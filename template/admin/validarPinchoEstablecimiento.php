@@ -7,16 +7,16 @@
 
     <div class="container">
 	
-      <form class="form-signin" role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php';?>" >
-	<?php 
-	foreach($datosPinchos as $pincho){
-		echo($pincho['nombre']);
-		echo("<br>");
-		?>
-		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=realizarValidacionPincho&idPincho='.$pincho['pincho_id']?>">VER INFORMACION PINCHO<span class="glyphicon glyphicon-cog" aria-hidden="true"/></a></li><?php
-		
-	}
-
-	 ?>
+		<?php foreach($Pinchos as $pincho):?>
+			<a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=realizarValidacionPincho&idPincho='.$pincho['pincho_id']?>">
+				<div class="col-md-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<?= $pincho['nombre'] ?> <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"/>
+						</div>	
+					</div>
+				</div>
+			</a>
+		<?php endforeach; ?>
 
     </div>

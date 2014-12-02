@@ -20,9 +20,6 @@ function index(){
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'verConfiguracion' ){
 			verConfiguracion();
 		}
-		else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'gestionarUsuario' ){
-			gestionarUsuario();
-		}
 		else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'validarPinchoEstablecimiento' ){
 			validarPinchoEstablecimiento();
 		}
@@ -111,18 +108,6 @@ function verAsignaciones(){
 
 /**
 *	Author: Edgar Guitian Rey
-
-*	Aqui se muestra el menu de gestion de usuarios
-*/
-function gestionarUsuario(){
-	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'admin/gestionUsuario.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
-
-}
-/**
-*	Author: Edgar Guitian Rey
 *	Aqui se muestra el menu de alta de miembros del jurado profesional
 */
 function verAltaJuradoProfesional(){
@@ -137,8 +122,7 @@ function verAltaJuradoProfesional(){
 */
 function verModificarUsuario(){
 	$usuario = new User();
-	$idUsers = $usuario->getUsers();
-	$countUsers = $usuario->countUsers()[0];
+	$Users = $usuario->getUsers();
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'admin/verModificarUsuario.php');
@@ -150,8 +134,7 @@ function verModificarUsuario(){
 */
 function verEliminarUsuario(){
 	$usuario = new User();
-	$idUsers = $usuario->getUsers();
-	$countUsers = $usuario->countUsers()[0];		
+	$Users = $usuario->getUsers();		
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'admin/verEliminarUsuario.php');
@@ -209,8 +192,7 @@ function eliminarUsuario($nombreUsuario){
 */
 function validarPinchoEstablecimiento(){
 	$pincho = new Pincho();
-	$datosPinchos = $pincho->getPinchos();
-	$numPinchos = $pincho->countPinchos()[0];
+	$Pinchos = $pincho->getPinchos();
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'admin/validarPinchoEstablecimiento.php');

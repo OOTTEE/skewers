@@ -88,16 +88,12 @@ class User extends Model{
 		return $resul;
 	}
 	public function getUsers(){
-		$sentencia1= $GLOBALS['DB']->prepare('SELECT  COUNT(*) as Number FROM users WHERE role <> "administrador" ');
-		$sentencia1->execute();
-		$resul1=$sentencia1->fetchall()[0];
-		$countUsers = $resul1;
-		$sentencia2= $GLOBALS['DB']->prepare('SELECT name 
-								FROM users
-								WHERE role <> "administrador" ');
-		$sentencia2->execute();
-		$resul2=$sentencia2->fetchall(); 
-		return $resul2;
+		$sentencia= $GLOBALS['DB']->prepare('SELECT *
+											FROM users
+											WHERE role <> "administrador" ');
+		$sentencia->execute();
+		$result=$sentencia->fetchall(); 
+		return $result;
 			
 	}
 	public function deleteUser($nameUser){

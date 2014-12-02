@@ -155,12 +155,12 @@ class Pincho extends Model{
 	}
 	
 	public function getPinchos(){		
-		$sentencia2= $GLOBALS['DB']->prepare('SELECT * 
+		$sentencia= $GLOBALS['DB']->prepare('SELECT * 
 								FROM pinchos
 								WHERE validado = 0 ');
-		$sentencia2->execute();
-		$resul2=$sentencia2->fetchall(); 
-		return $resul2;
+		$sentencia->execute();
+		$result=$sentencia->fetchall(); 
+		return $result;
 			
 	}
 	public function countPinchos(){

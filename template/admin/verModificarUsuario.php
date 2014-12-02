@@ -8,15 +8,16 @@
     <div class="container">
       
 	
-<form class="form-signin" role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php';?>" >
-	<?php 
-	for($i = 0; $i < $countUsers; $i++){
-		print_r($idUsers[$i][0]);
-		echo("<br>");
-		?>
-		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=modificarUsuario&nameUser='.$idUsers[$i][0]?>">MODIFICAR<span class="glyphicon glyphicon-cog" aria-hidden="true"/></a></li><?php
-		
-	}
-
-	 ?>
-    </div>
+	<?php foreach($Users as $usuario):?>
+	<a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=modificarUsuario&nameUser='.$usuario['usuario_id']?>">
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<?= $usuario['name'] ?> <span class="glyphicon glyphicon-pencil" aria-hidden="true"/>
+				</div>	
+			</div>
+		</div>
+	</a>
+	<?php endforeach; ?>
+	
+	</div>
