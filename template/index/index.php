@@ -1,34 +1,37 @@
-    <div class="jumbotron">
+	<div class="jumbotron" id="imgPrincipal">
       <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+		<img src="<?= $GLOBALS['IMGCONCURSO_URL'].$GLOBALS['conf']->imagen;?>" class="img-responsive" alt="Responsive image">
       </div>
-    </div>
+	</div>
+    
 
+    <div class="container">
+      <hr>
+	  
+				<?= $GLOBALS['conf']->descripcion;?>
+	  
+      <hr>
+	  
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <h2>Restaurantes <span class="glyphicon glyphicon-cutlery"/></h2>
+          <p>Visete los Restaurantes inscritos</p>
+          <p><a class="btn btn-default" href="#" role="button">Restaurantes <span class="glyphicon glyphicon-cutlery"/></a></p>
         </div>
         <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <h2>Pinchos <span class="glyphicon glyphicon-search"/></h2>
+          <p>Vea los deliciosos pinchos</p>
+          <p><a class="btn btn-default" href="#" role="button">Pinchos <span class="glyphicon glyphicon-search"/></a></p>
        </div>
         <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <h2>Gastro Mapa <span class="glyphicon glyphicon-map-marker"/></h2>
+          <p>¿No sabe donde esta?</p>
+          <p><a class="btn btn-default" href="#" role="button">Gastromapa <span class="glyphicon glyphicon-map-marker"/></a></p>
         </div>
       </div>
 
       <hr>
-
-      <footer>
-        <p>&copy; Company 2014</p>
-      </footer>
+	  
     </div>

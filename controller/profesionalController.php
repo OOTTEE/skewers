@@ -1,10 +1,12 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'User.php');
+include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
 
 function index(){
 	if(isUserLoginWhithRole('profesional')){
+		$GLOBALS['conf']=(new Configuracion())->get();
 		//filtro por accion del usuario (parametro action recibido por GET o POST
 		/*if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'ACCION' ){
 			ACCION();
@@ -20,8 +22,9 @@ function index(){
 
 function inicio(){
 
+	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNav.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'loginNavProfesional.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }

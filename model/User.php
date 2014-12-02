@@ -1,6 +1,5 @@
 <?php 
 include_once($GLOBALS['MODEL_PATH'].'Model.php');
-include_once($GLOBALS['LIB_PHP_PATH'].'database.php');
 class User extends Model{
 	public $usuario_id;
 	public $name;
@@ -14,14 +13,14 @@ class User extends Model{
 	
 	
 	public function isRegister($params){
-		GLOBAL $DB;	
+			
 		/* Ejecuta una sentencia preparada pasando un array de valores */
-		$sentencia = $DB->prepare('SELECT usuario_id, name, username, role, phone
+		$sentencia = $GLOBALS['DB']->prepare('SELECT usuario_id, name, username, role, phone
 								FROM users
 								WHERE username = :username AND password = :password');
 		$sentencia->execute(array(':username' => $params['username'],
 									':password' => $params['password']));
-		$user = $sentencia->fetchAll();				
+		$user = $sentencia->fetchAll()[0];				
 		if(count($user == 1))
 			return $user;
 		else
@@ -29,19 +28,46 @@ class User extends Model{
 	}
 	
 	public function register($params){
-		 GLOBAL $DB;	
+			
 		/* Ejecuta una sentencia preparada pasando un array de valores */
 		
-		$sentencia = $DB->prepare("INSERT INTO users (name, username, password, role, phone) VALUES (:name, :username, :password, :role, :phone)");
+		$sentencia = $GLOBALS['DB']->prepare("INSERT INTO users (name, username, password, role, phone,email) VALUES (:name, :username, :password, :role, :phone, :email)");
 
 		$sentencia->execute(array(':name' =>$params['name'],
 							':username' =>$params['username'],
 							':password' =>$params['password'],
 							':role' =>$params['role'],
-							':phone' =>$params['phone']));
-	
-		print_r($sentencia->fetch(PDO::FETCH_ASSOC));
+							':phone' =>$params['phone'],
+							':email' =>$params['email']));
+							
+		if($sentencia->rowCount() == 0){
+			return false;
+		}else{
+			return $GLOBALS['DB']->lastInsertId();
+		}	
 	}
+	
+	
+	
+	public function getUser($id){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, name, username, role, phone
+								FROM users
+								WHERE usuario_id = ? ');
+		//MANTENER $sentencia->execute(array($id)); y boorrar este comentario
+		$sentencia->execute(array($id));
+		$resul=$sentencia->fetchall()[0];
+		
+		
+		$this->usuario_id=$resul['usuario_id'];
+		$this->name=$resul['name'];
+		$this->user=$resul['username'];
+		$this->role=$resul['role'];
+		$this->phone=$resul['phone'];
+		
+		return $this;
+	}
+
+	//FUNCIONES EDGAR
 	public function modifyUser($usuario_id, $name, $username, $password, $phone, $role){
 		 GLOBAL $DB;	
 		/* Ejecuta una sentencia preparada pasando un array de valores */
@@ -131,4 +157,6 @@ class User extends Model{
 		
 		return $id;
 	}
+	//FUNCIONES EDGAR FIN
 }
+
