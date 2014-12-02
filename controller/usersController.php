@@ -6,6 +6,7 @@ include_once($GLOBALS['MODEL_PATH'].'User.php');
 *	Author: Javier Lorenzo Martin
 *	Funcion principal del controlador users, esta funcion redirige a los metodos apropiados.
 */
+
 function index(){
 	if(isUserLogin()){
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'logout' ){
@@ -103,5 +104,6 @@ function inicio(){
 			break;
 	}	
 }
+
 
 index();
