@@ -19,42 +19,18 @@ function index(){
 			verPincho();
 		}else {
 			inicio();
-		}		
-	}else{	
+		}
+	}else{
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registerEstablecimiento' ){
 			register();
 		}
-				
+
 	}
 	closeServerSession();
 }
 
-/**
-*	Author: Hector Novoa Novoa
-*	Funcion para el guardado de imagenes del establecimiento
-*/
-function UpImagen($Id,$establecimiento){
-	//Almacenamento imaxe establecemento
-	
-	$Image_Path = $GLOBALS['IMGESTABLECIMIENTOS_URL'] . $Id . basename($_FILES['imagen']['name']);
-	if(($_FILES['imagen']['type'] == 'image/jpeg') || ($_FILES['imagen']['type'] == 'image/png') || ($_FILES['imagen']['type'] == 'image/jpg')){
-		
-		if($_FILES['imagen']['size'] < 200000){
-			move_uploaded_file($_FILES["imagen"]["tmp_name"],'/var/www/html/skewers'.$Image_Path);
-			$establecimiento->regImagen(array(
-						'imagen' => $Image_Path,
-						'usuario_id' => $Id));
-			return true;
-		}
-		else{
-		addNotificacion("No se pudo insertar la imagen,Tamaño demasiado grande","Danger");
-		return false;
-		}
-	}else{
-		addNotificacion("No se pudo insertar la imagen,Formato no soportado","Danger");
-			return false;
-		}	
-}
+
+
 
 
 /**
@@ -62,10 +38,10 @@ function UpImagen($Id,$establecimiento){
 *	En este caso se crea el usuario para el establecimiento y el establecimiento asociado.
 */
 function register(){
-	//PENDIENTE EL GUARDADO DE LAS IMAGENES
-	
-	
-	
+
+
+
+
 	$user = new User();
 	$User_Id=$user->register(array(
 		'name' => $_POST['name'],
@@ -89,7 +65,7 @@ function register(){
 			addNotificacion("No se pudo crear el establecimiento","Danger");
 			return false;
 	}
-	$img=UpImagen($User_Id,$establecimiento);
+	$img=UpImagen($User_Id,'e');
 	if(!$est){
 			addNotificacion("No se pudo insertar la Imagen","Danger");
 			return false;
@@ -107,7 +83,7 @@ function inicio(){
 	$establecimiento = new Establecimiento();
 	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
 	$Pincho = $establecimiento->hasPincho();
-	
+
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
 	echo "<h1>Establecimiento <small>index</small></h1>";
@@ -122,12 +98,12 @@ function registrarPincho(){
 	$establecimiento = new Establecimiento();
 	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
 	$Pincho = $establecimiento->hasPincho();
-		
+
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'establecimiento/registrarPincho.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
-	
+
 }
 
 /**
@@ -138,8 +114,8 @@ function verPincho(){
 	$establecimiento = new Establecimiento();
 	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
 	$Pincho = $establecimiento->hasPincho();
-	
-	if($Pincho){	
+
+	if($Pincho){
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
 		include_once($GLOBALS['TEMPLATES_PATH'].'establecimiento/editarPincho.php');
