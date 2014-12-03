@@ -250,7 +250,7 @@ DROP TABLE IF EXISTS `votos`;
 CREATE TABLE IF NOT EXISTS `votos` (
   `codigo_id` int(11) NOT NULL AUTO_INCREMENT,
   `pincho_id` int(11) NOT NULL,
-  `usuario_id` int(11) NOT NULL,
+  `usuario_id` int(11) DEFAULT NULL,
   `me_gusta` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`codigo_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
