@@ -1,4 +1,5 @@
 <div class="container">
+<h1>Pinchos Restantes</h1>
 <?php
 	foreach($Pinchos as $row):
 ?>

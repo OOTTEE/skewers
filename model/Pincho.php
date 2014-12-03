@@ -35,6 +35,30 @@ class Pincho extends Model{
 			return false;
 		}		
 	}
+		public function getPinchoVotoProfesional(){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
+								FROM pinchos
+								WHERE pincho_id = ?' );
+		$sentencia->execute(array($this->pincho_id));
+		$result=$sentencia->fetchall(PDO::FETCH_CLASS, "Pincho");
+		
+		
+		if($sentencia->rowCount() == 1){
+			$result = $result[0];
+			$this->usuario_id=$result->usuario_id;
+			$this->imagen=$result->imagen;
+			$this->pincho_id=$result->pincho_id;
+			$this->descripcion=$result->descripcion;
+			$this->ingredientes=$result->ingredientes;
+			$this->nombre=$result->nombre;
+			$this->precio=$result->precio;
+			$this->finalista=$result->finalista;
+			$this->validado=$result->validado;
+			return $this;
+		}else{
+			return false;
+		}		
+	}
 	
 	public function getPinchoByUsuarioId(){
 		$sentencia = $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado

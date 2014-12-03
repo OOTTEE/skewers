@@ -13,7 +13,7 @@ function index(){
 				votaFinalistas();
 		}else if($_REQUEST['action']== 'registrar'){
 				registrarFinalistas();
-		
+				redirecionar('/controller/profesionalController.php?action=votarFinalistas');
 		}else{
 				redirecionar('/');
 		}

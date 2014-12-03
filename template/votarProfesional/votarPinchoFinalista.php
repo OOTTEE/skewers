@@ -28,6 +28,6 @@
 		</select>
 		</div>
 		<input type="hidden"   name="pincho_id" value=<?=$InfoPincho->pincho_id ?> >
-		<button class="btn btn-lg btn-primary btn-block" type="submit"  value="register" name="action" >Votar</button>
+		<button class="btn btn-lg btn-primary btn-block" type="submit"  value="registrar" name="action" >Votar</button>
 	</form>
 </div> 

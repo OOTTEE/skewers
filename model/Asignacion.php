@@ -29,14 +29,16 @@ class Asignacion extends Model{
 	}
 	
 	/**
-	*	devuelve una lista de las asignaciones asociadas a un usuario profesional determinado
+	*	devuelve una lista de las asignaciones asociadas a un usuario profesional determinado y que todavia no se han votado
 	*	$usuario_id(int) el id del usuario.
 	*/	
 	public function getListAsignaciones($usuario_id){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT *
-											 FROM asignaciones  a , pinchos p
-											 WHERE a.usuario_id = ? AND a.pincho_id=p.pincho_id ');
-		$sentencia->execute(array($usuario_id));
+											 FROM asignaciones  a , pinchos p 
+											 WHERE a.usuario_id = ? AND a.pincho_id=p.pincho_id AND a.pincho_id NOT IN ( SELECT f.pincho_id 
+																															FROM puntuacion_finalistas f 
+																															WHERE f.usuario_id= ?) ');
+		$sentencia->execute(array($usuario_id, $usuario_id));
 		
 		if($sentencia->rowCount() > 0){
 			return $sentencia->fetchall();
