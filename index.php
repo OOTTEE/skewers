@@ -6,7 +6,7 @@ include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
 include_once($GLOBALS['MODEL_PATH'].'Establecimiento.php');
 
 /**
-*	Author: Javier Lorenzo Martin
+*	Author: Javier Lorenzo Martin - Hector Novoa Novoa
 *	Controlador Principal de la aplicación, controla el index de la pagina principal
 *	Solo se muestra para usuarios no registrados, para usuario registrados se redireje al controlador userController.php
 *
@@ -46,11 +46,20 @@ if(isUserLogin()){
 function restaurantes(){
 		$Oest= new Establecimiento();
 		$Establecimientos=$Oest->getEstablecimientos();
+		if(!isset($Establecimientos)){
+			addNotificacion('No hay establecimientos validados', 'info');
+			redirecionar('/');
+		}
 		include_once($GLOBALS['TEMPLATES_PATH'].'index/restaurantes.php');
 
 }
 function pinchos(){
-
+		$Opin=new Pincho();
+		$Pinchos=$Opin->getPinchosArray();
+		if(!isset($Pinchos)){
+			addNotificacion('No hay pinchos validados', 'info');
+			redirecionar('/');
+		}
 		include_once($GLOBALS['TEMPLATES_PATH'].'index/pinchos.php');
 
 }

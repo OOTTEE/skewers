@@ -26,11 +26,13 @@ class Establecimiento extends Model{
 
 	}
 	public function getEstablecimientos(){
-		$sentencia= $GLOBALS['DB']->prepare('SELECT *
-											 FROM establecimientos  e , users u 
-											 WHERE e.usuario_id = u.usuario_id');
+		$sentencia= $GLOBALS['DB']->prepare('SELECT * 
+											FROM establecimientos  e , users u 
+											WHERE e.usuario_id = u.usuario_id AND e.usuario_id In (SELECT usuario_id 
+																									FROM pinchos 
+																									WHERE validado=1)');
 		$sentencia->execute();
-		
+
 		if($sentencia->rowCount() > 0){
 			return $sentencia->fetchall();
 		}
@@ -38,18 +40,14 @@ class Establecimiento extends Model{
 		return false;
 	
 	}
-		public function getEstablecimientoByID($Id){
+	public function getEstablecimientoByID($Id){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT *
 											 FROM establecimientos  e , users u 
-											 WHERE e.usuario_id=u.usuario_id AND e.usuario=?');
+											 WHERE e.usuario_id = u.usuario_id AND e.usuario_id = ? ');
 		$sentencia->execute(array($Id));
+		$resul=$sentencia->fetchall()[0];
 		
-		if($sentencia->rowCount() > 0){
-			return $sentencia->fetchall()[0];
-		}
-		
-		return false;
-	
+			return $resul;
 	}
 
 

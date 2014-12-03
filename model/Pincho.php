@@ -35,6 +35,19 @@ class Pincho extends Model{
 			return false;
 		}		
 	}
+		public function getPinchosArray(){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT *
+											 FROM pinchos
+											 WHERE validado=1');
+		$sentencia->execute();
+		
+		if($sentencia->rowCount() > 0){
+			return $sentencia->fetchall();
+		}
+		
+		return false;
+	
+	}
 		public function getPinchoVotoProfesional(){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
 								FROM pinchos
