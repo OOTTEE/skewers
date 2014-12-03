@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-12-2014 a las 16:39:56
+-- Tiempo de generación: 03-12-2014 a las 17:18:09
 -- Versión del servidor: 5.5.40-0ubuntu0.14.04.1
 -- Versión de PHP: 5.5.9-1ubuntu4.5
 
@@ -35,28 +35,6 @@ CREATE TABLE IF NOT EXISTS `asignaciones` (
   KEY `fk_pinchos_has_usuarios_usuarios1_idx` (`usuario_id`),
   KEY `fk_pinchos_has_usuarios_pinchos1_idx` (`pincho_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `asignaciones`
---
-
-INSERT INTO `asignaciones` (`pincho_id`, `usuario_id`) VALUES
-(3, 1),
-(4, 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `codigos`
---
-
-DROP TABLE IF EXISTS `codigos`;
-CREATE TABLE IF NOT EXISTS `codigos` (
-  `codigo_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `pincho_id` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`codigo_id`),
-  KEY `fk_codigos_pinchos1_idx` (`pincho_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -135,6 +113,9 @@ INSERT INTO `establecimientos` (`usuario_id`, `imagen`, `horario`, `descripcion`
 (28, 'establecimiento.png', '12:00 - 24:00', 'Exquisito pincho del establecimiento10', 'www.establecimiento10.com', 'direccion del establecimiento'),
 (29, 'establecimiento.png', '12:00 - 24:00', 'Exquisito pincho del establecimiento11', 'www.establecimiento11.com', 'direccion del establecimiento'),
 (30, 'establecimiento.png', '12:00 - 24:00', 'Exquisito pincho del establecimiento12', 'www.establecimiento12.com', 'direccion del establecimiento'),
+(41, ' ', '10.00', 'desc', NULL, NULL),
+(58, '/imagenes/establecimiento/58pincho.jpg', '10:00 - 22:00', 'asdfasdfasfasdfasdf', 'http://www.asdfasasdfasdf.com', 'curros enriquez');
+
 -- --------------------------------------------------------
 
 --
@@ -161,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `pinchos` (
 --
 
 INSERT INTO `pinchos` (`pincho_id`, `usuario_id`, `ingredientes`, `nombre`, `precio`, `finalista`, `imagen`, `descripcion`, `validado`) VALUES
-(2, 19, 'Patata, Huevos, Sal', 'Pincho de tortilla', 1.00, 0, '', 'Esos pinchos del camba', 0),
+(2, 19, 'Patata, Huevos, Sal', 'Pincho de tortilla', 0.09, 0, '', 'Esos pinchos del camba', 0),
 (3, 20, 'Calamares frescos, Harina, Huevo, Sal y el  s', 'Calamares fritos', 0.85, 0, '', 'Delicios calamares fritos', 0),
 (4, 21, 'cerdo adobado', 'Zorza', 1.75, 0, '', 'esta bueno bueno', 0);
 
@@ -223,38 +204,41 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`usuario_id`, `name`, `username`, `password`, `role`, `phone`, `email`) VALUES
-(1, 'Jurado Profesional 1', 'jurado1', 'ED6D3CDEBC0E7ACA', 'profesional', '600600001', 'jurado1@correo.es'),
-(2, 'Jurado Profesional 2', 'jurado2', 'ED6D3CDEBC0E7ACA', 'profesional', '600600002', 'jurado2@correo.es'),
-(3, 'Jurado Profesional 3', 'jurado3', 'ED6D3CDEBC0E7ACA', 'profesional', '600600003', 'jurado3@correo.es'),
-(4, 'Jurado Profesional 4', 'jurado4', 'ED6D3CDEBC0E7ACA', 'profesional', '600600004', 'jurado4@correo.es'),
-(5, 'Jurado Profesional 5', 'jurado5', 'ED6D3CDEBC0E7ACA', 'profesional', '600600005', 'jurado5@correo.es'),
-(6, 'Jurado Profesional 6', 'jurado6', 'ED6D3CDEBC0E7ACA', 'profesional', '600600006', 'jurado6@correo.es'),
-(7, 'Jurado Popular 1', 'popular1', 'ED6D3CDEBC0E7ACA', 'popular', '600500001', 'juradopopular1@correo.es'),
-(8, 'Jurado Popular 2', 'popular2', 'ED6D3CDEBC0E7ACA', 'popular', '600500002', 'juradopopular2@correo.es'),
-(9, 'Jurado Popular 3', 'popular3', 'ED6D3CDEBC0E7ACA', 'popular', '600500003', 'juradopopular3@correo.es'),
-(10, 'Jurado Popular 4', 'popular4', 'ED6D3CDEBC0E7ACA', 'popular', '600500004', 'juradopopular4@correo.es'),
-(11, 'Jurado Popular 5', 'popular5', 'ED6D3CDEBC0E7ACA', 'popular', '600500005', 'juradopopular5@correo.es'),
-(12, 'Jurado Popular 6', 'popular6', 'ED6D3CDEBC0E7ACA', 'popular', '600500006', 'juradopopular6@correo.es'),
-(13, 'Jurado Popular 7', 'popular7', 'ED6D3CDEBC0E7ACA', 'popular', '600500007', 'juradopopular7@correo.es'),
-(14, 'Jurado Popular 8', 'popular8', 'ED6D3CDEBC0E7ACA', 'popular', '600500008', 'juradopopular8@correo.es'),
-(15, 'Jurado Popular 9', 'popular9', 'ED6D3CDEBC0E7ACA', 'popular', '600500009', 'juradopopular9@correo.es'),
-(16, 'Jurado Popular 10', 'popular10', 'ED6D3CDEBC0E7ACA', 'popular', '600500010', 'juradopopular10@correo.es'),
-(17, 'Jurado Popular 11', 'popular11', 'ED6D3CDEBC0E7ACA', 'popular', '600500011', 'juradopopular11@correo.es'),
-(18, 'Jurado Popular 12', 'popular12', 'ED6D3CDEBC0E7ACA', 'popular', '600500012', 'juradopopular12@correo.es'),
-(19, 'Establecimiento 1', 'establecimiento1', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400001', 'establecimiento1@correo.es'),
-(20, 'Establecimiento 2', 'establecimiento2', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400002', 'establecimiento2@correo.es'),
-(21, 'Establecimiento 3', 'establecimiento3', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400003', 'establecimiento3@correo.es'),
-(22, 'Establecimiento 4', 'establecimiento4', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400004', 'establecimiento4@correo.es'),
-(23, 'Establecimiento 5', 'establecimiento5', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400005', 'establecimiento5@correo.es'),
-(24, 'Establecimiento 6', 'establecimiento6', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400006', 'establecimiento6@correo.es'),
-(25, 'Establecimiento 7', 'establecimiento7', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400007', 'establecimiento7@correo.es'),
-(26, 'Establecimiento 8', 'establecimiento8', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400008', 'establecimiento8@correo.es'),
-(27, 'Establecimiento 9', 'establecimiento9', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400009', 'establecimiento9@correo.es'),
-(28, 'Establecimiento 10', 'establecimiento10', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400010', 'establecimiento10@correo.es'),
-(29, 'Establecimiento 11', 'establecimiento11', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400011', 'establecimiento11@correo.es'),
-(30, 'Establecimiento 12', 'establecimiento12', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400012', 'establecimiento12@correo.es'),
+(2, 'Jurado Profesional 2', 'Jurado2', 'ED6D3CDEBC0E7ACA', 'profesional', '600600002', 'jurado2@correo.es'),
+(3, 'Jurado Profesional 3', 'Jurado3', 'ED6D3CDEBC0E7ACA', 'profesional', '600600003', 'jurado3@correo.es'),
+(4, 'Jurado Profesional 4', 'Jurado4', 'ED6D3CDEBC0E7ACA', 'profesional', '600600004', 'jurado4@correo.es'),
+(5, 'Jurado Profesional 5', 'Jurado5', 'ED6D3CDEBC0E7ACA', 'profesional', '600600005', 'jurado5@correo.es'),
+(6, 'Jurado Profesional 6', 'Jurado6', 'ED6D3CDEBC0E7ACA', 'profesional', '600600006', 'jurado6@correo.es'),
+(7, 'Jurado Popular 1', 'Popular1', 'ED6D3CDEBC0E7ACA', 'popular', '600500001', 'juradopopular1@correo.es'),
+(8, 'Jurado Popular 2', 'Popular2', 'ED6D3CDEBC0E7ACA', 'popular', '600500002', 'juradopopular2@correo.es'),
+(9, 'Jurado Popular 3', 'Popular3', 'ED6D3CDEBC0E7ACA', 'popular', '600500003', 'juradopopular3@correo.es'),
+(10, 'Jurado Popular 4', 'Popular4', 'ED6D3CDEBC0E7ACA', 'popular', '600500004', 'juradopopular4@correo.es'),
+(11, 'Jurado Popular 5', 'Popular5', 'ED6D3CDEBC0E7ACA', 'popular', '600500005', 'juradopopular5@correo.es'),
+(12, 'Jurado Popular 6', 'Popular6', 'ED6D3CDEBC0E7ACA', 'popular', '600500006', 'juradopopular6@correo.es'),
+(13, 'Jurado Popular 7', 'Popular7', 'ED6D3CDEBC0E7ACA', 'popular', '600500007', 'juradopopular7@correo.es'),
+(14, 'Jurado Popular 8', 'Popular8', 'ED6D3CDEBC0E7ACA', 'popular', '600500008', 'juradopopular8@correo.es'),
+(15, 'Jurado Popular 9', 'Popular9', 'ED6D3CDEBC0E7ACA', 'popular', '600500009', 'juradopopular9@correo.es'),
+(16, 'Jurado Popular 10', 'Popular10', 'ED6D3CDEBC0E7ACA', 'popular', '600500010', 'juradopopular10@correo.es'),
+(17, 'Jurado Popular 11', 'Popular11', 'ED6D3CDEBC0E7ACA', 'popular', '600500011', 'juradopopular11@correo.es'),
+(18, 'Jurado Popular 12', 'Popular12', 'ED6D3CDEBC0E7ACA', 'popular', '600500012', 'juradopopular12@correo.es'),
+(19, 'Establecimiento 1', 'Establecimiento1', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400001', 'establecimiento1@correo.es'),
+(20, 'Establecimiento 2', 'Establecimiento2', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400002', 'establecimiento2@correo.es'),
+(21, 'Establecimiento 3', 'Establecimiento3', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400003', 'establecimiento3@correo.es'),
+(22, 'Establecimiento 4', 'Establecimiento4', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400004', 'establecimiento4@correo.es'),
+(23, 'Establecimiento 5', 'Establecimiento5', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400005', 'establecimiento5@correo.es'),
+(24, 'Establecimiento 6', 'Establecimiento6', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400006', 'establecimiento6@correo.es'),
+(25, 'Establecimiento 7', 'Establecimiento7', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400007', 'establecimiento7@correo.es'),
+(26, 'Establecimiento 8', 'Establecimiento8', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400008', 'establecimiento8@correo.es'),
+(27, 'Establecimiento 9', 'Establecimiento9', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400009', 'establecimiento9@correo.es'),
+(28, 'Establecimiento 10', 'Establecimiento10', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400010', 'establecimiento10@correo.es'),
+(29, 'Establecimiento 11', 'Establecimiento11', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400011', 'establecimiento11@correo.es'),
+(30, 'Establecimiento 12', 'Establecimiento12', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400012', 'establecimiento12@correo.es'),
 (31, 'Administrador', 'administrador', 'ED6D3CDEBC0E7ACA', 'establecimiento', '600400013', 'establecimiento13@correo.es'),
-(40, 'Administrador del sistema', 'admin', 'ED6D3CDEBC0E7ACA', 'administrador', '696514394', 'javier.ote.ote@gmail.com'),
+(40, 'Javier Lorenzo Martin', 'admin', 'ED6D3CDEBC0E7ACA', 'administrador', '696514394', 'javier.ote.ote@gmail.com'),
+(41, 'esta', 'esta', 'ED6D3CDEBC0E7ACA', 'establecimiento', '555555555', 'asdf'),
+(46, 'asdfasfdas', 'adminadmin', 'ED6D3CDEBC0E7ACA', 'popular', '9999999999', 'asdf@asdf.com'),
+(57, 'juanca', 'juanca', 'ED6D3CDEBC0E7ACA', 'popular', '1231234122', 'asdf@asdf.com3'),
+(58, 'establecimiento juanca', 'juancaesta', 'ED6D3CDEBC0E7ACA', 'establecimiento', '134919391', 'juanca@miraesta.es');
 
 -- --------------------------------------------------------
 
@@ -264,12 +248,12 @@ INSERT INTO `users` (`usuario_id`, `name`, `username`, `password`, `role`, `phon
 
 DROP TABLE IF EXISTS `votos`;
 CREATE TABLE IF NOT EXISTS `votos` (
-  `codigo_id` int(10) unsigned NOT NULL,
+  `codigo_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pincho_id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `me_gusta` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`codigo_id`,`usuario_id`),
-  KEY `fk_votos_usuarios1_idx` (`usuario_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  PRIMARY KEY (`codigo_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Restricciones para tablas volcadas
@@ -281,12 +265,6 @@ CREATE TABLE IF NOT EXISTS `votos` (
 ALTER TABLE `asignaciones`
   ADD CONSTRAINT `fk_pinchos_has_usuarios_pinchos1` FOREIGN KEY (`pincho_id`) REFERENCES `pinchos` (`pincho_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_pinchos_has_usuarios_usuarios1` FOREIGN KEY (`usuario_id`) REFERENCES `users` (`usuario_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `codigos`
---
-ALTER TABLE `codigos`
-  ADD CONSTRAINT `fk_codigos_pinchos1` FOREIGN KEY (`pincho_id`) REFERENCES `pinchos` (`pincho_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `comentarios`
@@ -320,13 +298,6 @@ ALTER TABLE `puntuacion_finalistas`
 ALTER TABLE `puntuacion_ganadores`
   ADD CONSTRAINT `fk_puntuacion_ganadores_pinchos1` FOREIGN KEY (`pincho_id`) REFERENCES `pinchos` (`pincho_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_puntuacion_ganadores_usuarios1` FOREIGN KEY (`usuario_id`) REFERENCES `users` (`usuario_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `votos`
---
-ALTER TABLE `votos`
-  ADD CONSTRAINT `fk_votos_codigos1` FOREIGN KEY (`codigo_id`) REFERENCES `codigos` (`codigo_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_votos_usuarios1` FOREIGN KEY (`usuario_id`) REFERENCES `users` (`usuario_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
