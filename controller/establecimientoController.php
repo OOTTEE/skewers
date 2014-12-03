@@ -17,6 +17,8 @@ function index(){
 			registrarPincho();
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'verPincho'  ){
 			verPincho();
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'generarCodigos'  ){
+			generarCodigos();
 		}else {
 			inicio();
 		}
@@ -123,6 +125,19 @@ function verPincho(){
 	}else{
 		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'establecimientoController.php', array(array('action','registrarPincho'	)));
 	}
+}
+
+function generarCodigos(){
+	$establecimiento = new Establecimiento();
+	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
+	$Pincho = $establecimiento->hasPincho();
+	
+	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
+	include_once($GLOBALS['TEMPLATES_PATH'].'establecimiento/generarCodigos.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+
+
 }
 
 index();
