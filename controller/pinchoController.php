@@ -18,6 +18,9 @@ function index(){
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'editarPincho' ){
 			echo 'editar';
 			editarPincho();
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'consultarPincho' ){
+			echo 'consultarPincho';
+			consultarPincho();
 		}else{
 			redirecionar('/');		
 		}
@@ -124,22 +127,24 @@ function editarPincho(){
 	closeServerSession();
 }
 
-//Aqui hacemos la funcion votar pincho
-function votarPincho()
-{
-	//aqui tienes que recolectar la informacion necesaria,
-	//Como el id del pincho que te llegara a traves de un formulario
-	//el id del usuario que lo tienes disponible en $_SESSION['user']['usuario_id']
-	//y validar la informacion.
-	//tendras que hacer alago asi :
-	/*
-	*	$pincho = new Pincho();
-	*	$pincho->getPincho($id_del_pincho)->votar($id_del_usuario_que_vota);
-	*/
-	//
-	//echo "si"
-	//votar();
+//Con esta funcion accedemos a los datos de los pincho.
+function consultarPincho(){
+	$pincho = new Pincho();
+	$pincho->pincho_id =¨$_REQUEST['pincho'];
 	
+	if($pincho->getPincho())
+	{
+		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+		include_once($GLOBALS['LAYOUT_PATH'].'loginNavPopular.php');
+		include_once($GLOBALS['TEMPLATES_PATH'].'popular/verConsulta.php'); 
+		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	}
+	else
+	{
+		echo "El pincho que quiere consultar no existe";
+		sleep(6);
+		redirecciona('/');
+	}
 }
 
 index();

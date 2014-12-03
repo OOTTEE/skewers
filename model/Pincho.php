@@ -163,20 +163,6 @@ class Pincho extends Model{
 					':imagen' =>$params['imagen']));
 	
 	}
-	
-	public function votar(){
-		//Este codigo produce error, 
-		//Por otra parate no puedes usar en los modelo variables $REQUEST $_GET $_POST o $_SESSION
-		//Aqui variables pasadas o contenidas en el propio modelo.
-		/*$sentencia = $GLOBALS['DB']->prepare("INSERT INTO `votos`(`codigo_id`, `usuario_id`) 
-									VALUES($_REQUEST['pincho'], $_SESSION['usuario_id'])");
-		
-		if($sentencia->execute()){ echo "votado"}
-		else{
-		echo "fallo en la votacion"}*/
-		
-		//Cuando termines devuelve un true o un false
-	}
 
 	//FUNCIONES PINCHO
 	public function validarPincho($idPincho){
