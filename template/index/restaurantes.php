@@ -1,5 +1,5 @@
 <div class="container">
-<h1>Pinchos Restantes</h1>
+<h1>Establecimientos</h1>
 <?php
 	foreach($Establecimientos as $row):
 ?>

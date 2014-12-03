@@ -38,14 +38,14 @@ class Establecimiento extends Model{
 		return false;
 	
 	}
-		public function getEstablecimientosByID($Id){
+		public function getEstablecimientoByID($Id){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT *
 											 FROM establecimientos  e , users u 
-											 WHERE e.usuario_id = u.usuario_id=?');
+											 WHERE e.usuario_id=u.usuario_id AND e.usuario=?');
 		$sentencia->execute(array($Id));
 		
 		if($sentencia->rowCount() > 0){
-			return $sentencia->fetchall();
+			return $sentencia->fetchall()[0];
 		}
 		
 		return false;

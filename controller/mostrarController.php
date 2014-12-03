@@ -16,9 +16,10 @@ if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurante'){
 }
 
 function restaurante(){
+	
 	$Es=new Establecimiento();
-	$EsInfo=$es->getEstablecimientosByID($POST['usuario_id']);
-
+	$EsInfo=$Es->getEstablecimientoByID($_POST['usuario_id']);
+	print_r($EsInfo);
 
 include_once($GLOBALS['TEMPLATES_PATH'].'index/restauranteInfo.php');
 }
