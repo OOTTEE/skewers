@@ -13,7 +13,7 @@
 			100 Códigos
 		  </label>
 		</div>
-		<div class="radio disabled">
+		<div class="radio">
 		  <label>
 			<input type="radio" name="numCodigos" id="optionsRadios3" value="150">
 			150 Códigos
