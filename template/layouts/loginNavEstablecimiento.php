@@ -13,10 +13,11 @@
 	<div id="navbar" class="navbar-collapse collapse">
 	  <ul class="nav navbar-nav navbar-right">
 		<li><p class="navbar-text" href="#"><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'establecimientoController.php'?>" ><?php echo $_SESSION['user']['name'];?></a></p></li>
-		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'establecimientoController.php?action=generarCodigos'?>">Generar códigos <span class="glyphicon glyphicon-cutlery" aria-hidden="true"/></a></li>
 		<?php if($GLOBALS['Pincho'] != false):?>
 			<?php if(!$GLOBALS['Pincho']->validado):?>
 				<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'establecimientoController.php?action=verPincho'?>">Editar Pincho <span class="glyphicon glyphicon-cutlery" aria-hidden="true"/></a></li>
+			<?php else: ?>
+				<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'establecimientoController.php?action=generarCodigos'?>">Generar códigos <span class="glyphicon glyphicon-cutlery" aria-hidden="true"/></a></li>
 			<?php endif;?>
 		<?php else: ?>
 			<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'establecimientoController.php?action=registrarPincho'?>">Registrar Pincho <span class="glyphicon glyphicon-cutlery" aria-hidden="true"/></a></li>

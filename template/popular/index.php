@@ -1,6 +1,3 @@
-
-// Tendremos que controlar que sea del jurado popular
-
 <div class="jumbotron" id="imgPrincipal">
   <div class="container">
 	<img src="<?= $GLOBALS['IMGCONCURSO_URL'].$GLOBALS['conf']->imagen;?>" class="img-responsive" alt="Responsive image">
