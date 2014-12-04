@@ -37,7 +37,7 @@ class Voto extends Model{
 		if($sentencia->rowCount() == 0){
 			return false;
 		}else{
-			return $GLOBALS['DB']->lastInsertId();
+			return true;
 		}	
 	
 	
@@ -58,6 +58,22 @@ class Voto extends Model{
 			$this->me_gusta=$result['me_gusta'];
 			$this->pincho_id=$result['pincho_id'];
 			return $this;
+		}else{
+			return false;
+		}	
+	}
+	
+	public function getUltimosVotos($num){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT *
+								FROM votos
+								WHERE pincho_id = ? 
+								ORDER BY codigo_id DESC
+								LIMIT 0 , 30' );
+		$sentencia->execute(array($this->pincho_id));
+		$result=$sentencia->fetchall();
+	
+		if($sentencia->rowCount() > 0){
+			return $result;
 		}else{
 			return false;
 		}	

@@ -13,19 +13,16 @@ function index(){
 		$GLOBALS['conf']=(new Configuracion())->get();
 		//filtro por accion del usuario (parametro action recibido por GET o POST
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registrarPincho' ){
-			echo 'registrar';
 			registrarPincho();
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'editarPincho' ){
-			echo 'editar';
 			editarPincho();
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'consultarPincho' ){
-			echo 'consultarPincho';
 			consultarPincho();
 		}else{
-			redirecionar('/');		
+			//redirecionar('/');		
 		}
 	}else{	
-		redirecionar('/');		
+		//redirecionar('/');		
 	}
 	
 }
@@ -52,10 +49,6 @@ function registrarPincho(){
 		$valido=false;
 		addNotificacion('El precio del pincho debe ser mayor que 0', 'danger');
 	}
-	if( !(isset($_POST['imagen']) AND  $_POST['imagen'] != '') ){
-		$valido=false;
-		addNotificacion('Tiene que subir una imagen para el pincho', 'danger');
-	}
 	//Si los campos son valido se guarda el pincho
 	if($valido){
 		
@@ -67,8 +60,10 @@ function registrarPincho(){
 								'descripcion' => $_POST['descripcionPincho'])
 		);
 		//subida imaxe
-		UpImagen($_SESSION['user']['usuario_id'],'p');
-		
+		$img=UpImagen($pincho->usuario_id,'p');
+		if(!$img){
+				addNotificacion("No se pudo insertar la Imagen","Danger");
+		}
 		addNotificacion('Pincho enviado, pendiente de validacion', 'success');
 		redirecionar('/');
 	}else{
@@ -119,7 +114,6 @@ function editarPincho(){
 			$img=UpImagen($pincho->usuario_id,'p');
 			if(!$img){
 					addNotificacion("No se pudo insertar la Imagen","Danger");
-					return false;
 			}
 			redirecionar('/');
 		}else{

@@ -1,5 +1,5 @@
 <div class="container">
-	<form role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'votosController.php';?>" >
+	<form role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'votosController.php';?>"  target="_blank" >
 		<h2>Registro Pincho</h2>
 		<div class="radio">
 		  <label>

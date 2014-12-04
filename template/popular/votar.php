@@ -1,5 +1,4 @@
-<?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/zoneCheck.php');?>
+
 <h1>Votar pincho</h1>
 
 <form Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'votosController.php' ?>" >

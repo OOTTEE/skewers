@@ -119,7 +119,9 @@ class Pincho extends Model{
 									':validado' => false);
 			$sentencia->execute($argumentos);
 			if($sentencia->rowCount() == 1){
-				return true;
+				$this->usuario_id=$params['usuario_id'];
+				$this->getPinchoByUsuarioId();
+				return $this;
 			}else{
 				return false;
 			}

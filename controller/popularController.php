@@ -32,7 +32,6 @@ function inicio(){
 }
 
 function votar(){
-
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavPopular.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'popular/votar.php'); 

@@ -30,8 +30,11 @@ function generarCodigos(){
 	$voto = new Voto();
 	$voto->pincho_id = $_SESSION['user']['usuario_id'];
 	$voto->generarVotos($_POST['numCodigos']);
-	redirecionar('/');
 	
+	$votos = $voto->getUltimosVotos($_POST['numCodigos']);
+	
+	include_once($GLOBALS['TEMPLATES_PATH'].'establecimiento/codigos.php');
+
 }
 
 //Aqui realizamos la accion de meter el voto del pincho seleccionado en la tabla votos

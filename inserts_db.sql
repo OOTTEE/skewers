@@ -32,7 +32,7 @@ INSERT INTO `users`(`usuario_id`, `name`, `username`, `password`, `role`, `phone
 		   (28,'Establecimiento 10','Establecimiento10','ED6D3CDEBC0E7ACA','establecimiento','600400010','establecimiento10@correo.es'),
 		   (29,'Establecimiento 11','Establecimiento11','ED6D3CDEBC0E7ACA','establecimiento','600400011','establecimiento11@correo.es'),
 		   (30,'Establecimiento 12','Establecimiento12','ED6D3CDEBC0E7ACA','establecimiento','600400012','establecimiento12@correo.es'),
-		   (31,'Administrador','administrador','ED6D3CDEBC0E7ACA','establecimiento','600400013','establecimiento13@correo.es');
+		   (31,'Administrador','administrador','ED6D3CDEBC0E7ACA','administrador','666666666','administrador@correo.es');
 		   
 		   
 INSERT INTO `establecimientos`(`usuario_id`, `imagen`, `horario`, `descripcion`, `web`, `direccion`)

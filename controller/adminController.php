@@ -218,7 +218,7 @@ function realizarValidacionPincho(){
 function validarPincho(){
 	$pincho = new Pincho();
 	if($pincho->validarPincho($_POST['pincho_id'])){
-		addNotificacion("Pincho validado","succcess");
+		addNotificacion("Pincho validado","success");
 		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','validarPinchoEstablecimiento')));
 	}
 	else{

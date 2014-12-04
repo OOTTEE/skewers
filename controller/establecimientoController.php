@@ -20,7 +20,7 @@ function index(){
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'generarCodigos'  ){
 			generarCodigos();
 		}else {
-			inicio();
+			redirecionar('/');
 		}
 	}else{
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registerEstablecimiento' ){
@@ -40,10 +40,6 @@ function index(){
 *	En este caso se crea el usuario para el establecimiento y el establecimiento asociado.
 */
 function register(){
-
-
-
-
 	$user = new User();
 	$User_Id=$user->register(array(
 		'name' => $_POST['name'],
@@ -76,21 +72,6 @@ function register(){
 	redirecionar('/');
 }
 
-
-/**
-*	Author: Javier Lorenzo Martin
-*	Se muestra la interfaz principal del usuario administrador
-*/
-function inicio(){
-	$establecimiento = new Establecimiento();
-	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
-	$GLOBALS['Pincho'] = $establecimiento->hasPincho();
-
-	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
-	echo "<h1>Establecimiento <small>index</small></h1>";
-	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
-}
 
 /**
 *	Author: Javier Lorenzo Martin

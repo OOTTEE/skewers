@@ -81,7 +81,7 @@
 		//Almacenamiento imagen
 		if(($_FILES['imagen']['type'] == 'image/jpeg') || ($_FILES['imagen']['type'] == 'image/png') || ($_FILES['imagen']['type'] == 'image/jpg')){
 
-			if($_FILES['imagen']['size'] < 200000){
+			if($_FILES['imagen']['size'] < 2000000){
 				var_dump(move_uploaded_file($_FILES["imagen"]["tmp_name"],'/var/www/html/skewers'.$Image_Path));
 					if($tipo=='cl'){
 						$Usuario->setLogo(array(

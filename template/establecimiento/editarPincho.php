@@ -24,7 +24,7 @@
 		<div class="form-group">
 			<label for="inputPassword">imagen</label>
 			<input type="file" id="inputPassword" name="imagen" >
-			<p class="help-block">Imagen del Pincho (Formatos: jpg, png)</p>
+			<p class="help-block">Imagen del Pincho (Formatos: jpg, png, jpeg)</p>
 		</div>
 		
 		<button class="btn btn-lg btn-primary btn-block" type="submit"  value="editarPincho" name="action" >Editar</button>
