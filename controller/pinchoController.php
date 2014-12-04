@@ -105,7 +105,7 @@ function editarPincho(){
 		if( !(isset($_POST['precio']) AND floatval($_POST['precio']) > 0 )){
 			$valido=false;
 			addNotificacion('El precio del pincho debe ser mayor que 0', 'warning');
-		}
+		} 
 		//Si los campos son validos se editan
 		if($valido){
 			$pincho->edit(array('ingredientes' => $_POST['ingredientes'],
@@ -115,22 +115,29 @@ function editarPincho(){
 								'descripcion' => $_POST['descripcionPincho'])
 			);
 			addNotificacion('El pincho fue editado, pendiente de validacion', 'success');
+			
+			$img=UpImagen($pincho->usuario_id,'p');
+			if(!$img){
+					addNotificacion("No se pudo insertar la Imagen","Danger");
+					return false;
+			}
 			redirecionar('/');
 		}else{
 			addNotificacion('El pincho no fue editado', 'danger');
 			redirecionar($GLOBALS['CONTROLLER_URL'].'establecimientoController.php?action=editarPincho');
 		}
+		
 	}else{
 		addNotificacion('El pincho ya fue validado y no puede ser editado', 'danger');
 		redirecionar('/');
 	}
 	closeServerSession();
 }
-
+/*
 //Con esta funcion accedemos a los datos de los pincho.
 function consultarPincho(){
 	$pincho = new Pincho();
-	$pincho->pincho_id =¨$_REQUEST['pincho'];
+	$pincho->pincho_id =$_REQUEST['pincho'];
 	
 	if($pincho->getPincho())
 	{
@@ -146,5 +153,5 @@ function consultarPincho(){
 		redirecciona('/');
 	}
 }
-
+*/
 index();

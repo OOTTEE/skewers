@@ -82,12 +82,12 @@
 		if(($_FILES['imagen']['type'] == 'image/jpeg') || ($_FILES['imagen']['type'] == 'image/png') || ($_FILES['imagen']['type'] == 'image/jpg')){
 
 			if($_FILES['imagen']['size'] < 200000){
-				move_uploaded_file($_FILES["imagen"]["tmp_name"],'/var/www/html/skewers'.$Image_Path);
+				var_dump(move_uploaded_file($_FILES["imagen"]["tmp_name"],'/var/www/html/skewers'.$Image_Path));
 					if($tipo=='cl'){
 						$Usuario->setLogo(array(
 						'imagen' => $Image_Path));
 						return true;
-					}else{
+					}else{ 
 						$Usuario->setImagen(array(
 						'imagen' => $Image_Path,
 						'usuario_id' => $Id));

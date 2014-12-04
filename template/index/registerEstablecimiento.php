@@ -42,7 +42,7 @@
 			<label for="direccion" >Direccion</label>
 			<input type="text" id="inputDireccion" class="form-control" placeholder="Direccion" name="direccion" >
 		</div>
-		
+		 
 		<div class="form-group">
 			<label for="horario" >Horario</label>
 			<input type="text" id="inputTime" class="form-control" placeholder="Horario" name="horario" >

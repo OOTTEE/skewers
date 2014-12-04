@@ -1,10 +1,10 @@
 <div class="container">
-	<form role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'pinchoController.php';?>" >
+	<form role="form"  Method="POST" enctype="multipart/form-data"  action="<?php echo $GLOBALS['CONTROLLER_URL'].'pinchoController.php';?>" >
 		<h2>Registro Pincho</h2>
 		<div class="form-group">
 			<label for="inputNombre">Nombre del Pincho</label>
 			<input type="text" id="inputNombre" class="form-control" placeholder="Nombre del pincho" name="nombrePincho" value="<?= $GLOBALS['Pincho']->nombre ?>" required autofocus>
-		</div>
+		</div> 
 		
 		<div class="form-group">
 			<label for="inputIngredientes" >Ingredientes</label>
