@@ -33,10 +33,14 @@ function votarFinalista(){
 	$Asignacion=new Asignacion();
 	$Pinchos=$Asignacion->getListAsignaciones($_SESSION['user']['usuario_id']);
 	
-	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavProfesional.php');
+	if($Pinchos==false){
+		addNotificacion('En este momento no tienes pinchos asignados para votar', 'warning');
+		include_once($GLOBALS['TEMPLATES_PATH'].'profesional/index.php');
+	}else{
 	include_once($GLOBALS['TEMPLATES_PATH'].'profesional/votarFinalistas.php');
+	}
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 
 }

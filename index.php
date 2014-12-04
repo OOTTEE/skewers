@@ -64,7 +64,7 @@ function pinchos(){
 
 }
 function gastromapa(){
-		include_once($GLOBALS['TEMPLATES_PATH'].'index/gastromapa.php');
+		include_once($GLOBALS['TEMPLATES_PATH'].'index/gastroMapa.php');
 
 }
 session_write_close(); 
