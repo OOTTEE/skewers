@@ -24,8 +24,8 @@ function index(){
 			restaurantes('notLoginNav.php');		
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pinchos'){
 			pinchos('notLoginNav.php');
-		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'gastromapa'){
-			gastromapa('notLoginNav.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'finalistas'){
+			finalistas('notLoginNav.php');
 		}else{
 			inicio('notLoginNav.php');
 		}
@@ -35,8 +35,8 @@ function index(){
 			restaurantes('loginNavAdministrador.php');		
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pinchos'){
 			pinchos('loginNavAdministrador.php');
-		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'gastromapa'){
-			gastromapa('loginNavAdministrador.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'finalistas'){
+			finalistas('loginNavAdministrador.php');
 		}else{
 			inicio('loginNavAdministrador.php');
 		}
@@ -45,8 +45,8 @@ function index(){
 			restaurantes('loginNavProfesional.php');		
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pinchos'){
 			pinchos('loginNavProfesional.php');
-		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'gastromapa'){
-			gastromapa('loginNavProfesional.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'finalistas'){
+			finalistas('loginNavProfesional.php');
 		}else{
 			inicio('loginNavProfesional.php');
 		}
@@ -55,8 +55,8 @@ function index(){
 			restaurantes('loginNavPopular.php');		
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pinchos'){
 			pinchos('loginNavPopular.php');
-		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'gastromapa'){
-			gastromapa('loginNavPopular.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'finalistas'){
+			finalistas('loginNavPopular.php');
 		}else{
 			inicio('loginNavPopular.php');
 		}
@@ -68,8 +68,8 @@ function index(){
 			restaurantes('loginNavEstablecimiento.php');		
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pinchos'){
 			pinchos('loginNavEstablecimiento.php');
-		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'gastromapa'){
-			gastromapa('loginNavEstablecimiento.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'finalistas'){
+			finalistas('loginNavEstablecimiento.php');
 		}else{
 			inicio('loginNavEstablecimiento.php');
 		}
@@ -105,33 +105,33 @@ function registrarUsuario(){
 function restaurantes($nav){
 		$Oest= new Establecimiento();
 		$Establecimientos=$Oest->getEstablecimientos();
-		if(!isset($Establecimientos)){
+		if($Establecimientos==false){
 			addNotificacion('No hay establecimientos validados', 'info');
 			redirecionar('/');
-		}
+		}else{
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].$nav);
 		include_once($GLOBALS['TEMPLATES_PATH'].'index/restaurantes.php');
 		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
-
+		}
 }
 function pinchos($nav){
 		$Opin=new Pincho();
 		$Pinchos=$Opin->getPinchosArray();
-		if(!isset($Pinchos)){
+		if($Pinchos==false){
 			addNotificacion('No hay pinchos validados', 'info');
 			redirecionar('/');
-		}
+		}else{
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].$nav);
 		include_once($GLOBALS['TEMPLATES_PATH'].'index/pinchos.php');
 		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
-
+		}
 }
-function gastromapa($nav){
+function finalistas($nav){
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].$nav);
-		include_once($GLOBALS['TEMPLATES_PATH'].'index/pinchos.php');
+		include_once($GLOBALS['TEMPLATES_PATH'].'index/finalistas.php');
 		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 
 }

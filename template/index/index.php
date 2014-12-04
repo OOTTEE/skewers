@@ -26,9 +26,9 @@
           <p><a class="btn btn-default" href="/?action=pinchos" role="button">Pinchos <span class="glyphicon glyphicon-search"/></a></p>
        </div>
         <div class="col-md-4">
-          <h2>Gastro Mapa <span class="glyphicon glyphicon-map-marker"/></h2>
-          <p>¿No sabe donde esta?</p>
-          <p><a class="btn btn-default" href="/?action=gastromapa" role="button">Gastromapa <span class="glyphicon glyphicon-map-marker"/></a></p>
+          <h2>Finalistas<span class="glyphicon glyphicon-tower"/></h2>
+          <p>Finalistas y ganadores del concurso</p>
+          <p><a class="btn btn-default" href="/?action=finalistas" role="button">Finalistas <span class="glyphicon glyphicon-tower"/></a></p>
         </div>
       </div>
 
