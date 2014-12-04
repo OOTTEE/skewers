@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-4">
 			  <h2>Finalistas </h2>
-			  <p>Pinchos finalistas del concurso</p>
+			  <p>Pinchos finalistas del concurso profesional</p>
 			  <p><button class="btn btn-lg btn-primary btn-block" type="submit"  value="finalistas" name="action" >Ver</button>
 			</div>
 			<div class="col-md-4">
