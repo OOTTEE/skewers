@@ -10,6 +10,7 @@ class Configuracion extends Model{
 	public $votacionesFinalistas ;
 	public $votacionesGanadores ;
 	public $votacionesPopulares ;
+	public $resultados;
 	private $id;
 	
 	function __construct(){
@@ -36,6 +37,7 @@ class Configuracion extends Model{
 		$this->votacionesFinalistas=$resul['votacionesFinalistas'];
 		$this->votacionesGanadores=$resul['votacionesGanadores'];
 		$this->votacionesPopulares=$resul['votacionesPopulares'];
+		$this->resultados=$resul['resultados'];
 		
 		return $this;
 	}

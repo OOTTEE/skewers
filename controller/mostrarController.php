@@ -4,6 +4,11 @@ include_once($GLOBALS['MODEL_PATH'].'User.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
 include_once($GLOBALS['MODEL_PATH'].'Establecimiento.php');
+include_once($GLOBALS['MODEL_PATH'].'Voto.php');
+include_once($GLOBALS['MODEL_PATH'].'PuntuacionPremiado.php');
+include_once($GLOBALS['MODEL_PATH'].'PuntuacionFinalista.php');
+
+
 /*Author: Hector Novoa Novoa
 *
 */
@@ -152,7 +157,7 @@ function premiados($nav){
 
 }
 
-function ganadoresPro(){
+function ganadoresPro($nav){
 	
 
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
@@ -162,13 +167,23 @@ function ganadoresPro(){
 
 }
 
-function ganadoresPop(){
+function ganadoresPop($nav){
 
-
+	if($GLOBALS['conf']->resultados==0){
+		addNotificacion('Concurso no finalizado. No se pueden mostrar resultados', 'warning');
+		redirecionar('/');
+	}else{
+	$vote= new Voto();
+	$PiInf=$vote->getResulVotos();
+	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].$nav);
 	include_once($GLOBALS['TEMPLATES_PATH'].'mostrar/listPremiados.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	
+	}
+
+
 }
 
 

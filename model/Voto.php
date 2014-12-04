@@ -62,6 +62,7 @@ class Voto extends Model{
 			return false;
 		}	
 	}
+
 	
 	public function getUltimosVotos($num){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT *
@@ -77,6 +78,17 @@ class Voto extends Model{
 		}else{
 			return false;
 		}	
+	}
+	public function getResulVotos(){
+		$sentencia=$GLOBALS['DB']->prepare('SELECT v.pincho_id,p.nombre,u.name, sum(me_gusta)AS votos 
+											FROM votos v ,pinchos p, users u
+											WHERE v.pincho_id=p.usuario_id And p.usuario_id=u.usuario_id
+											GROUP BY p.pincho_id 
+											ORDER BY votos 
+											DESC');
+		$sentencia->execute();
+		return $sentencia->fetchall();
+	
 	}
 
 
