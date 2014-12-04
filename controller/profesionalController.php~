@@ -60,14 +60,4 @@ function votarPremiados(){
 
 }
 
-function realizarVotacionPremiados(){
-	$pincho = new Pincho();
-	$pincho->pincho_id=$_GET['idPincho'];
-	$pincho->getPincho();
-	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'profesional/votarPinchoPremiado.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
-}
-
 index();
