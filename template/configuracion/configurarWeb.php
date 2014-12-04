@@ -37,6 +37,13 @@
 				Activar Votaciones Populares
 			</label>
 		</div>
+		<div class="input-group">
+			<label>
+				<input type="checkbox" name="resultados" value="<?= $conf->resultados?>"  <?php if( $conf->resultados == 1){ echo 'checked' ;}?> >
+				
+				Mostrar Resultados
+			</label>
+		</div>
 		
 		<div class="form-group">
 			<label for="inputDescripcion" >Descripción</label>

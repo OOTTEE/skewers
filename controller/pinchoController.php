@@ -7,7 +7,7 @@ include_once($GLOBALS['MODEL_PATH'].'Comentario.php');
 
 /**
 *	Author: Javier Lorenzo Martin
-*	Controlador de gestion de pinchos.
+*	Controlador de gestion de pinchos. Se le permite el acceso a los usuarios establecimiento y popular
 */
 function index(){
 	if(isUserLoginWhithRole('establecimiento')){

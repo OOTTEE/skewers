@@ -52,6 +52,7 @@ class Configuracion extends Model{
 																		`descripcion` = :descripcion, 
 																		`f_inicio` = :f_inicio, 
 																		`f_fin` = :f_fin,
+																		`resultados` = :resultados,
 																		`votacionesFinalistas` = :votacionesFinalistas,
 																		`votacionesGanadores` = :votacionesGanadores,
 																		`votacionesPopulares` = :votacionesPopulares ".
@@ -63,6 +64,7 @@ class Configuracion extends Model{
 							':descripcion' => $params['descripcion'],
 							':f_inicio' => $params['f_inicio'],
 							':f_fin' => $params['f_fin'],
+							':resultados' => $params['resultados'],
 							':votacionesFinalistas' => $params['votacionesFinalistas'],
 							':votacionesGanadores' => $params['votacionesGanadores'],
 							':votacionesPopulares' => $params['votacionesPopulares'],

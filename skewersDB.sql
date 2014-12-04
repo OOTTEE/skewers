@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `configuracion` (
   `imagen` varchar(250) COLLATE utf8_bin NOT NULL,
   `f_inicio` date NOT NULL,
   `f_fin` date NOT NULL,
+  `resultados` tinyint(1) NOT NULL DEFAULT '0',
   `votacionesFinalistas` tinyint(1) NOT NULL DEFAULT '0',
   `votacionesGanadores` tinyint(1) NOT NULL DEFAULT '0',
   `votacionesPopulares` tinyint(1) NOT NULL DEFAULT '0',

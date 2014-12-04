@@ -7,10 +7,12 @@ class User extends Model{
 	public $password;
 	public $role;
 	public $phone;
-	private $database;
 	
-	
-	
+	/** Autor: Javier Lorenzo Martin
+	* 	Esta funcion busca a un usuario en el sistema buscando por username y password
+	*	devuelve un array con la informacion del usuario si es correcto si no false
+	*   como parametros recibe un array asociativo con el username y el password
+	*/
 	
 	public function isRegister($params){
 			
@@ -27,6 +29,10 @@ class User extends Model{
 			return false;
 	}
 	
+	/** Autor: Javier Lorenzo Martin
+	*	Esta funcion creac un usuario a partir de los parametros recividos a traver del array asociativo de entrada
+	* 	Como resultado devuelve un false, o el id del ultimo usuario creado.
+	*/
 	public function register($params){
 			
 		/* Ejecuta una sentencia preparada pasando un array de valores */
@@ -48,7 +54,9 @@ class User extends Model{
 	}
 	
 	
-	
+	/** Autor: Javier Lorenzo Martin
+	*	Esta funcion devuelve un objeto usuario, filtrado por el atributo $this->usuario_id
+	*/
 	public function getUser(){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT *
 											FROM users

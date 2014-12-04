@@ -58,6 +58,7 @@ function editarConfiguracion(){
 							'descripcion' => $_POST['descripcionConcurso'],
 							'f_inicio' => $_POST['fechaInicio'],
 							'f_fin' => $_POST['fechaFin'],
+							'resultados' => ((isset($_POST['resultados']))? 1 : 0),
 							'votacionesPopulares' => ((isset($_POST['votacionesPopulares']))? 1 : 0),
 							'votacionesFinalistas' => ((isset($_POST['votacionesFinalistas']))? 1 : 0),
 							'votacionesGanadores' => ((isset($_POST['votacionesGanadores']))? 1 : 0));
