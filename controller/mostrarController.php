@@ -5,7 +5,7 @@ include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
 include_once($GLOBALS['MODEL_PATH'].'Establecimiento.php');
 include_once($GLOBALS['MODEL_PATH'].'Voto.php');
-include_once($GLOBALS['MODEL_PATH'].'PuntuacionPremiado.php');
+include_once($GLOBALS['MODEL_PATH'].'PuntuacionGanadores.php');
 include_once($GLOBALS['MODEL_PATH'].'PuntuacionFinalista.php');
 
 

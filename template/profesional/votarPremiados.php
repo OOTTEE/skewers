@@ -1,22 +1,20 @@
- <div class="jumbotron">
-      <div class="container">
-        <h1>Votacion de los pinchos premiados</h1>
-        <p>Seleccione el pincho que quiere votar.</p>    
-      </div>
-    </div>
+<div class="container">
+<h1>Pinchos Restantes</h1>
+<?php
+	foreach($finalistas as $row):
+?>
 
-    <div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading"><?= $row['nombre'] ?></div>
+			<div class="panel-body">
+				<form class="form-horizontal" role="form" method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'votarProController.php?action=votarP'?>">
+					<button type="submit" class="btn btn-default" name="pincho_id" value="<?= $row['pincho_id'] ?>">Votar</button>
+				</form>
+			</div>
+		</div>	
 	
-		<?php foreach($Pinchos as $pincho):?>
-			<a href="<?php echo $GLOBALS['CONTROLLER_URL'].'profesionalController.php?action=mostrarDatosPinchoPremiados&idPincho='.$pincho['pincho_id']?>">
-				<div class="col-md-3">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<?= $pincho['nombre'] ?> <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"/>
-						</div>	
-					</div>
-				</div>
-			</a>
-		<?php endforeach; ?>
+<?php
+	endforeach;
 
-    </div>
+?>
+</div>

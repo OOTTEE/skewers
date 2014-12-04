@@ -36,7 +36,7 @@ class Pincho extends Model{
 		}		
 	}
 		public function getPinchoFinalistas(){
-		$sentencia= $GLOBALS['DB']->prepare('SELECT p.nombre , u.name
+		$sentencia= $GLOBALS['DB']->prepare('SELECT p.nombre , u.name , p.pincho_id
 				FROM pinchos p , users u
 				WHERE  u.usuario_id=p.usuario_id AND p.finalista=1' );
 		$sentencia->execute();
@@ -45,7 +45,7 @@ class Pincho extends Model{
 		return $sentencia->fetchall();
 		}
 		return false;
-		}
+}
 		public function getPinchosArray(){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT *
 											 FROM pinchos

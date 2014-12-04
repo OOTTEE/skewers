@@ -1,6 +1,6 @@
 <?php 
 include_once($GLOBALS['MODEL_PATH'].'Model.php');
-class PuntuacionPremiado extends Model{
+class PuntuacionGanadores extends Model{
 
 		public $usuario_id;
 		public $pincho_id;
@@ -26,7 +26,7 @@ class PuntuacionPremiado extends Model{
 	
 	public function register($params){
 		if(isset($params)){
-			$sentencia = $GLOBALS['DB']->prepare("INSERT INTO `puntuacion_finalistas`(`usuario_id`, `pincho_id`, `nota`) 
+			$sentencia = $GLOBALS['DB']->prepare("INSERT INTO `puntuacion_ganadores`(`usuario_id`, `pincho_id`, `nota`) 
 													VALUES (:usuario_id,
 															:pincho_id,
 															:nota)");
@@ -46,9 +46,9 @@ class PuntuacionPremiado extends Model{
 	}
 	public function getPremiados(){
 		$sentencia=$GLOBALS['DB']->prepare('SELECT p.pincho_id, (sum(nota)/count(nota))AS votos 
-											FROM puntuacion_ganadores p
-											WHERE v.pincho_id=p.usuario_id And p.usuario_id=u.usuario_id
-											GROUP BY p.pincho_id 
+											FROM puntuacion_ganadores g, pinchos p , users u
+											WHERE g.pincho_id=p.pincho_id And p.usuario_id=u.usuario_id
+											GROUP BY g.pincho_id 
 											ORDER BY votos 
 											DESC');
 		$sentencia->execute();

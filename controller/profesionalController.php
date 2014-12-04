@@ -5,7 +5,7 @@ include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 include_once($GLOBALS['MODEL_PATH'].'Asignacion.php');
 include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
 
-
+$GLOBALS['conf']=(new Configuracion())->get();
 
 function index(){
 	if(isUserLoginWhithRole('profesional')){
@@ -14,10 +14,7 @@ function index(){
 			votarFinalista();
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'votarPremiados' ){
 			votarPremiados();
-		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'mostrarDatosPinchoPremiados' ){
-			realizarVotacionPremiados();
-		}
-		else{
+		}else{
 			inicio();
 		}
 	}else{	
@@ -37,37 +34,36 @@ function inicio(){
 function votarFinalista(){
 	$Asignacion=new Asignacion();
 	$Pinchos=$Asignacion->getListAsignaciones($_SESSION['user']['usuario_id']);
-	
+	if($Pinchos==false || $GLOBALS['conf']->votacionesFinalistas == '0'){
+		addNotificacion('En este momento no tienes pinchos asignados para votar', 'warning');
+		inicio();
+	}else{
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavProfesional.php');
-	if($Pinchos==false){
-		addNotificacion('En este momento no tienes pinchos asignados para votar', 'warning');
-		include_once($GLOBALS['TEMPLATES_PATH'].'profesional/index.php');
-	}else{
 	include_once($GLOBALS['TEMPLATES_PATH'].'profesional/votarFinalistas.php');
-	}
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	}
 
 }
 
 function votarPremiados(){
+
+	$pin=new Pincho();
+	$finalistas=$pin->getPinchoFinalistas();
+
+	if($finalistas==false || $GLOBALS['conf']->votacionesGanadores ==0 ){
+		addNotificacion('Concurso no disponible','warning');
+		inicio();
+	}else{
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavProfesional.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'profesional/votarPremiados.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	}
 
 
 
-}
 
-function realizarVotacionPremiados(){
-	$pincho = new Pincho();
-	$pincho->pincho_id=$_GET['idPincho'];
-	$pincho->getPincho();
-	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'profesional/votarPinchoPremiado.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
 
 index();
