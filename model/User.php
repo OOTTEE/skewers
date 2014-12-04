@@ -49,22 +49,24 @@ class User extends Model{
 	
 	
 	
-	public function getUser($id){
-		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, name, username, role, phone
-								FROM users
-								WHERE usuario_id = ? ');
-		//MANTENER $sentencia->execute(array($id)); y boorrar este comentario
-		$sentencia->execute(array($id));
-		$resul=$sentencia->fetchall()[0];
+	public function getUser(){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT *
+											FROM users
+											WHERE usuario_id = ? ');
+		$sentencia->execute(array($this->usuario_id));
+		if($sentencia->rowCount() > 0){
+			$resul=$sentencia->fetchall()[0];
+			$this->usuario_id=$resul['usuario_id'];
+			$this->name=$resul['name'];
+			$this->user=$resul['username'];
+			$this->role=$resul['role'];
+			$this->phone=$resul['phone'];
+			return $this;
+		}else{
+			return false;
+		}
 		
 		
-		$this->usuario_id=$resul['usuario_id'];
-		$this->name=$resul['name'];
-		$this->user=$resul['username'];
-		$this->role=$resul['role'];
-		$this->phone=$resul['phone'];
-		
-		return $this;
 	}
 
 	//FUNCIONES EDGAR
@@ -116,15 +118,6 @@ class User extends Model{
 		
 		
 		return $name;
-	}
-	public function getID($nameUser){
-		$sentencia= $GLOBALS['DB']->prepare('SELECT  usuario_id FROM users WHERE name = ? ');
-		$sentencia->execute(array($nameUser));
-		$resul=$sentencia->fetchall()[0];
-		$id = $resul['usuario_id'];
-		
-		
-		return $id;
 	}
 	//FUNCIONES EDGAR FIN
 }

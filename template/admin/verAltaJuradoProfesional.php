@@ -5,8 +5,8 @@
       </div>
     </div>
 
+      <form Method="POST" id="validarPassword"  role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php';?>" >
    <div class="container">
-      <form Method="POST" enctype="multipart/form-data"  role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php';?>" >
 		<h2 class="form-signin-heading">Registro de Jurado Profesional</h2>
 		<div class="form-group">
 			<label for="inputUser" class="sr-only">Nombre Completo</label>
@@ -29,9 +29,14 @@
 		</div>
 		
 		<div class="form-group">
-		<label for="inputPassword" class="sr-only">Password</label>
-		<input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="password" required>
-		</div>		
+		<label for="inputPassword1" class="sr-only">Repita Contraseña</label>
+		<input type="password" id="inputPassword1" class="form-control" placeholder="Contraseña"required>
+		</div>	
+		<div class="form-group">
+		<label for="inputPassword2" class="sr-only">Repita Contraseña</label>
+		<input type="password" id="inputPassword2" class="form-control" placeholder="Repita Contraseña" required>
+		</div>	
+		<input type="hidden" id="inputPassword3" class="form-control" placeholder="Contraseña" name="password" >
 		<button class="btn btn-lg btn-primary btn-block"  type="submit"  value="register" name="action" >Alta Jurado Profesional</button>
 	</form>
     </div>

@@ -9,7 +9,7 @@
       
 	
 	<?php foreach($Users as $usuario):?>
-	<a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=modificarUsuario&nameUser='.$usuario['usuario_id']?>">
+	<a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=modificarUsuario&usuario_id='.$usuario['usuario_id']?>">
 		<div class="col-md-3">
 			<div class="panel panel-default">
 				<div class="panel-heading">

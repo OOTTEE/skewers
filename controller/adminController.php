@@ -146,9 +146,9 @@ function verEliminarUsuario(){
 *	Aqui se muestra el formulario de modificacion del usuario seleccionado
 */
 function modificarUsuario(){
-	$usuario = new User();
-	$idUsuario = $usuario->getID($_GET['nameUser']);
-	$datosUsuario = $usuario->getUser($idUsuario); 
+	$datosUsuario = new User();
+	$datosUsuario->usuario_id= $_GET['usuario_id'];
+	$datosUsuario->getUser();
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'admin/modificarUsuario.php');
