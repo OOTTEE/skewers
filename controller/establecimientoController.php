@@ -117,7 +117,7 @@ function verPincho(){
 	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
 	$GLOBALS['Pincho'] = $establecimiento->hasPincho();
 
-	if($Pincho){
+	if($GLOBALS['Pincho']){
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
 		include_once($GLOBALS['TEMPLATES_PATH'].'establecimiento/editarPincho.php');

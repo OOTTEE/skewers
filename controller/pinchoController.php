@@ -142,7 +142,7 @@ function consultarPincho(){
 	else
 	{
 		echo "El pincho que quiere consultar no existe";
-		sleep(6);
+		die();
 		redirecciona('/');
 	}
 }
