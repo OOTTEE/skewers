@@ -18,15 +18,33 @@
 
 
 		<div class="form-group">	
-		<form class="form-horizontal" role="form" method="POST" action="<?php echo '/controller/mostrarController.php?action=restaurante'?>">
+		<form class="form-horizontal" role="form" method="GET" action="<?php echo '/controller/mostrarController.php?action=restaurante'?>">
 				<label for="boton" ></label>
 				<button type="submit" class="btn btn-default" name="usuario_id" value="<?=$PiInfo->usuario_id ?>" id="boton" >Localizacion</button>
 		</form>
 		</div>
 		<div class="form-group">	
-			<form class="form-horizontal" role="form" method="POST" action="<?php echo '/index.php?action=pinchos'?>">
-					<label for="boton" ></label>
+			<form class="form-horizontal" role="form" method="GET" action="<?php echo '/index.php?action=pinchos'?>">
 					<button type="submit" class="btn btn-lg btn-primary btn-block" name="usuario_id" id="boton" >Mas Pinchos</button>
 			</form>
 		</div>
+		<!-- form comentar -->
 </div> 
+<div class="container">
+			
+		<form class="form-horizontal" role="form" method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'pinchoController.php' ?>">
+	
+			<label for="descripcion" >descripcion</label>
+			<textarea id="descripcion" class="form-control" placeholder="Comente¡" name="comentario"></textarea>
+			<br>
+			
+			<input type="hidden" name="codigo_pincho" value="<?=$PiInfo->pincho_id ?>" readonly >
+			
+			<button type="submit" class="btn btn-lg btn-primary btn-block" name="action" value="comentarPincho"  id="boton" >Comentar</button>
+			
+		</form>
+		
+
+</div>
+		
+		
