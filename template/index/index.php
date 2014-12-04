@@ -11,6 +11,7 @@
 				<?= $GLOBALS['conf']->descripcion;?>
 	  
       <hr>
+	</div>
 	  
     <div class="container">
       <!-- Example row of columns -->
