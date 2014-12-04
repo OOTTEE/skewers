@@ -84,7 +84,7 @@ function register(){
 function inicio(){
 	$establecimiento = new Establecimiento();
 	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
-	$Pincho = $establecimiento->hasPincho();
+	$GLOBALS['Pincho'] = $establecimiento->hasPincho();
 
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
@@ -99,7 +99,7 @@ function inicio(){
 function registrarPincho(){
 	$establecimiento = new Establecimiento();
 	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
-	$Pincho = $establecimiento->hasPincho();
+	$GLOBALS['Pincho'] = $establecimiento->hasPincho();
 
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
@@ -115,7 +115,7 @@ function registrarPincho(){
 function verPincho(){
 	$establecimiento = new Establecimiento();
 	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
-	$Pincho = $establecimiento->hasPincho();
+	$GLOBALS['Pincho'] = $establecimiento->hasPincho();
 
 	if($Pincho){
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
@@ -130,7 +130,7 @@ function verPincho(){
 function generarCodigos(){
 	$establecimiento = new Establecimiento();
 	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
-	$Pincho = $establecimiento->hasPincho();
+	$GLOBALS['Pincho'] = $establecimiento->hasPincho();
 	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');

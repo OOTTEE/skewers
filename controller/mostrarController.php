@@ -7,44 +7,73 @@ include_once($GLOBALS['MODEL_PATH'].'Establecimiento.php');
 /*Author: Hector Novoa Novoa
 *
 */
-$conf = (new Configuracion())->get();
 
-if(isUserLogin()){
-	redirecionar($GLOBALS['CONTROLLER_URL'].'usersController.php');		
-}else{
-
-	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-
-	include_once($GLOBALS['LAYOUT_PATH'].'notLoginNav.php');
+function index(){
+	$GLOBALS['conf']=(new Configuracion())->get();
 		
-	if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'register'){
 	
-		include_once($GLOBALS['TEMPLATES_PATH'].'index/register.php');
-	
-	}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registerEstablecimiento'){
-	
-		include_once($GLOBALS['TEMPLATES_PATH'].'index/registerEstablecimiento.php');
-	
-	}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurante'){
-		restaurante();
-	}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pincho'){
-		pincho();
+	if(!isUserLogin()){	
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurante'){
+			restaurante('notLoginNav.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pincho'){
+			pincho('notLoginNav.php');
+		}else{
+			inicio('notLoginNav.php');
+		}
 		
+	}else if(isUserLoginWhithRole('administrador')){
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurante'){
+			restaurante('loginNavAdministrador.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pincho'){
+			pincho('loginNavAdministrador.php');
+		}else{
+			inicio('loginNavAdministrador.php');
+		}
+	}else if(isUserLoginWhithRole('profesional')){
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurante'){
+			restaurante('loginNavProfesional.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pincho'){
+			pincho('loginNavProfesional.php');
+		}else{
+			inicio('loginNavProfesional.php');
+		}
+	}else if(isUserLoginWhithRole('popular')){
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurante'){
+			restaurante('loginNavPopular.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pincho'){
+			pincho('loginNavPopular.php');
+		}else{
+			inicio('loginNavPopular.php');
+		}
+	}else if(isUserLoginWhithRole('establecimiento')){
+		$establecimiento = new Establecimiento();
+		$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
+		$GLOBALS['Pincho'] = $establecimiento->hasPincho();
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurante'){
+			restaurante('loginNavEstablecimiento.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pincho'){
+			pincho('loginNavEstablecimiento.php');
+		}else{
+			inicio('loginNavEstablecimiento.php');
+		}
 	}else{
-	
-		include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');
+		redirecionar('/');
 	}
-		
-	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	session_write_close(); 
 }
 
-function restaurante(){
+
+function restaurante($nav){
 	
 	$Es=new Establecimiento();
 	$EsInfo=$Es->getEstablecimientoByID($_POST['usuario_id']);
+	
+	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+	include_once($GLOBALS['LAYOUT_PATH'].$nav);
 	include_once($GLOBALS['TEMPLATES_PATH'].'index/restauranteInfo.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
-function pincho(){
+function pincho($nav){
 	$Pi=new Pincho();
 	$Pi->usuario_id=$_POST['usuario_id'];
 	$PiInfo=$Pi->getPinchoByUsuarioId();
@@ -52,7 +81,13 @@ function pincho(){
 	if(!isset($PiInfo)){
 		addNotificacion('Pincho no registrado o no validado', 'warning');
 	}
-		include_once($GLOBALS['TEMPLATES_PATH'].'index/pinchoInfo.php');
+	
+	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+	include_once($GLOBALS['LAYOUT_PATH'].$nav);
+	include_once($GLOBALS['TEMPLATES_PATH'].'index/pinchoInfo.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 	
 
 }
+
+index();

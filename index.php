@@ -11,60 +11,128 @@ include_once($GLOBALS['MODEL_PATH'].'Establecimiento.php');
 *	Solo se muestra para usuarios no registrados, para usuario registrados se redireje al controlador userController.php
 *
 */
-$conf = (new Configuracion())->get();
-if(isUserLogin()){
-	redirecionar($GLOBALS['CONTROLLER_URL'].'usersController.php');		
-}else{
-
-	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-
-	include_once($GLOBALS['LAYOUT_PATH'].'notLoginNav.php');
+function index(){
+	$GLOBALS['conf']=(new Configuracion())->get();
 		
-	if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'register'){
 	
-		include_once($GLOBALS['TEMPLATES_PATH'].'index/register.php');
-	
-	}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registerEstablecimiento'){
-	
-		include_once($GLOBALS['TEMPLATES_PATH'].'index/registerEstablecimiento.php');
-	
-	}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurantes'){
-		restaurantes();		
-	}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pinchos'){
-		pinchos();
+	if(!isUserLogin()){	
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'register'){
+			registrarUsuario();
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registerEstablecimiento'){
+			registrarEstablecimiento();
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurantes'){
+			restaurantes('notLoginNav.php');		
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pinchos'){
+			pinchos('notLoginNav.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'gastromapa'){
+			gastromapa('notLoginNav.php');
+		}else{
+			inicio('notLoginNav.php');
+		}
 		
-	}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'gastromapa'){
-		gastromapa();
-		
+	}else if(isUserLoginWhithRole('administrador')){
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurantes'){
+			restaurantes('loginNavAdministrador.php');		
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pinchos'){
+			pinchos('loginNavAdministrador.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'gastromapa'){
+			gastromapa('loginNavAdministrador.php');
+		}else{
+			inicio('loginNavAdministrador.php');
+		}
+	}else if(isUserLoginWhithRole('profesional')){
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurantes'){
+			restaurantes('loginNavProfesional.php');		
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pinchos'){
+			pinchos('loginNavProfesional.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'gastromapa'){
+			gastromapa('loginNavProfesional.php');
+		}else{
+			inicio('loginNavProfesional.php');
+		}
+	}else if(isUserLoginWhithRole('popular')){
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurantes'){
+			restaurantes('loginNavPopular.php');		
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pinchos'){
+			pinchos('loginNavPopular.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'gastromapa'){
+			gastromapa('loginNavPopular.php');
+		}else{
+			inicio('loginNavPopular.php');
+		}
+	}else if(isUserLoginWhithRole('establecimiento')){
+		$establecimiento = new Establecimiento();
+		$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
+		$GLOBALS['Pincho'] = $establecimiento->hasPincho();
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurantes'){
+			restaurantes('loginNavEstablecimiento.php');		
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pinchos'){
+			pinchos('loginNavEstablecimiento.php');
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'gastromapa'){
+			gastromapa('loginNavEstablecimiento.php');
+		}else{
+			inicio('loginNavEstablecimiento.php');
+		}
 	}else{
-	
-		include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');
+		redirecionar('/');
 	}
-		
-	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	session_write_close(); 
 }
-function restaurantes(){
+
+function inicio($nav){
+	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+	include_once($GLOBALS['LAYOUT_PATH'].$nav);
+	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+
+}
+function registrarEstablecimiento(){
+	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'notLoginNav.php');
+	include_once($GLOBALS['TEMPLATES_PATH'].'index/registerEstablecimiento.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+
+
+}
+function registrarUsuario(){
+	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'notLoginNav.php');
+	include_once($GLOBALS['TEMPLATES_PATH'].'index/register.php');
+	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+
+
+}
+function restaurantes($nav){
 		$Oest= new Establecimiento();
 		$Establecimientos=$Oest->getEstablecimientos();
 		if(!isset($Establecimientos)){
 			addNotificacion('No hay establecimientos validados', 'info');
 			redirecionar('/');
 		}
+		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+		include_once($GLOBALS['LAYOUT_PATH'].$nav);
 		include_once($GLOBALS['TEMPLATES_PATH'].'index/restaurantes.php');
+		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 
 }
-function pinchos(){
+function pinchos($nav){
 		$Opin=new Pincho();
 		$Pinchos=$Opin->getPinchosArray();
 		if(!isset($Pinchos)){
 			addNotificacion('No hay pinchos validados', 'info');
 			redirecionar('/');
 		}
+		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+		include_once($GLOBALS['LAYOUT_PATH'].$nav);
 		include_once($GLOBALS['TEMPLATES_PATH'].'index/pinchos.php');
+		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 
 }
-function gastromapa(){
-		include_once($GLOBALS['TEMPLATES_PATH'].'index/gastroMapa.php');
+function gastromapa($nav){
+		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+		include_once($GLOBALS['LAYOUT_PATH'].$nav);
+		include_once($GLOBALS['TEMPLATES_PATH'].'index/pinchos.php');
+		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 
 }
-session_write_close(); 
+index();
