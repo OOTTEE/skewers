@@ -27,7 +27,12 @@ function index(){
 			comentarPincho();		
 		}
 	}else{	
-		redirecionar('/');		
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'comentarPincho' ){
+			addNotificacion('Tienes que estar logueado para comentar los pinchos','info');
+			redirecionar('/');		
+		}else{
+			redirecionar('/');		
+		}
 	}
 	
 }
