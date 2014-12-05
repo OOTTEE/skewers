@@ -1,5 +1,5 @@
 <div class="container">
-	<form role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'votarProController.php?action=registrarF';?>" >
+	<form role="form"  Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'votarProController.php';?>" >
 		<h2><?=$InfoPincho->nombre ?></h2>
 		<img src=<?=$InfoPincho->imagen ?> height="42" width="42">
 		<div class="form-group">
@@ -29,6 +29,6 @@
 		</select>
 		</div>
 		<input type="hidden"   name="pincho_id" value=<?=$InfoPincho->pincho_id ?> >
-		<button class="btn btn-lg btn-primary btn-block" type="submit"  value="registrar" name="action" >Votar</button>
+		<button class="btn btn-lg btn-primary btn-block" type="submit"  value="registrarF" name="action" >Votar</button>
 	</form>
 </div> 
