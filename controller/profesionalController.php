@@ -34,7 +34,7 @@ function inicio(){
 function votarFinalista(){
 	$Asignacion=new Asignacion();
 	$Pinchos=$Asignacion->getListAsignaciones($_SESSION['user']['usuario_id']);
-	if($Pinchos==false || $GLOBALS['conf']->votacionesFinalistas == '0'){
+	if($Pinchos==false || $GLOBALS['conf']->votacionesFinalistas == 0){
 		addNotificacion('En este momento no tienes pinchos asignados para votar', 'warning');
 		inicio();
 	}else{
@@ -49,9 +49,9 @@ function votarFinalista(){
 function votarPremiados(){
 
 	$pin=new Pincho();
-	$finalistas=$pin->getPinchoFinalistas();
+	$finalistas=$pin->getPinchoFinalistasLimitById($_SESSION['user']['usuario_id']);
 
-	if($finalistas==false || $GLOBALS['conf']->votacionesGanadores ==0 ){
+	if($finalistas==false || $GLOBALS['conf']->votacionesGanadores ==0 || $GLOBALS['conf']->votacionesFinalistas ==1 ){
 		addNotificacion('Concurso no disponible','warning');
 		inicio();
 	}else{

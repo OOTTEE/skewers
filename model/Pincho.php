@@ -35,6 +35,23 @@ class Pincho extends Model{
 			return false;
 		}		
 	}
+		public function getPinchoFinalistasLimitById($usuario_id){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT p.nombre , u.name , p.pincho_id
+											FROM  pinchos p , users u
+											WHERE u.usuario_id=p.usuario_id AND p.pincho_id NOT IN ( SELECT g.pincho_id 																				
+																															FROM puntuacion_ganadores g 
+																															WHERE g.usuario_id= ?)' );
+		$sentencia->execute(array($usuario_id));
+		
+		if($sentencia->rowCount() > 0){
+			return $sentencia->fetchall();
+		}
+		
+		return false;
+		
+		
+		}
+	
 		public function getPinchoFinalistas(){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT p.nombre , u.name , p.pincho_id
 				FROM pinchos p , users u

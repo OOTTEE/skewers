@@ -14,8 +14,7 @@ function index(){
 		}else if($_REQUEST['action']== 'registrarF'){
 				registrarFinalistas();
 				redirecionar('/controller/profesionalController.php?action=votarFinalistas');
-		}else if($_REQUEST['action']== 'votarP'){
-				
+		}else if($_REQUEST['action']== 'votarP'){		
 				votaPremiado();
 		}else if($_REQUEST['action']== 'registrarP'){
 				registraPremiado();

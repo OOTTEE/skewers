@@ -24,7 +24,7 @@ class PuntuacionFinalista extends Model{
 	}
 	
 	
-		public function register($params){
+	public function register($params){
 		if(isset($params)){
 			$sentencia = $GLOBALS['DB']->prepare("INSERT INTO `puntuacion_finalistas`(`usuario_id`, `pincho_id`, `nota`) 
 													VALUES (:usuario_id,
@@ -43,6 +43,30 @@ class PuntuacionFinalista extends Model{
 			}
 		}
 		return false;
+	}
+	
+	public function calcFinalistas(){
+	
+		$final=  $GLOBALS['DB']->prepare('SELECT pincho_id, (sum(nota)/count(nota)) AS valor
+											From puntuacion_finalistas f
+											WHERE 1
+											GROUP BY pincho_id
+									        ORDER BY valor DESC
+											LIMIT 0,10');
+											
+		$final->execute();
+		$finala=$final->fetchall();	
+		foreach($finala as $row):
+			$sentencia = $GLOBALS['DB']->prepare('UPDATE pinchos SET finalista=1 WHERE pincho_id=?');
+			$sentencia->execute(array($row['pincho_id']));
+			if($sentencia->rowCount() ==0){
+				return false;
+			}
+		endforeach;
+			return true;
+		
+	
+	
 	}
 
 }

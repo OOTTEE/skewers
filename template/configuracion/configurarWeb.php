@@ -44,7 +44,6 @@
 				Mostrar Resultados
 			</label>
 		</div>
-		
 		<div class="form-group">
 			<label for="inputDescripcion" >Descripción</label>
 			<textarea id="inputDescripcion"  class="form-control"  placeholder="Descripcion" name="descripcionConcurso" > <?= $conf->descripcion ?></textarea>			
@@ -61,7 +60,10 @@
 			<input type="file" id="inputImagen"  class="form-control" name="imagenConcurso" >
 			<p class="help-block">Imagen de portada del concurso (Formatos: jpg, png). Max:2M</p>
 		</div>
-		
+		<div class="form-group">
+		<label for="boton" ></label>
+		<button type="submit" class="btn btn-default" name="action" value="calcularFinalistas" id="boton" >Calcular Finalistas</button>
+		</div>
 		<button class="btn btn-lg btn-primary btn-block" type="submit"  value="editarConfiguracion" name="action" >Editar <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
 	</form>
 </div> 

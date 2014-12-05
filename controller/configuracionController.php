@@ -1,7 +1,7 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
-
+include_once($GLOBALS['MODEL_PATH'].'PuntuacionFinalista.php');
 
 /**
 *	Author: Javier Lorenzo Martin
@@ -16,6 +16,10 @@ function index(){
 		}	
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'editarConfiguracion' ){
 			editarConfiguracion();
+		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'calcularFinalistas' ){
+			calcularFinalistas();
+			redirecionar('/');
+		
 		}else{	
 			redirecionar('/');	
 		}
@@ -32,6 +36,18 @@ function index(){
 *	En este caso, se editan la configuracion de la pagina
 *	se validan todos los campo, que sean correctos, y se notifica al usuario.
 */
+
+function calcularFinalistas(){
+		$fin= new PuntuacionFinalista();
+		$res=$fin->calcFinalistas();
+		
+		if($res){
+			addNotificacion('Finalistas calculados correctamente','success');	
+		}else{
+			addNotificacion('No ha sido posible calcular los finalistas o ya han sido calculados','warning');
+		}
+
+}
 
 function editarConfiguracion(){
 	
