@@ -79,8 +79,8 @@ CREATE TABLE IF NOT EXISTS `configuracion` (
 -- Volcado de datos para la tabla `configuracion`
 --
 
-INSERT INTO `configuracion` (`id`, `logo`, `nombre`, `descripcion`, `imagen`, `f_inicio`, `f_fin`, `votacionesFinalistas`, `votacionesGanadores`, `votacionesPopulares`) VALUES
-(1, 'logo.png', 'Pinchos Ourense', 'Descripcion del concurso de Ourense', 'portada.png', '2014-01-01', '2014-01-01', 0, 0, 0);
+INSERT INTO `configuracion` (`id`, `logo`, `nombre`, `descripcion`, `imagen`, `f_inicio`, `f_fin`, `votacionesFinalistas`, `votacionesGanadores`, `votacionesPopulares`, `resultados`) VALUES
+(1, 'logo.png', 'Pinchos Ourense', 'Descripcion del concurso de Ourense', 'portada.png', '2014-01-01', '2014-01-01', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -262,56 +262,6 @@ CREATE TABLE IF NOT EXISTS `votos` (
 --
 
 INSERT INTO `votos` (`codigo_id`, `pincho_id`, `usuario_id`, `me_gusta`) VALUES
-(1, 20, NULL, 0),
-(2, 20, NULL, 0),
-(3, 20, NULL, 0),
-(4, 20, NULL, 0),
-(5, 20, NULL, 0),
-(6, 20, NULL, 0),
-(7, 20, 12, 0),
-(8, 20, 13, 0),
-(9, 20, 14, 0),
-(10, 20, 15, 0),
-(11, 20, 16, 0),
-(12, 20, 17, 0),
-(13, 20, 18, 0),
-(14, 20, NULL, 0),
-(15, 20, NULL, 0),
-(16, 20, NULL, 0),
-(17, 20, NULL, 0),
-(18, 20, NULL, 0),
-(19, 20, NULL, 0),
-(20, 20, NULL, 0),
-(21, 20, NULL, 0),
-(22, 20, NULL, 0),
-(23, 20, NULL, 0),
-(24, 20, NULL, 0),
-(25, 20, NULL, 0),
-(26, 20, NULL, 0),
-(27, 20, NULL, 0),
-(28, 20, NULL, 0),
-(29, 20, NULL, 0),
-(30, 20, NULL, 0),
-(31, 20, NULL, 0),
-(32, 20, NULL, 0),
-(33, 20, NULL, 0),
-(34, 20, NULL, 0),
-(35, 20, NULL, 0),
-(36, 20, NULL, 0),
-(37, 20, NULL, 0),
-(38, 20, NULL, 0),
-(39, 20, NULL, 0),
-(40, 20, NULL, 0),
-(41, 20, NULL, 0),
-(42, 20, NULL, 0),
-(43, 20, NULL, 0),
-(44, 20, 11, 0),
-(45, 20, 11, 0),
-(46, 20, NULL, 0),
-(47, 20, 10, 0),
-(48, 20, 9, 0),
-(49, 20, 8, 0),
-(50, 20, 7, 0),
 (51, 21, 7, 0),
 (52, 21, 8, 0),
 (53, 21, 9, 0),
