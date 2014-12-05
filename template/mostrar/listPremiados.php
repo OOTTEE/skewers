@@ -9,7 +9,7 @@
 
 		<div class="container">
 			
-			<h5>Del restaurante:  <?= $row['name']?></h5><h5>Votos:  <?= $row['votos']?></h5>
+			<h5>Del restaurante:  <?= $row['name']?></h5><h5>Puntuacion:  <?= $row['votos']?></h5>
 			
 		</div>
 	</div>	

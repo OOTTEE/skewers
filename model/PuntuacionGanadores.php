@@ -45,7 +45,7 @@ class PuntuacionGanadores extends Model{
 		return false;
 	}
 	public function getPremiados(){
-		$sentencia=$GLOBALS['DB']->prepare('SELECT p.pincho_id, (sum(nota)/count(nota))AS votos 
+		$sentencia=$GLOBALS['DB']->prepare('SELECT p.pincho_id,p.nombre,u.name ,(sum(nota)/count(nota))AS votos 
 											FROM puntuacion_ganadores g, pinchos p , users u
 											WHERE g.pincho_id=p.pincho_id And p.usuario_id=u.usuario_id
 											GROUP BY g.pincho_id 

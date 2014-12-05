@@ -138,8 +138,9 @@ function finalistas($nav){
 		$Pi=new Pincho();
 	$PiInf=$Pi->getPinchoFinalistas();
 	
-	if(!isset($PiInf)){
-		addNotificacion('No se han escogido los pinchos finalistas', 'warning');
+	if($PiInf==false || $GLOBALS['conf']->votacionesFinalistas == 1 ){
+		addNotificacion('Concurso no finalizado', 'warning');
+		redirecionar('/');
 	}else{
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].$nav);
@@ -159,17 +160,23 @@ function premiados($nav){
 
 function ganadoresPro($nav){
 	
-
+	if($GLOBALS['conf']->resultados==0 || $GLOBALS['conf']->votacionesGanadores==1 || $GLOBALS['conf']->votacionesFinalistas==1){
+		addNotificacion('Concurso no finalizado. No se pueden mostrar resultados', 'warning');
+		redirecionar('/');
+	}else{
+	$vote= new PuntuacionGanadores();
+	$PiInf=$vote->getPremiados();
+	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].$nav);
 	include_once($GLOBALS['TEMPLATES_PATH'].'mostrar/listPremiados.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
-
+	}
 }
 
 function ganadoresPop($nav){
 
-	if($GLOBALS['conf']->resultados==0){
+	if($GLOBALS['conf']->resultados==0 ||$GLOBALS['conf']->votacionesPopulares==1){
 		addNotificacion('Concurso no finalizado. No se pueden mostrar resultados', 'warning');
 		redirecionar('/');
 	}else{
