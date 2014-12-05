@@ -21,6 +21,11 @@ SET time_zone = "+00:00";
 -- Base de datos: `skewersDB`
 --
 
+--
+-- Base de datos: `skewersDB`
+--
+CREATE DATABASE IF NOT EXISTS `skewersDB` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `skewersDB`;
 -- --------------------------------------------------------
 
 --
@@ -235,6 +240,14 @@ ALTER TABLE `puntuacion_finalistas`
 ALTER TABLE `puntuacion_ganadores`
   ADD CONSTRAINT `fk_puntuacion_ganadores_pinchos1` FOREIGN KEY (`pincho_id`) REFERENCES `pinchos` (`pincho_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_puntuacion_ganadores_usuarios1` FOREIGN KEY (`usuario_id`) REFERENCES `users` (`usuario_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  
+    
+CREATE USER 'skewersUser'@'localhost' IDENTIFIED BY PASSWORD '*71248A3336655BC8B9FC6BD6B945A85399F765AF';
+
+GRANT ALL PRIVILEGES ON * . * TO  'skewersUser'@'localhost' IDENTIFIED BY PASSWORD '*71248A3336655BC8B9FC6BD6B945A85399F765AF' WITH GRANT OPTION MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
+
+GRANT ALL PRIVILEGES ON  `skewersDB` . * TO  'skewersUser'@'localhost'; 
+  
 SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
