@@ -62,51 +62,58 @@ function registrarVotoPopular(){
 			$voto2->codigo_id=intval($cod2[1]);
 			$voto3->codigo_id=intval($cod3[1]);
 			
-			$fail=false;
+			if($voto1->pincho_id != $voto2->pincho_id AND $voto1->pincho_id != $voto3->pincho_id AND $voto2->pincho_id != $voto3->pincho_id
+				AND $voto1->codigo_id != $voto2->codigo_id AND $voto1->codigo_id != $voto3->codigo_id AND $voto2->codigo_id != $voto3->codigo_id){
 			
-			if(!$voto1->isAvailable()){
-				$fail=true;
-				addNotificacion('Codigo 1 no es valido, o ya está usado', 'danger');
-			}
-			if(!$voto2->isAvailable()){
-				$fail=true;
-				addNotificacion('Codigo 2 no es valido, o ya está usado', 'danger');
-			}
-			if(!$voto3->isAvailable()){
-				$fail=true;
-				addNotificacion('Codigo 3 no es valido, o ya está usado', 'danger');
-			}
-			
-			$voto1->usuario_id = $_SESSION['user']['usuario_id'];
-			$voto2->usuario_id = $_SESSION['user']['usuario_id'];
-			$voto3->usuario_id = $_SESSION['user']['usuario_id'];
-			
-			switch($_POST['votado']){
-				case 1:
-					$voto1->me_gusta = 1;
-					break;
-				case 2:
-					$voto1->me_gusta = 1;
-					break;
-				case 3:
-					$voto1->me_gusta = 1;
-					break;
-				default:
-					$fail = true;
-					addNotificacion('Selecciones un pincho para votarlo', 'danger');
+				$fail=false;
+				
+				if(!$voto1->isAvailable()){
+					$fail=true;
+					addNotificacion('Codigo 1 no es valido, o ya está usado', 'danger');
+				}
+				if(!$voto2->isAvailable()){
+					$fail=true;
+					addNotificacion('Codigo 2 no es valido, o ya está usado', 'danger');
+				}
+				if(!$voto3->isAvailable()){
+					$fail=true;
+					addNotificacion('Codigo 3 no es valido, o ya está usado', 'danger');
+				}
+				
+				$voto1->usuario_id = $_SESSION['user']['usuario_id'];
+				$voto2->usuario_id = $_SESSION['user']['usuario_id'];
+				$voto3->usuario_id = $_SESSION['user']['usuario_id'];
+				
+				switch($_POST['votado']){
+					case 1:
+						$voto1->me_gusta = 1;
+						break;
+					case 2:
+						$voto1->me_gusta = 1;
+						break;
+					case 3:
+						$voto1->me_gusta = 1;
+						break;
+					default:
+						$fail = true;
+						addNotificacion('Selecciones un pincho para votarlo', 'danger');
+						redirecionar('/');
+						break;
+				}
+				
+				
+				if(!$fail){		
+					$voto1->registrarVotacion();
+					$voto2->registrarVotacion();
+					$voto3->registrarVotacion();
+					addNotificacion('Votacion realizada', 'success');
 					redirecionar('/');
-					break;
-			}
-			
-			
-			if(!$fail){		
-				$voto1->registrarVotacion();
-				$voto2->registrarVotacion();
-				$voto3->registrarVotacion();
-				addNotificacion('Votacion realizada', 'success');
-				redirecionar('/');
+				}else{
+					addNotificacion('Introduzca 3 códigos correctos.','danger');
+					redirecionar('/');
+				}
 			}else{
-				addNotificacion('Introduzca 3 códigos correctos.','danger');
+				addNotificacion('Los códigos no se pueden repetir.','danger');
 				redirecionar('/');
 			}
 		}
