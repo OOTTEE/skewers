@@ -40,6 +40,12 @@ function generarCodigos(){
 //Aqui realizamos la accion de meter el voto del pincho seleccionado en la tabla votos
 //Autor: Anibal
 function registrarVotoPopular(){	
+	if($GLOBALS['conf']->votacionesPopulares == '1'){
+		addNotificacion('Las votaciones estan desactivadas','info');
+		redirecionar('/');
+		return 0;
+	}
+	
 	$pincho1= new Pincho(); 
 	$pincho2= new Pincho();
 	$pincho3= new Pincho();

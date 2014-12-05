@@ -28,10 +28,15 @@ function inicio(){
 }
 
 function votar(){
-	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNavPopular.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'popular/votar.php'); 
-	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	if($GLOBALS['conf']->votacionesPopulares == '0'){
+		addNotificacion('Las votaciones estan desactivadas','info');
+		redirecionar('/');
+	}else{
+		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
+		include_once($GLOBALS['LAYOUT_PATH'].'loginNavPopular.php');
+		include_once($GLOBALS['TEMPLATES_PATH'].'popular/votar.php'); 
+		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+	}
 }
 
 	
