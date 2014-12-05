@@ -26,7 +26,7 @@ function inicio(){
 	include_once($GLOBALS['TEMPLATES_PATH'].'popular/index.php'); 
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
-
+//voto concurso popular
 function votar(){
 	if($GLOBALS['conf']->votacionesPopulares == '0'){
 		addNotificacion('Las votaciones estan desactivadas','info');

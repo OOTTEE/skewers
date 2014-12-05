@@ -9,6 +9,9 @@ class Establecimiento extends Model{
 		public $web;
 		public $direccion;
 
+	/*
+	*	Devuelve un objeto con todos los datos asociados a un establecimiento que se le pasa por parametros
+	*/
 	public function getEstablecimiento($id){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, imagen, horario, descripcion, web,direccion
 								FROM establecimientos
@@ -25,6 +28,9 @@ class Establecimiento extends Model{
 		return $this;
 
 	}
+	/*
+	*	Devuelve un array con todos los datos de todos los establecimientos registrados en el sistema	
+	*/
 	public function getEstablecimientos(){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT * 
 											FROM establecimientos  e , users u 
@@ -40,6 +46,9 @@ class Establecimiento extends Model{
 		return false;
 	
 	}
+	/*
+	*	Devuelve un array con los datos de un establecimiento indicado	
+	*/
 	public function getEstablecimientoByID($Id){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT *
 											 FROM establecimientos  e , users u 
@@ -50,7 +59,9 @@ class Establecimiento extends Model{
 			return $resul;
 	}
 
-
+	/*
+	*	metodo que recibe por parametro los datos del establecimiento a registrar en la base de datos
+	*/
 	public function register($params){
 
 		/* Ejecuta una sentencia preparada pasando un array de valores */
@@ -71,6 +82,9 @@ class Establecimiento extends Model{
 			}
 
 	}
+	/*
+	*	almacena en la BD la imagen  de un establecimiento	
+	*/
 	public function setImagen($params){
 			$sentencia = $GLOBALS['DB']->prepare("UPDATE establecimientos SET imagen=:imagen WHERE usuario_id=:usuario_id");
 
@@ -78,7 +92,9 @@ class Establecimiento extends Model{
 					':imagen' =>$params['imagen']));
 
 	}
-
+	/*
+	*	Devuelve los pinchos asociados a un establecimiento
+	*/
 	public function hasPincho(){
 		$pincho = new Pincho();
 		$pincho->usuario_id = $this->usuario_id;

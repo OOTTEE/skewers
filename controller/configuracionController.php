@@ -32,9 +32,9 @@ function index(){
 
 
 /**
-*	Author: Javier Lorenzo Martin
+*	Author: Javier Lorenzo Martin - Hector Novoa Novoa
 *	En este caso, se editan la configuracion de la pagina
-*	se validan todos los campo, que sean correctos, y se notifica al usuario.
+*	se validan todos los campo, que sean correctos, se notifica al usuario y se calculan los finalistas .
 */
 
 function calcularFinalistas(){
@@ -51,7 +51,6 @@ function calcularFinalistas(){
 
 function editarConfiguracion(){
 	
-	//PENDIENTE EL GUARDADO DE LAS IMAGENES
 	$valido=true;
 	if($_POST['nombreConcurso'] == ''){
 		addNotificacion('El <u>nombre del concurso</u> no puede esta vacio.','danger');

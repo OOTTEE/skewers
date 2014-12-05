@@ -5,6 +5,14 @@ include_once($GLOBALS['MODEL_PATH'].'User.php');
 include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
 include_once($GLOBALS['MODEL_PATH'].'PuntuacionFinalista.php');
 include_once($GLOBALS['MODEL_PATH'].'PuntuacionGanadores.php');
+
+/*
+*	Author: Hector Novoa Novoa
+*	Controlador que permite votar  y registrar la nota asignada tanto a los finalistas  como a los ganadores
+*
+*/
+
+
 function index(){
 	if(isUserLoginWhithRole('profesional') && isset($_REQUEST['action'])){
 		$GLOBALS['conf'] = (new Configuracion())->get();
@@ -28,7 +36,12 @@ function index(){
 	}
 	closeServerSession();
 }
-
+/*
+*	Author: Hector Novoa Novoa
+*	Muestra la informacion del pincho seleccionado en el controlador profesionalControler.php permitiendo
+*   seleccionar la nota asignada al pincho.
+*
+*/
 
 function votaFinalistas(){
 	$Pincho= new Pincho();
@@ -40,6 +53,12 @@ function votaFinalistas(){
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');	
 	
 }
+
+/*
+*	Author: Hector Novoa Novoa
+*	Registra la puntuacion asignada a un pincho el la funcion votaFinalistas()
+*
+*/
 function registrarFinalistas(){
 		$Puntuacion= new PuntuacionFinalista();
 		$Puntuacion->register(array(
@@ -48,6 +67,12 @@ function registrarFinalistas(){
 			'nota' => $_POST['nota']));	
 
 }
+/*
+*	Author: Hector Novoa Novoa
+*	Muestra la informacion del pincho seleccionado en el controlador profesionalControler.php permitiendo
+*   seleccionar la nota asignada al pincho que participa ya como finalista.
+*
+*/
 function votaPremiado(){
 print_r($_POST['pincho_id']);
 	$Pincho= new Pincho();
@@ -60,6 +85,12 @@ print_r($_POST['pincho_id']);
 
 
 }
+
+/*
+*	Author: Hector Novoa Novoa
+*	Registra la puntuacion asignada a un pincho el la funcion votaPremiado()
+*
+*/
 
 function registraPremiado(){
 		$Puntuacion= new PuntuacionGanadores();

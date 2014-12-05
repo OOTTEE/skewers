@@ -23,9 +23,7 @@ function index(){
 	}
 	else if(isUserLoginWhithRole('popular')){
 		$GLOBALS['conf']=(new Configuracion())->get();
-		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'consultarPincho' ){
-			consultarPincho();
-		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'comentarPincho' ){
+		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'comentarPincho' ){
 			comentarPincho();		
 		}
 	}else{	
@@ -136,6 +134,7 @@ function editarPincho(){
 }
 
 //Con esta funcion accedemos a los datos de los pincho.
+
 function consultarPincho(){
 	
 	$datosPincho = new Pincho();
@@ -154,6 +153,7 @@ function consultarPincho(){
 		redirecionar('/');
 	}
 }
+// Registra comentario de un pincho 
 
 function comentarPincho(){
 	$pincho = new Pincho();

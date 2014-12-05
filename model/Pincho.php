@@ -10,7 +10,9 @@ class Pincho extends Model{
 	public $imagen;
 	public $descripcion;
 	public $validado;
-	
+	/*
+	*	Devuelve un objeto con todos los datos asociados a un pincho indicado
+	*/
 	public function getPincho(){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
 								FROM pinchos
@@ -35,6 +37,9 @@ class Pincho extends Model{
 			return false;
 		}		
 	}
+	/*
+	*	Devuelve los pinchos finalistas que un jurado profesional todavia no ha votado
+	*/
 		public function getPinchoFinalistasLimitById($usuario_id){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT p.nombre , u.name , p.pincho_id
 											FROM  pinchos p , users u
@@ -51,7 +56,9 @@ class Pincho extends Model{
 		
 		
 		}
-	
+	/*
+	*		Devuelve los pinchos finalistas del concurso profesional
+	*/
 		public function getPinchoFinalistas(){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT p.nombre , u.name , p.pincho_id
 				FROM pinchos p , users u
@@ -62,7 +69,9 @@ class Pincho extends Model{
 		return $sentencia->fetchall();
 		}
 		return false;
-}
+}	/*
+	*	Devuelve un array conn los datos de los pinchos validados en el sistema
+	*/
 		public function getPinchosArray(){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT *
 											 FROM pinchos
@@ -76,30 +85,9 @@ class Pincho extends Model{
 		return false;
 	
 	}
-		public function getPinchoVotoProfesional(){
-		$sentencia= $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
-								FROM pinchos
-								WHERE pincho_id = ?' );
-		$sentencia->execute(array($this->pincho_id));
-		$result=$sentencia->fetchall(PDO::FETCH_CLASS, "Pincho");
-		
-		
-		if($sentencia->rowCount() == 1){
-			$result = $result[0];
-			$this->usuario_id=$result->usuario_id;
-			$this->imagen=$result->imagen;
-			$this->pincho_id=$result->pincho_id;
-			$this->descripcion=$result->descripcion;
-			$this->ingredientes=$result->ingredientes;
-			$this->nombre=$result->nombre;
-			$this->precio=$result->precio;
-			$this->finalista=$result->finalista;
-			$this->validado=$result->validado;
-			return $this;
-		}else{
-			return false;
-		}		
-	}
+	/*
+	*	Devuelve un objeto con todos los datos de un pincho asociado a un usuario
+	*/
 	
 	public function getPinchoByUsuarioId(){
 		$sentencia = $GLOBALS['DB']->prepare('SELECT pincho_id,usuario_id,ingredientes,nombre,precio,finalista,imagen,descripcion,validado
@@ -124,7 +112,9 @@ class Pincho extends Model{
 			return false;
 		}		
 	}
-	
+	/*
+	*	Registra un pincho en la BD
+	*/
 	public function register($params){
 		if(isset($params)){
 			$sentencia = $GLOBALS['DB']->prepare("INSERT INTO `pinchos`(`usuario_id`, `ingredientes`, `nombre`, `precio`, `finalista`, `imagen`, `descripcion`, `validado`) 
@@ -156,7 +146,9 @@ class Pincho extends Model{
 		}
 		return false;
 	}
-	
+	/*
+	*	 Actualiza la informacion asociada a un pincho
+	*/
 	
 	public function edit($params){
 		if(isset($this->usuario_id)){
@@ -186,6 +178,9 @@ class Pincho extends Model{
 		}
 		return false;
 	}
+	/*
+	*	Almacena la imagen de un pincho
+	*/
 	public function setImagen($params){
 			$sentencia = $GLOBALS['DB']->prepare("UPDATE pinchos SET imagen=:imagen WHERE usuario_id=:usuario_id");
 
@@ -194,7 +189,9 @@ class Pincho extends Model{
 	
 	}
 
-	//FUNCIONES PINCHO
+	/*
+	*	Valida un pincho registrado en el sistema
+	*/
 	public function validarPincho($idPincho){
 		 GLOBAL $DB;	
 		/* Ejecuta una sentencia preparada pasando un array de valores */
@@ -206,7 +203,9 @@ class Pincho extends Model{
 		else 
 			return false;
 	}
-	
+	/*
+	*	Devuelve un array con la informacion de los pinchos no validados
+	*/
 	public function getPinchos(){		
 		$sentencia= $GLOBALS['DB']->prepare('SELECT * 
 								FROM pinchos
@@ -216,15 +215,8 @@ class Pincho extends Model{
 		return $result;
 			
 	}
-	public function countPinchos(){
-		$sentencia= $GLOBALS['DB']->prepare('SELECT  COUNT(*) as Number FROM pinchos WHERE validado = 0 ');
-		$sentencia->execute();
-		$resul=$sentencia->fetchall()[0];
-		
-		
-		
-		return $resul;
-	}
+	
 
-	// FIN
+
+	
 }

@@ -36,7 +36,7 @@ function index(){
 			eliminarUsuario($_GET['nameUser']);
 		}
 		else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'modificarUsuario' ){						
-			modificarUsuario($_GET['nameUser']);
+			modificarUsuario();
 		}
 		else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'realizarValidacionPincho' ){						
 			realizarValidacionPincho();

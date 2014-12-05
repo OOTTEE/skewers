@@ -86,6 +86,11 @@ function inicio($nav){
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 
 }
+/**
+*	Author: Javier Lorenzo Martin - Hector Novoa Novoa
+*	redireccion al registro de establecimiento
+*
+*/
 function registrarEstablecimiento(){
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'notLoginNav.php');
@@ -94,6 +99,10 @@ function registrarEstablecimiento(){
 
 
 }
+/**
+*	Author: Javier Lorenzo Martin 
+*	redireccion al registro de usuarios
+*/
 function registrarUsuario(){
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'notLoginNav.php');
@@ -102,6 +111,11 @@ function registrarUsuario(){
 
 
 }
+/**
+*	Author:  Hector Novoa Novoa
+*	Muestra lista de establecimientos validados en el concurso
+*
+*/
 function restaurantes($nav){
 		$Oest= new Establecimiento();
 		$Establecimientos=$Oest->getEstablecimientos();
@@ -115,6 +129,12 @@ function restaurantes($nav){
 		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 		}
 }
+/**
+*	Author: Hector Novoa Novoa
+*	
+*	Muesstra la lista de los pinchos validados que participan en el concurso
+*
+*/
 function pinchos($nav){
 		$Opin=new Pincho();
 		$Pinchos=$Opin->getPinchosArray();
@@ -128,6 +148,13 @@ function pinchos($nav){
 		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 		}
 }
+/**
+*	Author: Hector Novoa Novoa
+*	
+*	Muestra el menu de seleccion que permite  escoger entre mostrar finalistas del concurso profesional y ver 
+*   los ganadores tanto del concurso profesional como del concurso popular
+*
+*/
 function finalistas($nav){
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].$nav);

@@ -6,6 +6,13 @@ include_once($GLOBALS['MODEL_PATH'].'Asignacion.php');
 include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
 
 $GLOBALS['conf']=(new Configuracion())->get();
+/*
+*	Author: Hector Novoa Novoa
+*	Controlador de votacion de finalistas y ganadores
+*
+*/
+
+
 
 function index(){
 	if(isUserLoginWhithRole('profesional')){
@@ -22,7 +29,11 @@ function index(){
 	}
 	closeServerSession();
 }
-
+/*
+*	Author: Hector Novoa Novoa
+*	Inicio de Usuario jurado profesional
+*
+*/
 function inicio(){
 
 	
@@ -31,6 +42,12 @@ function inicio(){
 	include_once($GLOBALS['TEMPLATES_PATH'].'profesional/index.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
+
+/*
+*	Author: Hector Novoa Novoa
+*	Votado de finalistas mostrando una lista con los pinchos finalistas
+*
+*/
 function votarFinalista(){
 	$Asignacion=new Asignacion();
 	$Pinchos=$Asignacion->getListAsignaciones($_SESSION['user']['usuario_id']);
@@ -45,7 +62,11 @@ function votarFinalista(){
 	}
 
 }
-
+/*
+*	Author: Hector Novoa Novoa
+*	Votado de ganadores mostrando una lista con los pinchos finalistas
+*
+*/
 function votarPremiados(){
 
 	$pin=new Pincho();

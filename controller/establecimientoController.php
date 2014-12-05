@@ -36,7 +36,7 @@ function index(){
 
 
 /**
-*	Author: Javier Lorenzo Martin
+*	Author: Hector Novoa Novoa
 *	En este caso se crea el usuario para el establecimiento y el establecimiento asociado.
 */
 function register(){
@@ -107,7 +107,10 @@ function verPincho(){
 		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'establecimientoController.php', array(array('action','registrarPincho'	)));
 	}
 }
-
+/**
+*	Author: Javier Lorenzo Martin
+*	Se muestra la vista para la generacion de codigos.
+*/
 function generarCodigos(){
 	$establecimiento = new Establecimiento();
 	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];

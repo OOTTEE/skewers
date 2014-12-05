@@ -6,23 +6,9 @@ class PuntuacionFinalista extends Model{
 		public $pincho_id;
 		public $nota;
 
-	public function getNota($id){
-		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, pincho_id, nota
-								FROM puntuacion_finalistas
-								WHERE pincho_id = ?' );
-		$sentencia->execute(array($id));
-		$resul=$sentencia->fetchall()[0];
-
-		$this->usuario_id=$resul['usuario_id'];
-		$this->imagen=$resul['imagen'];
-		$this->horario=$resul['horario'];
-		$this->descripcion=$resul['descripcion'];
-		$this->web=$resul['web'];
-		$this->direccion=$resul['direccion'];
-		return $this;
-
-	}
-	
+	/*
+	* Registra en la BD la nota de un pincho para el concurso profesional en la seleccion de finalistas	
+	*/
 	
 	public function register($params){
 		if(isset($params)){
@@ -44,7 +30,9 @@ class PuntuacionFinalista extends Model{
 		}
 		return false;
 	}
-	
+	/*
+	*	Calcula los finalistas y actualiza la tabla pincho indicando cuales son los pinchos finalistas
+	*/
 	public function calcFinalistas(){
 	
 		$final=  $GLOBALS['DB']->prepare('SELECT pincho_id, (sum(nota)/count(nota)) AS valor

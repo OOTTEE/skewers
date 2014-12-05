@@ -10,7 +10,7 @@ include_once($GLOBALS['MODEL_PATH'].'PuntuacionFinalista.php');
 
 
 /*Author: Hector Novoa Novoa
-*
+*	Controlador que permite mostrar la informacion de pinchos y establecimientos participantes en el concurso
 */
 
 function index(){
@@ -106,7 +106,9 @@ function index(){
 	}
 	session_write_close(); 
 }
-
+/*Author: Hector Novoa Novoa
+*	Muestra informacion del establecimiento indicado
+*/
 
 function restaurante($nav){
 	
@@ -118,6 +120,10 @@ function restaurante($nav){
 	include_once($GLOBALS['TEMPLATES_PATH'].'mostrar/restauranteInfo.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
+
+/*Author: Hector Novoa Novoa
+*		Muestra informacion del pincho indicado
+*/
 function pincho($nav){
 	$Pi=new Pincho();
 	$Pi->usuario_id=$_POST['usuario_id'];
@@ -134,6 +140,9 @@ function pincho($nav){
 	
 
 }
+/*Author: Hector Novoa Novoa
+*		Muestra lista de finalistas
+*/
 function finalistas($nav){
 		$Pi=new Pincho();
 	$PiInf=$Pi->getPinchoFinalistas();
@@ -148,6 +157,10 @@ function finalistas($nav){
 		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 	}
 }
+
+/*Author: Hector Novoa Novoa
+*		Muestra lista de premiados
+*/
 function premiados($nav){
 
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');

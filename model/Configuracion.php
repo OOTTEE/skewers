@@ -83,12 +83,20 @@ class Configuracion extends Model{
 			return false;
 
 	}
+	/*
+	*	Almacena la url de la imagen del concurso 
+	*
+	*/
 	
 	public  function setImagen($params){
 			$sentencia = $GLOBALS['DB']->prepare("UPDATE configuracion SET imagen=:imagen WHERE id=1");
 
 		$sentencia->execute(array(':imagen' =>$params['imagen']));
 	}
+	/*
+	*	Almacena la url de la imagen del logo 
+	*
+	*/
 	public function setLogo($params){
 				$sentencia = $GLOBALS['DB']->prepare("UPDATE configuracion SET logo:=logo WHERE id=1");
 

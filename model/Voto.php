@@ -8,6 +8,10 @@ class Voto extends Model{
 	public $usuario_id;
 	public $me_gusta;
 	
+	/*
+	* registra una votacion del concurso popular	
+	*/
+	
 	public function registrarVotacion(){
 		$sentencia = $GLOBALS['DB']->prepare("UPDATE `votos` SET `usuario_id`= :usuario_id,
 																 `me_gusta`= :me_gusta 
@@ -25,7 +29,9 @@ class Voto extends Model{
 			return false;
 		}
 	}
-	
+	/*
+	* Funcion que genera los codigos asociados 	a un pincho
+	*/
 	
 	public function generarVotos($numVotos){
 	
@@ -42,7 +48,9 @@ class Voto extends Model{
 	
 	
 	}
-	
+	/*
+	*	Comprueba que un voto estea disponible
+	*/
 	public function isAvailable(){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT usuario_id, pincho_id, me_gusta, codigo_id
 								FROM votos

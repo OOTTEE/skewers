@@ -26,7 +26,7 @@ function index(){
 
 
 function generarCodigos(){
-	//Validaciones pendientes
+
 	$voto = new Voto();
 	$voto->pincho_id = $_SESSION['user']['usuario_id'];
 	$voto->generarVotos($_POST['numCodigos']);
@@ -38,7 +38,7 @@ function generarCodigos(){
 }
 
 //Aqui realizamos la accion de meter el voto del pincho seleccionado en la tabla votos
-//Autor: Anibal
+//Autor: Javier Lorenzo Martin - Anibal Manuel Garcia Brey
 function registrarVotoPopular(){	
 	if($GLOBALS['conf']->votacionesPopulares == '1'){
 		addNotificacion('Las votaciones estan desactivadas','info');
