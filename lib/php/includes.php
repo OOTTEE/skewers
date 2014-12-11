@@ -14,16 +14,17 @@
 	*	Esta funcion carga los componentes principales de la pagina y variables golbales.
 	*/
 	function loadConfiguracion(){
-	
 		/**
 		*	Conjunto de variables globlales que definen las rutas de los distintos componentes del sistema
 		*/
-		$GLOBALS['TEMPLATES_PATH'] = $_SERVER['DOCUMENT_ROOT'].'/template/';
-		$GLOBALS['LAYOUT_PATH'] = $_SERVER['DOCUMENT_ROOT'].'/template/layouts/';
-		$GLOBALS['MODEL_PATH'] = $_SERVER['DOCUMENT_ROOT'].'/model/';
-		$GLOBALS['LIB_PATH'] = $_SERVER['DOCUMENT_ROOT'].'/lib/';
-		$GLOBALS['LIB_PHP_PATH'] = $_SERVER['DOCUMENT_ROOT'].'/lib/php/';
-		$GLOBALS['IMAGES_PATH'] = $_SERVER['DOCUMENT_ROOT'].'/imagenes/';
+		
+		$GLOBALS['FOLDER_PATH'] = $_SERVER['DOCUMENT_ROOT'].'';
+		$GLOBALS['TEMPLATES_PATH'] = $GLOBALS['FOLDER_PATH'] .'/template/';
+		$GLOBALS['LAYOUT_PATH'] = $GLOBALS['FOLDER_PATH'] .'/template/layouts/';
+		$GLOBALS['MODEL_PATH'] = $GLOBALS['FOLDER_PATH'] .'/model/';
+		$GLOBALS['LIB_PATH'] = $GLOBALS['FOLDER_PATH'] .'/lib/';
+		$GLOBALS['LIB_PHP_PATH'] = $GLOBALS['FOLDER_PATH'] .'/lib/php/';
+		$GLOBALS['IMAGES_PATH'] = $GLOBALS['FOLDER_PATH'] .'/imagenes/';
 		
 		/**
 		*	Conjunto de variables globlales que definen las URL de los distintos componentes del sistema
@@ -35,7 +36,6 @@
 		$GLOBALS['BOOTSTRAP_URL'] = '/lib/bootstrap/';
 		$GLOBALS['CSS_URL'] = '/lib/css/';
 		$GLOBALS['JS_URL'] = '/lib/js/';
-		
 		
 		
 		$GLOBALS['DB'] = null;
