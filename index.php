@@ -1,5 +1,5 @@
 ﻿<?php 
-include_once(getcwd().'/lib/php/includes.php');
+include_once('./lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'User.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
@@ -74,7 +74,7 @@ function index(){
 			inicio('loginNavEstablecimiento.php');
 		}
 	}else{
-		redirecionar('/');
+		redirecionar($GLOBALS['INDEX']);
 	}
 	session_write_close(); 
 }
@@ -121,7 +121,7 @@ function restaurantes($nav){
 		$Establecimientos=$Oest->getEstablecimientos();
 		if($Establecimientos==false){
 			addNotificacion('No hay establecimientos validados', 'info');
-			redirecionar('/');
+			redirecionar($GLOBALS['INDEX']);
 		}else{
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].$nav);
@@ -140,7 +140,7 @@ function pinchos($nav){
 		$Pinchos=$Opin->getPinchosArray();
 		if($Pinchos==false){
 			addNotificacion('No hay pinchos validados', 'info');
-			redirecionar('/');
+			redirecionar($GLOBALS['INDEX']);
 		}else{
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].$nav);

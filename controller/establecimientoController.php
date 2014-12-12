@@ -1,5 +1,5 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
+require('../lib/php/includes.php');
 require($GLOBALS['MODEL_PATH'].'Establecimiento.php');
 require($GLOBALS['MODEL_PATH'].'Configuracion.php');
 require($GLOBALS['MODEL_PATH'].'User.php');
@@ -20,7 +20,7 @@ function index(){
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'generarCodigos'  ){
 			generarCodigos();
 		}else {
-			redirecionar('/');
+			redirecionar($GLOBALS['INDEX']);
 		}
 	}else{
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registerEstablecimiento' ){
@@ -69,7 +69,7 @@ function register(){
 			return false;
 	}
 
-	redirecionar('/');
+	redirecionar($GLOBALS['INDEX']);
 }
 
 

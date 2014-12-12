@@ -1,5 +1,5 @@
 <?php
-include_once(getcwd().'/../lib/php/includes.php');
+include_once('../lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 include_once($GLOBALS['MODEL_PATH'].'Comentario.php');
@@ -29,9 +29,9 @@ function index(){
 	}else{	
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'comentarPincho' ){
 			addNotificacion('Tienes que estar logueado para comentar los pinchos','info');
-			redirecionar('/');		
+			redirecionar($GLOBALS['INDEX']);		
 		}else{
-			redirecionar('/');		
+			redirecionar($GLOBALS['INDEX']);		
 		}
 	}
 	
@@ -75,7 +75,7 @@ function registrarPincho(){
 				addNotificacion("No se pudo insertar la Imagen","Danger");
 		}
 		addNotificacion('Pincho enviado, pendiente de validacion', 'success');
-		redirecionar('/');
+		redirecionar($GLOBALS['INDEX']);
 	}else{
 		addNotificacion('<strong>Error: </strong>El pincho no puedo ser enviado.', 'danger');
 		redirecionar($GLOBALS['CONTROLLER_URL'].'establecimientoController.php?action=registrarPincho');
@@ -125,7 +125,7 @@ function editarPincho(){
 			if(!$img){
 					addNotificacion("No se pudo insertar la Imagen","Danger");
 			}
-			redirecionar('/');
+			redirecionar($GLOBALS['INDEX']);
 		}else{
 			addNotificacion('El pincho no fue editado', 'danger');
 			redirecionar($GLOBALS['CONTROLLER_URL'].'establecimientoController.php?action=editarPincho');
@@ -133,7 +133,7 @@ function editarPincho(){
 		
 	}else{
 		addNotificacion('El pincho ya fue validado y no puede ser editado', 'danger');
-		redirecionar('/');
+		redirecionar($GLOBALS['INDEX']);
 	}
 	closeServerSession();
 }
@@ -155,7 +155,7 @@ function consultarPincho(){
 	else
 	{
 		addNotificacion('El pincho seleccionado no existe','danger');
-		redirecionar('/');
+		redirecionar($GLOBALS['INDEX']);
 	}
 }
 // Registra comentario de un pincho 
@@ -167,11 +167,11 @@ function comentarPincho(){
 		$comentario = new Comentario();
 		$comentario->crearComentario();
 		addNotificacion('El pincho se ha comentado','success');
-		redirecionar('/');
+		redirecionar($GLOBALS['INDEX']);
 	}
 	else{
 		addNotificacion('El pincho a comentar no existe','danger');
-		redirecionar('/');
+		redirecionar($GLOBALS['INDEX']);
 	}
 }
 

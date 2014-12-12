@@ -18,7 +18,11 @@
 		*	Conjunto de variables globlales que definen las rutas de los distintos componentes del sistema
 		*/
 		
-		$GLOBALS['FOLDER_PATH'] = $_SERVER['DOCUMENT_ROOT'].'';
+		// URL_FOLDER => indica la carpeta en la que se encuentra el proyecto
+		// si se encuentra en /var/www/pagina/  $URL_FOLDER = /pagina
+		$GLOBALS['URL_FOLDER'] = '/test'; 
+		
+		$GLOBALS['FOLDER_PATH'] = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['URL_FOLDER'];
 		$GLOBALS['TEMPLATES_PATH'] = $GLOBALS['FOLDER_PATH'] .'/template/';
 		$GLOBALS['LAYOUT_PATH'] = $GLOBALS['FOLDER_PATH'] .'/template/layouts/';
 		$GLOBALS['MODEL_PATH'] = $GLOBALS['FOLDER_PATH'] .'/model/';
@@ -29,13 +33,15 @@
 		/**
 		*	Conjunto de variables globlales que definen las URL de los distintos componentes del sistema
 		*/
-		$GLOBALS['IMGCONCURSO_URL'] = '/imagenes/concurso/';
-		$GLOBALS['IMGESTABLECIMIENTOS_URL'] = '/imagenes/establecimiento/';
-		$GLOBALS['IMGPINCHO_URL'] = '/imagenes/pincho/';
-		$GLOBALS['CONTROLLER_URL'] = '/controller/';
-		$GLOBALS['BOOTSTRAP_URL'] = '/lib/bootstrap/';
-		$GLOBALS['CSS_URL'] = '/lib/css/';
-		$GLOBALS['JS_URL'] = '/lib/js/';
+		
+		$GLOBALS['INDEX'] = $GLOBALS['URL_FOLDER'].'/';
+		$GLOBALS['IMGCONCURSO_URL'] = $GLOBALS['URL_FOLDER'].'/imagenes/concurso/';
+		$GLOBALS['IMGESTABLECIMIENTOS_URL'] = $GLOBALS['URL_FOLDER'].'/imagenes/establecimiento/';
+		$GLOBALS['IMGPINCHO_URL'] = $GLOBALS['URL_FOLDER'].'/imagenes/pincho/';
+		$GLOBALS['CONTROLLER_URL'] = $GLOBALS['URL_FOLDER'].'/controller/';
+		$GLOBALS['BOOTSTRAP_URL'] = $GLOBALS['URL_FOLDER'].'/lib/bootstrap/';
+		$GLOBALS['CSS_URL'] = $GLOBALS['URL_FOLDER'].'/lib/css/';
+		$GLOBALS['JS_URL'] = $GLOBALS['URL_FOLDER'].'/lib/js/';
 		
 		
 		$GLOBALS['DB'] = null;
