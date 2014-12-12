@@ -13,7 +13,7 @@
 	<div class="col-md-4">
 	  <h2>Votar pincho<span class="glyphicon glyphicon-cutlery"/></h2>
 	  <p>Vote los pinchos consumidos</p>
-	  <p><a class="btn btn-default" href="<?php echo $GLOBALS['CONTROLLER_URL'].'popularController.php?action=votar' ?>" role="button">Votar<span class="glyphicon glyphicon-cutlery"/></a></p>
+	  <p><a class="btn btn-default" href="<?php echo $GLOBALS['CONTROLLER_URL'].'popularController.php?action=votar' ?>" role="button">Votar<span class="glyphicon glyphicon-cutlery"/></a></p>	 
 	</div>
 	<div class="col-md-4">
 	  <h2>¿no sabe que probar? <span class="glyphicon glyphicon-search"/></h2>

@@ -15,6 +15,7 @@
 		<li><p class="navbar-text" href="#"><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'popularController.php'?>" ><?php echo $_SESSION['user']['name'];?></a></p></li>
 		<?php if($GLOBALS['conf']->votacionesPopulares == '1'):?>
 			<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'popularController.php?action=votar'?>">Votar <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"/></a></li>
+			<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'popularController.php?action=consultarVotaciones'?>">Consultar Votaciones <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"/></a></li>
 		<?php endif;?>
 		<li><a href="<?php echo $GLOBALS['CONTROLLER_URL'].'usersController.php?action=logout'?>">Salir <span class="glyphicon glyphicon-off" aria-hidden="true"/></a></li>
 	  </ul>
