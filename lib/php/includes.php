@@ -20,7 +20,7 @@
 		
 		// URL_FOLDER => indica la carpeta en la que se encuentra el proyecto
 		// si se encuentra en /var/www/pagina/  $URL_FOLDER = /pagina
-		$GLOBALS['URL_FOLDER'] = '/test'; 
+		$GLOBALS['URL_FOLDER'] = ''; 
 		
 		$GLOBALS['FOLDER_PATH'] = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['URL_FOLDER'];
 		$GLOBALS['TEMPLATES_PATH'] = $GLOBALS['FOLDER_PATH'] .'/template/';
@@ -34,7 +34,7 @@
 		*	Conjunto de variables globlales que definen las URL de los distintos componentes del sistema
 		*/
 		
-		$GLOBALS['INDEX'] = $GLOBALS['URL_FOLDER'].'/';
+		$GLOBALS['INDEX'] = $GLOBALS['URL_FOLDER'];
 		$GLOBALS['IMGCONCURSO_URL'] = $GLOBALS['URL_FOLDER'].'/imagenes/concurso/';
 		$GLOBALS['IMGESTABLECIMIENTOS_URL'] = $GLOBALS['URL_FOLDER'].'/imagenes/establecimiento/';
 		$GLOBALS['IMGPINCHO_URL'] = $GLOBALS['URL_FOLDER'].'/imagenes/pincho/';

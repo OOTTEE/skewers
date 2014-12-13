@@ -3,7 +3,6 @@ include_once('../lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'User.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
-include_once($GLOBALS['MODEL_PATH'].'Voto.php');
 
 function index(){
 	if(isUserLoginWhithRole('popular')){
@@ -49,28 +48,13 @@ function consultarVotaciones(){
 		addNotificacion('Las votaciones estan desactivadas','info');
 		redirecionar($GLOBALS['INDEX']);
 	}else{
-		$voto = new Voto();
-		$pinchosVotados = $voto->getPinchoVotadoByUser($_SESSION['user']['usuario_id']);
-		$pinchosNoVotados = $voto->getPinchoNoVotadoByUser($_SESSION['user']['usuario_id']);	
+		$Pincho = new Pincho();
+		$pinchos = $Pincho->getPinchosByPopularUser($_SESSION['user']['usuario_id']);
 		
-		for($i = 0; $i < count($pinchosVotados); $i++){				
-			$Pincho = new Pincho();				
-			$Pincho->pincho_id=$pinchosVotados[$i][1];			
-			$PinchosVotados[] = $Pincho->getPincho();
-		}
-		for($i = 0; $i < count($pinchosNoVotados); $i++){				
-			$Pincho = new Pincho();				
-			$Pincho->pincho_id=$pinchosNoVotados[$i][0];			
-			$PinchosNoVotados[] = $Pincho->getPincho();
-		}
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].'loginNavPopular.php');
 		include_once($GLOBALS['TEMPLATES_PATH'].'popular/consultarVotaciones.php'); 
 		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');	
-		
-		
-			
-		
 		
 	}
 }
