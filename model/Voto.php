@@ -98,28 +98,5 @@ class Voto extends Model{
 		return $sentencia->fetchall();
 	
 	}
-	public function getPinchoVotadoByUser($usuario_id){
-		$sentencia= $GLOBALS['DB']->prepare('SELECT * FROM votos WHERE usuario_id = ?' );
-		$sentencia->execute(array($usuario_id));
-		$result=$sentencia->fetchall();
-	
-		if($sentencia->rowCount() > 0){
-			return $result;
-		}else{
-			return false;
-		}
-	}
-	public function getPinchoNoVotadoByUser($usuario_id){
-		$sentencia= $GLOBALS['DB']->prepare('SELECT DISTINCT pincho_id FROM votos WHERE usuario_id <> ?' );
-		$sentencia->execute(array($usuario_id));
-		$result=$sentencia->fetchall();
-	
-		if($sentencia->rowCount() > 0){
-			return $result;
-		}else{
-			return false;
-		}
-	}
-
 
 }

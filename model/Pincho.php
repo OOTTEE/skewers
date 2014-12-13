@@ -223,11 +223,7 @@ class Pincho extends Model{
 											from pinchos p ' );
 		$sentencia->execute(array('popular_id' => $popular_id));
 		
-		if($sentencia->rowCount() != 0){
-			return $sentencia->fetchall();
-		}else{
-			return null;
-		}
+		return $sentencia->fetchall();
 	}
 	
 
