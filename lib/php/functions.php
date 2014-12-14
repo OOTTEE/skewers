@@ -4,7 +4,6 @@
 	*		 $destino nueva direccion a la que redireccionamos
 	*/
 	function redirecionar($destino){
-	echo 'Location: '.$destino;
 		header('Location: '.$destino);
 	}
 
