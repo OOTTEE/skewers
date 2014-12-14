@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
+include_once('../lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 include_once($GLOBALS['MODEL_PATH'].'User.php');
 include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
@@ -28,11 +28,11 @@ function index(){
 				registraPremiado();
 				redirecionar('/controller/profesionalController.php?action=votarPremiados');
 		}else{
-				redirecionar('/');
+				redirecionar($GLOBALS['INDEX']);
 		}
 	}else{	
 
-		redirecionar('/');		
+		redirecionar($GLOBALS['INDEX']);		
 	}
 	closeServerSession();
 }

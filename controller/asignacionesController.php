@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
+include_once('../lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'Asignacion.php');
 
 /**
@@ -12,10 +12,10 @@ function index(){
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'editarAsignaciones' ){
 			editarAsignaciones();
 		}else{
-			redirecionar('/');
+			redirecionar($GLOBALS['INDEX']);
 		}
 	}else{	
-		redirecionar('/');		
+		redirecionar($GLOBALS['INDEX']);		
 	}
 	closeServerSession();
 }

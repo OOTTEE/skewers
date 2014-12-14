@@ -1,5 +1,5 @@
 ﻿<?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
+include_once('../lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'User.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
@@ -14,7 +14,7 @@ function index(){
 			inicio();
 		}
 	}else{	
-		redirecionar('/');		
+		redirecionar($GLOBALS['INDEX']);		
 	}
 	closeServerSession();
 }
@@ -30,7 +30,7 @@ function inicio(){
 function votar(){
 	if($GLOBALS['conf']->votacionesPopulares == '0'){
 		addNotificacion('Las votaciones estan desactivadas','info');
-		redirecionar('/');
+		redirecionar($GLOBALS['INDEX']);
 	}else{
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].'loginNavPopular.php');

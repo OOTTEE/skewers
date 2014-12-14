@@ -7,12 +7,12 @@
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="/"><?php echo $GLOBALS['conf']->nombre;?></a>
+	  <a class="navbar-brand" href="<?= $GLOBALS['INDEX'] ?>"><?php echo $GLOBALS['conf']->nombre;?></a>
 	</div>
 	<div id="navbar" class="navbar-collapse collapse">
 	  <ul class="nav navbar-nav navbar-right">
-		<li><a href="/?action=register">Registrate</a></li>
-		<li><a href="/?action=registerEstablecimiento">Establecimiento</a></li>
+		<li><a href="<?= $GLOBALS['INDEX'] ?>?action=register">Registrate</a></li>
+		<li><a href="<?= $GLOBALS['INDEX'] ?>?action=registerEstablecimiento">Establecimiento</a></li>
 	  </ul>
 	  <form class="navbar-form navbar-right" id="validarPasswordLogin" role="form" Method="POST" action="<?php echo $GLOBALS['CONTROLLER_URL'].'usersController.php'; ?>">
 		<div class="form-group">

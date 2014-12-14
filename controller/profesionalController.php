@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
+include_once('../lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'User.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 include_once($GLOBALS['MODEL_PATH'].'Asignacion.php');
@@ -25,7 +25,7 @@ function index(){
 			inicio();
 		}
 	}else{	
-		redirecionar('/');		
+		redirecionar($GLOBALS['INDEX']);		
 	}
 	closeServerSession();
 }

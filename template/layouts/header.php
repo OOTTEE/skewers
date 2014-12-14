@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Pagina de concurso de pinchos">
     <meta name="author" content="ABP-G19">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="">
     <title>Skewers</title>
 	<link rel="stylesheet" href=<?php echo $GLOBALS['BOOTSTRAP_URL']."css/bootstrap.min.css"?>>
 	<link rel="stylesheet" href=<?php echo $GLOBALS['BOOTSTRAP_URL']."css/bootstrap-theme.min.css"?>>	

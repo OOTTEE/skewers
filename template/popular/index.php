@@ -18,11 +18,11 @@
 	<div class="col-md-4">
 	  <h2>¿no sabe que probar? <span class="glyphicon glyphicon-search"/></h2>
 	  <p>Aqui puedes buscar que pinchos participan en el concurso</p>
-	  <p><a class="btn btn-default" href="<?= '/?action=pinchos' ?>" role="button">Buscar<span class="glyphicon glyphicon-search"/></a></p>
+	  <p><a class="btn btn-default" href="<?= $GLOBALS['INDEX']  ?>'/?action=pinchos' ?>" role="button">Buscar<span class="glyphicon glyphicon-search"/></a></p>
 	</div>
 	<div class="col-md-4">
 	  <h2>Comenta tus pinchos<span class="glyphicon glyphicon-pencil"/></h2>
 	  <p>Comente los pinchos y comparta sus opiniones</p>
-	  <p><a class="btn btn-default" href="<?= '/?action=pinchos' ?>" role="button">Buscar<span class="glyphicon glyphicon-search"/></a></p>
+	  <p><a class="btn btn-default" href="<?= $GLOBALS['INDEX']  ?>'/?action=pinchos' ?>" role="button">Buscar<span class="glyphicon glyphicon-search"/></a></p>
 	</div>
 </div>

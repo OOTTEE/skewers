@@ -4,6 +4,7 @@
 	*		 $destino nueva direccion a la que redireccionamos
 	*/
 	function redirecionar($destino){
+	echo 'Location: '.$destino;
 		header('Location: '.$destino);
 	}
 
@@ -82,7 +83,7 @@
 		if(($_FILES['imagen']['type'] == 'image/jpeg') || ($_FILES['imagen']['type'] == 'image/png') || ($_FILES['imagen']['type'] == 'image/jpg')){
 
 			if($_FILES['imagen']['size'] < 2000000){
-				var_dump(move_uploaded_file($_FILES["imagen"]["tmp_name"],'/var/www/html/skewers'.$Image_Path));
+				var_dump(move_uploaded_file($_FILES["imagen"]["tmp_name"],$_SERVER['DOCUMENT_ROOT'].$Image_Path));
 					if($tipo=='cl'){
 						$Usuario->setLogo(array(
 						'imagen' => $Image_Path));

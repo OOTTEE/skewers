@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
+include_once('../lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'Voto.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 
@@ -10,16 +10,16 @@ function index(){
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'generarCodigos' ){
 			generarCodigos();
 		}else{
-			redirecionar('/');	
+			redirecionar($GLOBALS['INDEX']);	
 		}
 	}else if(isUserLoginWhithRole('popular')){	
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registrarVotoPopular' ){
 			registrarVotoPopular();
 		}else{
-			redirecionar('/');		
+			redirecionar($GLOBALS['INDEX']);		
 		}
 	}else{
-		redirecionar('/');		
+		redirecionar($GLOBALS['INDEX']);		
 	}
 	closeServerSession();
 }
@@ -42,7 +42,7 @@ function generarCodigos(){
 function registrarVotoPopular(){	
 	if($GLOBALS['conf']->votacionesPopulares == '1'){
 		addNotificacion('Las votaciones estan desactivadas','info');
-		redirecionar('/');
+		redirecionar($GLOBALS['INDEX']);
 		return 0;
 	}
 	
@@ -103,7 +103,7 @@ function registrarVotoPopular(){
 					default:
 						$fail = true;
 						addNotificacion('Selecciones un pincho para votarlo', 'danger');
-						redirecionar('/');
+						redirecionar($GLOBALS['INDEX']);
 						break;
 				}
 				
@@ -113,26 +113,26 @@ function registrarVotoPopular(){
 					$voto2->registrarVotacion();
 					$voto3->registrarVotacion();
 					addNotificacion('Votacion realizada', 'success');
-					redirecionar('/');
+					redirecionar($GLOBALS['INDEX']);
 				}else{
 					addNotificacion('Introduzca 3 códigos correctos.','danger');
-					redirecionar('/');
+					redirecionar($GLOBALS['INDEX']);
 				}
 			}else{
 				addNotificacion('Los códigos no se pueden repetir.','danger');
-				redirecionar('/');
+				redirecionar($GLOBALS['INDEX']);
 			}
 		}
 		else
 		{
 			addNotificacion('Introduzca 3 códigos correctos.','danger');
-			redirecionar('/');
+			redirecionar($GLOBALS['INDEX']);
 		}
 	}
 	else
 	{
 		addNotificacion('Introduzca 3 códigos y vote.', 'danger');
-		redirecionar('/');
+		redirecionar($GLOBALS['INDEX']);
 	}
 	
 }

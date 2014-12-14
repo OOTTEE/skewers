@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
+include_once('../lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 include_once($GLOBALS['MODEL_PATH'].'PuntuacionFinalista.php');
 
@@ -18,13 +18,13 @@ function index(){
 			editarConfiguracion();
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'calcularFinalistas' ){
 			calcularFinalistas();
-			redirecionar('/');
+			redirecionar($GLOBALS['INDEX']);
 		
 		}else{	
-			redirecionar('/');	
+			redirecionar($GLOBALS['INDEX']);	
 		}
 	}else{	
-		redirecionar('/');		
+		redirecionar($GLOBALS['INDEX']);		
 	}
 	closeServerSession();
 }

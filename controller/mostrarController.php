@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
+include_once('../lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'User.php');
 include_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 include_once($GLOBALS['MODEL_PATH'].'Pincho.php');
@@ -102,7 +102,7 @@ function index(){
 			inicio('loginNavEstablecimiento.php');
 		}
 	}else{
-		redirecionar('/');
+		redirecionar($GLOBALS['INDEX']);
 	}
 	session_write_close(); 
 }
@@ -149,7 +149,7 @@ function finalistas($nav){
 	
 	if($PiInf==false || $GLOBALS['conf']->votacionesFinalistas == 1 ){
 		addNotificacion('Concurso no finalizado', 'warning');
-		redirecionar('/');
+		redirecionar($GLOBALS['INDEX']);
 	}else{
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].$nav);
@@ -175,7 +175,7 @@ function ganadoresPro($nav){
 	
 	if($GLOBALS['conf']->resultados==0 || $GLOBALS['conf']->votacionesGanadores==1 || $GLOBALS['conf']->votacionesFinalistas==1){
 		addNotificacion('Concurso no finalizado. No se pueden mostrar resultados', 'warning');
-		redirecionar('/');
+		redirecionar($GLOBALS['INDEX']);
 	}else{
 	$vote= new PuntuacionGanadores();
 	$PiInf=$vote->getPremiados();
@@ -191,7 +191,7 @@ function ganadoresPop($nav){
 
 	if($GLOBALS['conf']->resultados==0 ||$GLOBALS['conf']->votacionesPopulares==1){
 		addNotificacion('Concurso no finalizado. No se pueden mostrar resultados', 'warning');
-		redirecionar('/');
+		redirecionar($GLOBALS['INDEX']);
 	}else{
 	$vote= new Voto();
 	$PiInf=$vote->getResulVotos();

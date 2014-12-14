@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
+include_once('../lib/php/includes.php');
 include_once($GLOBALS['MODEL_PATH'].'User.php');
 
 /**
@@ -20,7 +20,7 @@ function index(){
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'login' ){
 			login();
 		}else{		
-			redirecionar('/');
+			redirecionar($GLOBALS['INDEX']);
 		}	
 	}
 	closeServerSession();	
@@ -57,7 +57,7 @@ function register(){
 	}
 	
 	
-	redirecionar('/');
+	redirecionar($GLOBALS['INDEX']);
 }
 
 /**
@@ -90,7 +90,7 @@ function logout(){
 	$_SESSION['user'] = null;
 	$_SESSION['login'] = false;
 	session_destroy();
-	redirecionar('/');
+	redirecionar($GLOBALS['INDEX']);
 }
 
 

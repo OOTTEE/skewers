@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/lib/php/includes.php');
+include_once('../lib/php/includes.php');
 require_once($GLOBALS['MODEL_PATH'].'Configuracion.php');
 require_once($GLOBALS['MODEL_PATH'].'Asignacion.php');
 require_once($GLOBALS['MODEL_PATH'].'User.php');
@@ -51,7 +51,7 @@ function index(){
 			validarPincho();
 		}
 		else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'volver' ){
-			redirecionar('/');
+			redirecionar($GLOBALS['INDEX']);
 		}
 		else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'verAsignaciones' ){
 			verAsignaciones();
@@ -59,7 +59,7 @@ function index(){
 			inicio();
 		}
 	}else{	
-		redirecionar('/');		
+		redirecionar($GLOBALS['INDEX']);		
 	}
 	closeServerSession();
 }
