@@ -20,6 +20,7 @@ function index(){
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'login' ){
 			login();
 		}else{		
+		
 			redirecionar($GLOBALS['INDEX']);
 		}	
 	}
