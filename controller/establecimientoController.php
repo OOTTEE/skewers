@@ -25,15 +25,12 @@ function index(){
 	}else{
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registerEstablecimiento' ){
 			register();
+		}else{
+			redirecionar($GLOBALS['INDEX']);
 		}
-
 	}
 	closeServerSession();
 }
-
-
-
-
 
 /**
 *	Author: Hector Novoa Novoa

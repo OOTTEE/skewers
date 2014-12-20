@@ -106,15 +106,14 @@ class User extends Model{
 		return $result;
 			
 	}
-	public function deleteUser($nameUser){
-		$sentencia= $GLOBALS['DB']->prepare('DELETE FROM users WHERE name = ? ');
-		
-			$sentencia->execute(array($nameUser));
-			if($sentencia->rowCount() > 0) 
-				return true;
-
-			else 
-				return false;
+	public function deleteUser($User_id){
+		$sentencia= $GLOBALS['DB']->prepare('DELETE FROM users WHERE usuario_id = ? ');
+	
+		$sentencia->execute(array($User_id));
+		if($sentencia->rowCount() > 0) 
+			return true;
+		else 
+			return false;
 		
 		
 	}

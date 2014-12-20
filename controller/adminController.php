@@ -33,7 +33,7 @@ function index(){
 			verEliminarUsuario();
 		}
 		else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'eliminarUsuario' ){						
-			eliminarUsuario($_GET['nameUser']);
+			eliminarUsuario();
 		}
 		else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'modificarUsuario' ){						
 			modificarUsuario();
@@ -56,7 +56,7 @@ function index(){
 		else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'verAsignaciones' ){
 			verAsignaciones();
 		}else{	
-			inicio();
+			redirecionar($GLOBALS['INDEX']);	
 		}
 	}else{	
 		redirecionar($GLOBALS['INDEX']);		
@@ -64,17 +64,6 @@ function index(){
 	closeServerSession();
 }
 
-
-/**
-*	Author: Javier Lorenzo Martin
-*	Aqui se muestra la vista principal del usuario administrador
-*/
-function inicio(){
-	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'loginNavAdministrador.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');
-	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
-}
 
 /**
 *	Author: Javier Lorenzo Martin
@@ -168,23 +157,21 @@ function realizarModificacion(){
 		addNotificacion("Usuario no modificado","danger");
 		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','gestionarUsuario')));
 	}	
-
 }
 /**
 *	Author: Edgar Guitian Rey
 *	Aqui se realiza la eliminacion del usaurio seleccionado
 */
-function eliminarUsuario($nombreUsuario){
+function eliminarUsuario(){
 	$usuario = new User();
-	if($usuario->deleteUser($nombreUsuario)){
-		addNotificacion("Usuario eliminado","succcess");
+	if($usuario->deleteUser($_GET['nameUser'])){
+		addNotificacion("Usuario eliminado","success");
 		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','verEliminarUsuario')));
 	}
 	else{
 		addNotificacion("Usuario no eliminado","danger");
 		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','verEliminarUsuario')));
 	}
-	
 }
 /**
 *	Author: Edgar Guitian Rey

@@ -113,7 +113,7 @@ function index(){
 function restaurante($nav){
 	
 	$Es=new Establecimiento();
-	$EsInfo=$Es->getEstablecimientoByID($_POST['usuario_id']);
+	$EsInfo=$Es->getEstablecimientoByID($_GET['usuario_id']);
 	
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].$nav);

@@ -27,7 +27,7 @@ function inicio(){
 
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavPopular.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'popular/index.php'); 
+	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php'); 
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
 //voto concurso popular
