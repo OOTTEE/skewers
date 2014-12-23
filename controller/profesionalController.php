@@ -24,8 +24,8 @@ function index(){
 		}else{
 			inicio();
 		}
-	}else{	
-		redirecionar($GLOBALS['INDEX']);		
+	}else{
+		redirecionar($GLOBALS['INDEX']);
 	}
 	closeServerSession();
 }
@@ -36,10 +36,10 @@ function index(){
 */
 function inicio(){
 
-	
+
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavProfesional.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'profesional/index.php');
+	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
 
