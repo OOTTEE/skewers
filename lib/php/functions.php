@@ -59,39 +59,44 @@
 		//Definicion path para cada tipo de imagen
 		$Image_Path;
 		$Usuario;
+		$Img;
 		//Definicion Establecemento
 		if($tipo=='e'){
 		$Image_Path = $GLOBALS['IMGESTABLECIMIENTOS_URL'] . $Id .'_E_'. basename($_FILES['imagen']['name']);
+		$Img='imagen';
 		$Usuario= new Establecimiento();
 		  }
 		//Definicion Pincho
 		if($tipo=='p'){
 			$Image_Path = $GLOBALS['IMGPINCHO_URL'] . $Id .'_P_'. basename($_FILES['imagen']['name']);
+			$Img='imagen';
 			$Usuario= new Pincho();
 		}
 		//Definicion Configuracion
 		if($tipo=='ci'){
-			$Image_Path = $GLOBALS['IMGCONCURSO_URL'] . $Id .'_CI_'. basename($_FILES['imagen']['name']);
+			$Image_Path = $GLOBALS['IMGCONCURSO_URL'] . $Id .'_CI_'. basename($_FILES['imagenConcurso']['name']);
+			$Img='imagenConcurso';
 			$Usuario= new Configuracion();
 		}
 		if($tipo=='cl'){
-			$Image_Path = $GLOBALS['IMGCONCURSO_URL'] . $Id .'_CL_'. basename($_FILES['imagen']['name']);
+			$Image_Path = $GLOBALS['IMGCONCURSO_URL'] . $Id .'_CL_'. basename($_FILES['logoConcurso']['name']);
+			$Img='logoConcurso';
 			$Usuario= new Configuracion();
 		}
 		//Almacenamiento imagen
-		if(($_FILES['imagen']['type'] == 'image/jpeg') || ($_FILES['imagen']['type'] == 'image/png') || ($_FILES['imagen']['type'] == 'image/jpg')){
+		if(($_FILES[$Img]['type'] == 'image/jpeg') || ($_FILES[$Img]['type'] == 'image/png') || ($_FILES[$Img]['type'] == 'image/jpg')){
 
-			if($_FILES['imagen']['size'] < 2000000){
-				var_dump(move_uploaded_file($_FILES["imagen"]["tmp_name"],'/var/www/html/skewers'.$Image_Path));
+			if($_FILES[$Img]['size'] < 2000000){
+				move_uploaded_file($_FILES[$Img]["tmp_name"],'/var/www/html/skewers'.$Image_Path);
 					if($tipo=='cl'){
 						$Usuario->setLogo(array(
 						'imagen' => $Image_Path));
 						return true;
-					}else{ 
+					}else{
 						$Usuario->setImagen(array(
 						'imagen' => $Image_Path,
 						'usuario_id' => $Id));
-						return true;					
+						return true;
 					}
 				}
 

@@ -37,6 +37,7 @@ function index(){
 *	En este caso se crea el usuario para el establecimiento y el establecimiento asociado.
 */
 function register(){
+
 	$user = new User();
 	$User_Id=$user->register(array(
 		'name' => $_POST['name'],
@@ -64,9 +65,12 @@ function register(){
 	if(!$img){
 			addNotificacion("No se pudo insertar la Imagen","Danger");
 			return false;
+	}else{
+		addNotificacion("Usuario registrado satisfactoriamente","Success");
+		redirecionar($GLOBALS['INDEX']);
+
 	}
 
-	redirecionar($GLOBALS['INDEX']);
 }
 
 
@@ -94,7 +98,7 @@ function verPincho(){
 	$establecimiento = new Establecimiento();
 	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
 	$GLOBALS['Pincho'] = $establecimiento->hasPincho();
-	
+
 	if($GLOBALS['Pincho']){
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
@@ -112,7 +116,7 @@ function generarCodigos(){
 	$establecimiento = new Establecimiento();
 	$establecimiento->usuario_id = $_SESSION['user']['usuario_id'];
 	$GLOBALS['Pincho'] = $establecimiento->hasPincho();
-	
+
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavEstablecimiento.php');
 	include_once($GLOBALS['TEMPLATES_PATH'].'establecimiento/generarCodigos.php');

@@ -8,7 +8,7 @@
 		<span class="icon-bar"></span>
 	  </button>
 	  <a class="navbar-brand" href="<?= $GLOBALS['INDEX'] ?>"><?php echo $GLOBALS['conf']->nombre;?> <small class="hidden-xs hidden-sm"><?php echo $_SESSION['user']['role'];?></small></a>
-	  
+
 	</div>
 	<div id="navbar" class="navbar-collapse collapse">
 	  <ul class="nav navbar-nav navbar-right">

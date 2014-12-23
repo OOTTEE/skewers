@@ -25,10 +25,10 @@
 						</address>
 						<a href="<?= $GLOBALS['CONTROLLER_URL'].'mostrarController.php?action=restaurante&usuario_id='.$row['usuario_id']?>" ><button type="button" class="btn btn-default"  >Ver Informacion</button></a>
 					</div>
-					
+
 				</div>
 			</div>
-		</div>	
+		</div>
 		<hr/>
 	<?php
 		endforeach;

@@ -15,9 +15,9 @@ include_once($GLOBALS['MODEL_PATH'].'PuntuacionFinalista.php');
 
 function index(){
 	$GLOBALS['conf']=(new Configuracion())->get();
-		
-	
-	if(!isUserLogin()){	
+
+
+	if(!isUserLogin()){
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurante'){
 			restaurante('notLoginNav.php');
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'pincho'){
@@ -33,7 +33,7 @@ function index(){
 		}else{
 			inicio('notLoginNav.php');
 		}
-		
+
 	}else if(isUserLoginWhithRole('administrador')){
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'restaurante'){
 			restaurante('loginNavAdministrador.php');
@@ -104,17 +104,17 @@ function index(){
 	}else{
 		redirecionar($GLOBALS['INDEX']);
 	}
-	session_write_close(); 
+	session_write_close();
 }
 /*Author: Hector Novoa Novoa
 *	Muestra informacion del establecimiento indicado
 */
 
 function restaurante($nav){
-	
+
 	$Es=new Establecimiento();
-	$EsInfo=$Es->getEstablecimientoByID($_GET['usuario_id']);
-	
+	$EsInfo=$Es->getEstablecimientoByID($_POST['usuario_id']);
+
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].$nav);
 	include_once($GLOBALS['TEMPLATES_PATH'].'mostrar/restauranteInfo.php');
@@ -126,18 +126,18 @@ function restaurante($nav){
 */
 function pincho($nav){
 	$Pi=new Pincho();
-	$Pi->usuario_id=$_POST['usuario_id'];
+	$Pi->usuario_id=$_REQUEST['usuario_id'];
 	$PiInfo=$Pi->getPinchoByUsuarioId();
-	
+
 	if(!isset($PiInfo)){
 		addNotificacion('Pincho no registrado o no validado', 'warning');
 	}
-	
+
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].$nav);
 	include_once($GLOBALS['TEMPLATES_PATH'].'mostrar/pinchoInfo.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
-	
+
 
 }
 /*Author: Hector Novoa Novoa
@@ -146,7 +146,7 @@ function pincho($nav){
 function finalistas($nav){
 		$Pi=new Pincho();
 	$PiInf=$Pi->getPinchoFinalistas();
-	
+
 	if($PiInf==false || $GLOBALS['conf']->votacionesFinalistas == 1 ){
 		addNotificacion('Concurso no finalizado', 'warning');
 		redirecionar($GLOBALS['INDEX']);
@@ -172,14 +172,14 @@ function premiados($nav){
 }
 
 function ganadoresPro($nav){
-	
+
 	if($GLOBALS['conf']->resultados==0 || $GLOBALS['conf']->votacionesGanadores==1 || $GLOBALS['conf']->votacionesFinalistas==1){
 		addNotificacion('Concurso no finalizado. No se pueden mostrar resultados', 'warning');
 		redirecionar($GLOBALS['INDEX']);
 	}else{
 	$vote= new PuntuacionGanadores();
 	$PiInf=$vote->getPremiados();
-	
+
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].$nav);
 	include_once($GLOBALS['TEMPLATES_PATH'].'mostrar/listPremiados.php');
@@ -195,12 +195,12 @@ function ganadoresPop($nav){
 	}else{
 	$vote= new Voto();
 	$PiInf=$vote->getResulVotos();
-	
+
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].$nav);
 	include_once($GLOBALS['TEMPLATES_PATH'].'mostrar/listPremiados.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
-	
+
 	}
 
 

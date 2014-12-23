@@ -17,8 +17,8 @@ function index(){
 		}else{
 			inicio();
 		}
-	}else{	
-		redirecionar($GLOBALS['INDEX']);		
+	}else{
+		redirecionar($GLOBALS['INDEX']);
 	}
 	closeServerSession();
 }
@@ -27,7 +27,7 @@ function inicio(){
 
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavPopular.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php'); 
+	include_once($GLOBALS['TEMPLATES_PATH'].'index/index.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
 //voto concurso popular
@@ -38,7 +38,7 @@ function votar(){
 	}else{
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].'loginNavPopular.php');
-		include_once($GLOBALS['TEMPLATES_PATH'].'popular/votar.php'); 
+		include_once($GLOBALS['TEMPLATES_PATH'].'popular/votar.php');
 		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 	}
 }
@@ -50,12 +50,12 @@ function consultarVotaciones(){
 	}else{
 		$Pincho = new Pincho();
 		$pinchos = $Pincho->getPinchosByPopularUser($_SESSION['user']['usuario_id']);
-		
+
 		include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 		include_once($GLOBALS['LAYOUT_PATH'].'loginNavPopular.php');
-		include_once($GLOBALS['TEMPLATES_PATH'].'popular/consultarVotaciones.php'); 
-		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');	
-		
+		include_once($GLOBALS['TEMPLATES_PATH'].'popular/consultarVotaciones.php');
+		include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
+
 	}
 }
 //muestra la informacion del pincho votado
@@ -65,7 +65,7 @@ function realizarConsultaVotacion(){
 	$PiInfo=$Pi->getPincho();
 	include_once($GLOBALS['LAYOUT_PATH'].'header.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'loginNavPopular.php');
-	include_once($GLOBALS['TEMPLATES_PATH'].'popular/mostrarDatosPincho.php'); 
+	include_once($GLOBALS['TEMPLATES_PATH'].'popular/mostrarDatosPincho.php');
 	include_once($GLOBALS['LAYOUT_PATH'].'footer.php');
 }
 index();
