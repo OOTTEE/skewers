@@ -12,3 +12,19 @@ div#imgPrincipal{
 	padding-top: 0px;
 }
 
+div.pincho > img{
+
+	max-width: 120px;
+	max-height: 120px;
+}
+
+h5.pinchoTitleList,
+h5.restauranteTitleList{
+	
+	text-overflow: ellipsis;
+	width: 120px;
+	overflow: hidden;
+	white-space: nowrap;
+	margin: 10px auto;
+}
+

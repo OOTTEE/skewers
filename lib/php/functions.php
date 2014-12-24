@@ -111,3 +111,11 @@
 
 
 }
+
+function url_exists($url){
+	$file_headers = @get_headers('http://localhost'.$url);
+	if($file_headers[0] == 'HTTP/1.1 404 Not Found') 
+		return false;
+	else
+		return true;
+}

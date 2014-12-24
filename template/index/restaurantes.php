@@ -1,37 +1,14 @@
 <div class="container">
 <h1>Establecimientos Participantes</h1>
-	<?php
-		foreach($Establecimientos as $row):
-	?>
-		<div class="container">
-			<div class="row" >
-				<div class="col-md-4">
-					<img src="<?= $row['imagen']?>" class="img-responsive" />
-				</div>
-				<div class="col-md-8">
-					<div class="col-md-12" >
-						<h4><strong><?= $row['name'] ?></strong></h4>
-					</div>
-					<div class="col-md-7" >
-						<p>
-							<?= $row['descripcion'] ?>
-						</p>
-					</div>
-					<div class="col-md-5" >
-						<address>
-							<strong>Direccion:</strong>
-							<?= $row['direccion'] ?>
-							<a href="mailto:#"><?= $row['email'] ?></a>
-						</address>
-						<a href="<?= $GLOBALS['CONTROLLER_URL'].'mostrarController.php?action=restaurante&usuario_id='.$row['usuario_id']?>" ><button type="button" class="btn btn-default"  >Ver Informacion</button></a>
-					</div>
-
+<div class="row">
+	<?php foreach($Establecimientos as $row): ?>
+		<a href="<?= $GLOBALS['CONTROLLER_URL'].'mostrarController.php?action=pincho&usuario_id='.$row['usuario_id']?>" >
+			<div class="col-md-3 text-center">
+				<h5 class="restauranteTitleList" ><?= $row['name'] ?></h5>
+				<div class="pincho" height="120">
+					<img src="<?= (isset($row['imagen']) AND $row['imagen']!='' AND url_exists($row['imagen']) )? $row['imagen'] : $GLOBALS['IMGPINCHO_URL'].'no_imagen.png'  ?>"  height="120" width="120" class="img-responsive" style="margin: 0px auto;">
 				</div>
 			</div>
-		</div>
-		<hr/>
-	<?php
-		endforeach;
-
-	?>
+		</a>
+	<?php endforeach;?>
 </div>
