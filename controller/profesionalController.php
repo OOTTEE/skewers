@@ -45,7 +45,7 @@ function inicio(){
 
 /*
 *	Author: Hector Novoa Novoa
-*	Votado de finalistas mostrando una lista con los pinchos finalistas
+*	Votado de finalistas mostrando una lista con los pinchos asignados a cada miembro del jurado
 *
 */
 function votarFinalista(){

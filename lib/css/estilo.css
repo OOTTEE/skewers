@@ -20,7 +20,7 @@ div.pincho > img{
 
 h5.pinchoTitleList,
 h5.restauranteTitleList{
-	
+
 	text-overflow: ellipsis;
 	width: 120px;
 	overflow: hidden;
@@ -28,3 +28,11 @@ h5.restauranteTitleList{
 	margin: 10px auto;
 }
 
+h5.pinchoTitleList{
+
+  text-overflow: ellipsis;
+  width: 120px;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 10px auto;
+}
