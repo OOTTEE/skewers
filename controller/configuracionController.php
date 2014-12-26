@@ -78,7 +78,9 @@ function editarConfiguracion(){
 							'votacionesFinalistas' => ((isset($_POST['votacionesFinalistas']))? 1 : 0),
 							'votacionesGanadores' => ((isset($_POST['votacionesGanadores']))? 1 : 0));
 
-		if(!isset($_FILES['logoConcurso']))
+						/*	var_dump($_FILES['logoConcurso']);
+ 						die();*/
+		if($_FILES['logoConcurso']['tmp_name']=="")
 			addNotificacion('<strong>Informacion: </strong>No ha subido ninguna imagen de <u>Logo</u>.','info');
 		else
 			$imgl=UpImagen(1,'cl');
@@ -86,7 +88,7 @@ function editarConfiguracion(){
 
 
 
-		if(!isset($_FILES['imagenConcurso']))
+		if($_FILES['imagenConcurso']['tmp_name']=="")
 			addNotificacion('<strong>Informacion: </strong>No ha subido ninguna imagen de <u>Concurso</u>.','info');
 		else
 			$imgc=UpImagen(1,'ci');
@@ -97,7 +99,7 @@ function editarConfiguracion(){
 
 		$conf = new Configuracion();
 		$res = $conf->set($parametros);
-		if(!$res || !$imgc || !$imgl){
+		if(!$res){
 			addNotificacion('<strong>Error: </strong>Se ha producido un error al guardar la configuración.','danger');
 		}else{
 			addNotificacion('Las configuración se ha guardado <strong><u>Correctamente</u></strong>.','success');
