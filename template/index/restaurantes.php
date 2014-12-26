@@ -2,7 +2,7 @@
 <h1>Establecimientos Participantes</h1>
 <div class="row">
 	<?php foreach($Establecimientos as $row): ?>
-		<a href="<?= $GLOBALS['CONTROLLER_URL'].'mostrarController.php?action=pincho&usuario_id='.$row['usuario_id']?>" >
+		<a href="<?= $GLOBALS['CONTROLLER_URL'].'mostrarController.php?action=restaurante&usuario_id='.$row['usuario_id']?>" >
 			<div class="col-md-3 text-center">
 				<h5 class="restauranteTitleList" ><?= $row['name'] ?></h5>
 				<div class="pincho" height="120">

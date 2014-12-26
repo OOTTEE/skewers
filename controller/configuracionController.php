@@ -78,28 +78,26 @@ function editarConfiguracion(){
 							'votacionesFinalistas' => ((isset($_POST['votacionesFinalistas']))? 1 : 0),
 							'votacionesGanadores' => ((isset($_POST['votacionesGanadores']))? 1 : 0));
 
-/*		if(!isset($_POST['logoConcurso']))
-			addNotificacion('<strong>Informacion: </strong>No ha subido ninguna imagend de <u>Logo</u>.','info');
+		if(!isset($_FILES['logoConcurso']))
+			addNotificacion('<strong>Informacion: </strong>No ha subido ninguna imagen de <u>Logo</u>.','info');
 		else
+			$imgl=UpImagen(1,'cl');
+			//$parametros['logo'] = $_POST['logoConcurso'];
 
-			$parametros['logo'] = $_POST['logoConcurso'];
-			$img=UpImagen(1,'cl');
-*/
 
-		/*if(!isset($_POST['imagenConcurso']))
-			addNotificacion('<strong>Informacion: </strong>No ha subido ninguna imagend de <u>Concurso</u>.','info');
-		else*/
-			//$imagen=$_POST['imagenConcurso'];
+
+		if(!isset($_FILES['imagenConcurso']))
+			addNotificacion('<strong>Informacion: </strong>No ha subido ninguna imagen de <u>Concurso</u>.','info');
+		else
+			$imgc=UpImagen(1,'ci');
 			//$parametros['imagen'] = $_POST['imagenConcurso'];
-			var_dump(basename($_FILES['imagenConcurso']['name']));
-			die();
-			$img=UpImagen(1,'ci');
+
 
 
 
 		$conf = new Configuracion();
 		$res = $conf->set($parametros);
-		if(!$res || !$img){
+		if(!$res || !$imgc || !$imgl){
 			addNotificacion('<strong>Error: </strong>Se ha producido un error al guardar la configuración.','danger');
 		}else{
 			addNotificacion('Las configuración se ha guardado <strong><u>Correctamente</u></strong>.','success');

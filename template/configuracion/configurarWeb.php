@@ -1,5 +1,5 @@
 <div class="container">
-	<form role="form"  Method="POST" action="<?= $GLOBALS['CONTROLLER_URL'].'configuracionController.php';?>" >
+	<form role="form"  Method="POST" enctype="multipart/form-data" action="<?= $GLOBALS['CONTROLLER_URL'].'configuracionController.php';?>" >
 		<h2>Configurar Web</h2>
 
 		<div class="form-group">
