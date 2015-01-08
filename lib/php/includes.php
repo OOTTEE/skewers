@@ -19,7 +19,16 @@
 		*/
 		// URL_FOLDER => indica la carpeta en la que se encuentra el proyecto
 		// si se encuentra en /var/www/pagina/  $URL_FOLDER = /pagina/
-		$GLOBALS['URL_FOLDER'] = '/';
+		
+		
+		
+		if(strpos(str_replace($_SERVER['DOCUMENT_ROOT'], '' , $_SERVER['SCRIPT_FILENAME']),'controller'))
+			$GLOBALS['URL_FOLDER'] = explode('controller',str_replace($_SERVER['DOCUMENT_ROOT'], '' , $_SERVER['SCRIPT_FILENAME']))[0];
+		else
+			$GLOBALS['URL_FOLDER'] = str_replace('index.php','',str_replace($_SERVER['DOCUMENT_ROOT'], '' , $_SERVER['SCRIPT_FILENAME']));
+		
+		
+		
 
 		$GLOBALS['FOLDER_PATH'] = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['URL_FOLDER'];
 		$GLOBALS['TEMPLATES_PATH'] = $GLOBALS['FOLDER_PATH'] .'template/';
