@@ -20,7 +20,6 @@ function index(){
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'login' ){
 			login();
 		}else{		
-		
 			redirecionar($GLOBALS['INDEX']);
 		}	
 	}
@@ -78,7 +77,8 @@ function login(){
 		$_SESSION['login'] = true;
 		$url = $GLOBALS['CONTROLLER_URL'].'usersController.php';
 	}else
-		$url = '/';
+		addNotificacion('Usuario o Contraseña no validos', 'info');
+		$url = $GLOBALS['INDEX'];
 	
 	redirecionar($url);
 }
