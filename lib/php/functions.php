@@ -87,7 +87,8 @@
 		if(($_FILES[$Img]['type'] == 'image/jpeg') || ($_FILES[$Img]['type'] == 'image/png') || ($_FILES[$Img]['type'] == 'image/jpg')){
 
 			if($_FILES[$Img]['size'] < 2000000){
-				move_uploaded_file($_FILES[$Img]["tmp_name"],'/var/www/html/skewers'.$Image_Path);
+
+				move_uploaded_file($_FILES[$Img]["tmp_name"],$GLOBALS['FOLDER_PATH'].substr($Image_Path,1));
 					if($tipo=='cl'){
 						$Usuario->setLogo(array(
 						'imagen' => $Image_Path));
