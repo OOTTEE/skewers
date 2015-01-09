@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `configuracion` (
 --
 
 INSERT INTO `configuracion` (`id`, `logo`, `nombre`, `descripcion`, `imagen`, `f_inicio`, `f_fin`, `votacionesFinalistas`, `votacionesGanadores`, `votacionesPopulares`, `resultados`) VALUES
-(1, 'logo.png', 'Pinchos Ourense', 'Descripcion del concurso de Ourense', 'imagenes/concurso/portada.png', '2014-01-01', '2014-01-01', 0, 0, 0, 0);
+(1, 'logo.png', 'Pinchos Ourense', 'Descripcion del concurso de Ourense', 'imagenes/concurso/1_CI_portada.png', '2014-01-01', '2014-01-01', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -104,19 +104,19 @@ CREATE TABLE IF NOT EXISTS `establecimientos` (
 --
 
 INSERT INTO `establecimientos` (`usuario_id`, `imagen`, `horario`, `descripcion`, `web`, `direccion`) VALUES
-(19, 'imagenes/establecimiento/establecimiento.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento1', 'www.establecimiento1.com', 'direccion del establecimiento'),
-(20, 'imagenes/establecimiento/establecimiento.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento2', 'www.establecimiento2.com', 'direccion del establecimiento'),
-(21, 'imagenes/establecimiento/establecimiento.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento3', 'www.establecimiento3.com', 'direccion del establecimiento'),
-(22, 'imagenes/establecimiento/establecimiento.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento4', 'www.establecimiento4.com', 'direccion del establecimiento'),
-(23, 'imagenes/establecimiento/establecimiento.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento5', 'www.establecimiento5.com', 'direccion del establecimiento'),
-(24, 'imagenes/establecimiento/establecimiento.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento6', 'www.establecimiento6.com', 'direccion del establecimiento'),
-(25, 'imagenes/establecimiento/establecimiento.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento7', 'www.establecimiento7.com', 'direccion del establecimiento'),
-(26, 'imagenes/establecimiento/establecimiento.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento8', 'www.establecimiento8.com', 'direccion del establecimiento'),
-(27, 'imagenes/establecimiento/establecimiento.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento9', 'www.establecimiento9.com', 'direccion del establecimiento'),
-(28, 'imagenes/establecimiento/establecimiento.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento10', 'www.establecimiento10.com', 'direccion del establecimiento'),
-(29, 'imagenes/establecimiento/establecimiento.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento11', 'www.establecimiento11.com', 'direccion del establecimiento'),
-(30, 'imagenes/establecimiento/establecimiento.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento12', 'www.establecimiento12.com', 'direccion del establecimiento'),
-(32, 'imagenes/establecimiento/establecimiento.jpg', '8:00 - 20:00', 'Cafeteria con buen ambiente y pinchos', 'http://cafeteriaEsei.com', 'Escuela de ingenieria informatica');
+(19, 'imagenes/establecimiento/establecimiento1.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento1', 'www.establecimiento1.com', 'direccion del establecimiento'),
+(20, 'imagenes/establecimiento/establecimiento2.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento2', 'www.establecimiento2.com', 'direccion del establecimiento'),
+(21, 'imagenes/establecimiento/establecimiento3.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento3', 'www.establecimiento3.com', 'direccion del establecimiento'),
+(22, 'imagenes/establecimiento/establecimiento4.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento4', 'www.establecimiento4.com', 'direccion del establecimiento'),
+(23, 'imagenes/establecimiento/establecimiento5.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento5', 'www.establecimiento5.com', 'direccion del establecimiento'),
+(24, 'imagenes/establecimiento/establecimiento6.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento6', 'www.establecimiento6.com', 'direccion del establecimiento'),
+(25, 'imagenes/establecimiento/establecimiento7.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento7', 'www.establecimiento7.com', 'direccion del establecimiento'),
+(26, 'imagenes/establecimiento/establecimiento8.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento8', 'www.establecimiento8.com', 'direccion del establecimiento'),
+(27, 'imagenes/establecimiento/establecimiento9.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento9', 'www.establecimiento9.com', 'direccion del establecimiento'),
+(28, 'imagenes/establecimiento/establecimiento10.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento10', 'www.establecimiento10.com', 'direccion del establecimiento'),
+(29, 'imagenes/establecimiento/establecimiento11.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento11', 'www.establecimiento11.com', 'direccion del establecimiento'),
+(30, 'imagenes/establecimiento/establecimiento12.jpg', '12:00 - 24:00', 'Exquisito pincho del establecimiento12', 'www.establecimiento12.com', 'direccion del establecimiento'),
+(32, 'imagenes/establecimiento/establecimiento13.jpg', '8:00 - 20:00', 'Cafeteria con buen ambiente y pinchos', 'http://cafeteriaEsei.com', 'Escuela de ingenieria informatica');
 
 -- --------------------------------------------------------
 
@@ -147,8 +147,8 @@ CREATE TABLE IF NOT EXISTS `pinchos` (
 INSERT INTO `pinchos` (`pincho_id`, `usuario_id`, `ingredientes`, `nombre`, `precio`, `finalista`, `imagen`, `descripcion`, `validado`) VALUES
 (1, 32, 'sal, patatas, huevos', 'Pincho de tortilla', 0.85, 0, 'imagenes/pincho/32_P_pincho.jpg', 'Delicioso pincho de tortilla', 1),
 (12, 20, 'concepto de zorza, sal, pimiento, pimenton, a', 'concepto de reduccion  Zorza ', 1.25, 0, 'imagenes/pincho/20_P_zorza gallega.jpg', '<h3>Delicioso pincho de zorza</h3>', 0),
-(13, 21, 'Calamares fresco, ensalada, harina, sal', 'Calamares fritos', 1.00, 0, 'imagenes/pincho/21_P_pincho-de-calamares-encebollad.jpg', 'Un toque moderno al pincho de toda la vida', 1),
-(17, 22, 'ternera, agua, verduras', 'sopa de ternera', 2.00, 0, '', 'Un delicioso crujiente de verduras, con sopa de terneras', 0),
+(13, 21, 'Calamares fresco, ensalada, harina, sal', 'Calamares fritos', 1.00, 0, 'imagenes/pincho/21_P_Chipirones-fritos.jpg', 'Un toque moderno al pincho de toda la vida', 1),
+(17, 22, 'ternera, agua, verduras', 'sopa de ternera', 2.00, 0, 'imagenes/pincho/22_P_sopa-picante-de-ternera-02.jpg', 'Un delicioso crujiente de verduras, con sopa de terneras', 0),
 (18, 23, 'Garbanzos, Cayos, de todo.', 'Cayos', 2.00, 0, 'imagenes/pincho/23_P_1558_producto_normal.jpg', 'Receta tradicional de cayos', 1);
 
 -- --------------------------------------------------------
