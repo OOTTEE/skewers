@@ -64,12 +64,9 @@ function register(){
 	$img=UpImagen($User_Id,'e');
 	if(!$img){
 			addNotificacion("No se pudo insertar la Imagen","Danger");
-			return false;
-	}else{
-		addNotificacion("Usuario registrado satisfactoriamente","Success");
-		redirecionar($GLOBALS['INDEX']);
-
 	}
+	addNotificacion("Usuario registrado satisfactoriamente","Success");
+	redirecionar($GLOBALS['INDEX']);
 
 }
 
