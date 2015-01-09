@@ -7,15 +7,14 @@
 
     <div class="container">
 	
-		<?php foreach($Pinchos as $pincho):?>
-			<a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=realizarValidacionPincho&idPincho='.$pincho['pincho_id']?>">
-				<div class="col-md-3">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<?= $pincho['nombre'] ?> <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"/>
-						</div>	
-					</div>
+		<?php foreach($Pinchos as $row):?>
+			<a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=realizarValidacionPincho&idPincho='.$row['pincho_id']?>">
+				<div class="col-md-3 text-center">
+				<h5 class="pinchoTitleList" ><?= $row['nombre'] ?></h5>
+				<div class="pincho" height="120">
+					<img src="<?= (isset($row['imagen']) AND $row['imagen']!='' AND url_exists($row['imagen']) )? $row['imagen'] : $GLOBALS['IMGPINCHO_URL'].'no_imagen.png'  ?>"  height="120" width="120" class="img-responsive" style="margin: 0px auto;">
 				</div>
+			</div>
 			</a>
 		<?php endforeach; ?>
 

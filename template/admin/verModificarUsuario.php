@@ -8,15 +8,14 @@
     <div class="container">
       
 	
-	<?php foreach($Users as $usuario):?>
-	<a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=modificarUsuario&usuario_id='.$usuario['usuario_id']?>">
-		<div class="col-md-3">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<?= $usuario['name'] ?> <span class="glyphicon glyphicon-pencil" aria-hidden="true"/>
-				</div>	
+	<?php foreach($Users as $row):?>
+	<a href="<?php echo $GLOBALS['CONTROLLER_URL'].'adminController.php?action=modificarUsuario&usuario_id='.$row['usuario_id']?>">
+		
+		<div class="col-md-3 text-center">
+				<div class="button_example" height="120">
+					<?= $row['name'] ?> <span class="glyphicon glyphicon-pencil" aria-hidden="true"/>
+				</div>
 			</div>
-		</div>
 	</a>
 	<?php endforeach; ?>
 	
