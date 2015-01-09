@@ -1,6 +1,6 @@
 	<div class="jumbotron" id="imgPrincipal">
       <div class="container">
-		<img src="<?= $GLOBALS['conf']->imagen;?>" class="img-responsive" alt="Responsive image">
+		<img src="<?= $GLOBALS['URL_FOLDER'].$GLOBALS['conf']->imagen;?>" class="img-responsive" alt="Responsive image">
       </div>
 	</div>
 

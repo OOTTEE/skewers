@@ -1,6 +1,6 @@
 <div class="container">
 		<h2><?=$PiInfo->nombre ?></h2>
-		<img src=<?= $PiInfo->imagen ?> height="320" width="400">
+		<img src=<?= $GLOBALS['URL_FOLDER'].$PiInfo->imagen ?> height="320" width="400">
 		<div class="form-group">
 			<label for="descripcion" >Descripcion</label>
 			<textarea id="descripcion" class="form-control"  placeholder="Descripcion" name="descripcion" readonly >

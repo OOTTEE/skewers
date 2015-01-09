@@ -12,10 +12,11 @@ class Asignacion extends Model{
 	*/	
 	public function getListAllAsignaciones(){
 		$sentencia= $GLOBALS['DB']->prepare("SELECT  u.usuario_id as indice ,u.name as nombreUsuario, u.usuario_id ,p.nombre nombrePincho, p.pincho_id,
-		(SELECT a.pincho_id FROM asignaciones a WHERE a.pincho_id = p.pincho_id AND a.usuario_id = u.usuario_id) as asignado
+													(SELECT a.pincho_id FROM asignaciones a WHERE a.pincho_id = p.pincho_id AND a.usuario_id = u.usuario_id) as asignado
 											FROM users u
 											LEFT JOIN pinchos p ON 1
 											WHERE u.role = 'profesional'
+												AND p.validado = 1
 											ORDER BY u.usuario_id ASC, p.pincho_id ASC");
 											
 		$sentencia->execute();
@@ -35,9 +36,12 @@ class Asignacion extends Model{
 	public function getListAsignaciones($usuario_id){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT *
 											 FROM asignaciones  a , pinchos p 
-											 WHERE a.usuario_id = ? AND a.pincho_id=p.pincho_id AND a.pincho_id NOT IN ( SELECT f.pincho_id 
-																															FROM puntuacion_finalistas f 
-																															WHERE f.usuario_id= ?) ');
+											 WHERE a.usuario_id = ? 
+												AND a.pincho_id=p.pincho_id 
+												AND a.pincho_id NOT IN ( SELECT f.pincho_id 
+																		FROM puntuacion_finalistas f 
+																		WHERE f.usuario_id= ?) 
+												');
 		$sentencia->execute(array($usuario_id, $usuario_id));
 		
 		if($sentencia->rowCount() > 0){

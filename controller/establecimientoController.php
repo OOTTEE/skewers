@@ -48,6 +48,7 @@ function register(){
 		'email' => $_POST['email'],));
 	if(!$User_Id){
 			addNotificacion("No se pudo crear el usuario","Danger");
+			redirecionar($GLOBALS['INDEX']);
 			return false;
 	}
 	$establecimiento = new Establecimiento();
@@ -59,15 +60,16 @@ function register(){
 		'descripcion'=> $_POST['descripcion']));
 	if(!$est){
 			addNotificacion("No se pudo crear el establecimiento","Danger");
+			redirecionar($GLOBALS['INDEX']);
 			return false;
 	}
 	$img=UpImagen($User_Id,'e');
 	if(!$img){
 			addNotificacion("No se pudo insertar la Imagen","Danger");
 	}
+	
 	addNotificacion("Usuario registrado satisfactoriamente","Success");
 	redirecionar($GLOBALS['INDEX']);
-
 }
 
 

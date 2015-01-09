@@ -62,9 +62,9 @@
 		$Img;
 		//Definicion Establecemento
 		if($tipo=='e'){
-		$Image_Path = $GLOBALS['IMGESTABLECIMIENTOS_URL'] . $Id .'_E_'. basename($_FILES['imagen']['name']);
-		$Img='imagen';
-		$Usuario= new Establecimiento();
+			$Image_Path = $GLOBALS['IMGESTABLECIMIENTOS_URL'] . $Id .'_E_'. basename($_FILES['imagen']['name']);
+			$Img='imagen';
+			$Usuario= new Establecimiento();
 		  }
 		//Definicion Pincho
 		if($tipo=='p'){
@@ -85,17 +85,16 @@
 		}
 		//Almacenamiento imagen
 		if(($_FILES[$Img]['type'] == 'image/jpeg') || ($_FILES[$Img]['type'] == 'image/png') || ($_FILES[$Img]['type'] == 'image/jpg')){
-
+		
 			if($_FILES[$Img]['size'] < 2000000){
-
-				move_uploaded_file($_FILES[$Img]["tmp_name"],$GLOBALS['FOLDER_PATH'].substr($Image_Path,1));
+				move_uploaded_file($_FILES[$Img]["tmp_name"],str_replace($GLOBALS['URL_FOLDER'], $GLOBALS['FOLDER_PATH'] , $Image_Path));
 					if($tipo=='cl'){
 						$Usuario->setLogo(array(
-						'imagen' => $Image_Path));
+						'imagen' => str_replace($GLOBALS['URL_FOLDER'] ,'',$Image_Path)));
 						return true;
 					}else{
 						$Usuario->setImagen(array(
-						'imagen' => $Image_Path,
+						'imagen' => str_replace($GLOBALS['URL_FOLDER'] ,'',$Image_Path),
 						'usuario_id' => $Id));
 						return true;
 					}

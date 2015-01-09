@@ -14,10 +14,8 @@ function index(){
 		$GLOBALS['conf']=(new Configuracion())->get();
 		//filtro por accion del usuario (parametro action recibido por GET o POST
 		if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'registrarPincho' ){
-			echo 'registrar';
 			registrarPincho();
 		}else if(isset($_REQUEST['action']) AND $_REQUEST['action'] == 'editarPincho' ){
-			echo 'editar';
 			editarPincho();
 		}
 	}
