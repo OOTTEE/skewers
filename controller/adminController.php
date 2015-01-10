@@ -164,11 +164,12 @@ function realizarModificacion(){
 */
 function eliminarUsuario(){
 	$usuario = new User();
-	if($usuario->deleteUser($_GET['nameUser'])){
+	$role = $usuario->getRole($_GET['nameUser']);	
+	if($usuario->deleteUser($_GET['nameUser'],$role)){
 		addNotificacion("Usuario eliminado","success");
 		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','verEliminarUsuario')));
 	}
-	else{
+	else{			
 		addNotificacion("Usuario no eliminado","danger");
 		redirecionarWithParams($GLOBALS['CONTROLLER_URL'].'adminController.php',array(array('action','verEliminarUsuario')));
 	}

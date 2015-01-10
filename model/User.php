@@ -106,16 +106,59 @@ class User extends Model{
 		return $result;
 			
 	}
-	public function deleteUser($User_id){
-		$sentencia= $GLOBALS['DB']->prepare('DELETE FROM users WHERE usuario_id = ? ');
-	
-		$sentencia->execute(array($User_id));
-		if($sentencia->rowCount() > 0) 
-			return true;
-		else 
-			return false;
+	public function getRole($user_id){
+		$sentencia= $GLOBALS['DB']->prepare('SELECT role
+											FROM users
+											WHERE usuario_id = ? ');
+		$sentencia->execute(array($user_id));
+		$resul=$sentencia->fetchall()[0];
+		$role = $resul['role'];
 		
 		
+		return $role;
+			
+	}
+	public function deleteUser($User_id, $role){
+		if($role=="profesional"){
+			$sentencia= $GLOBALS['DB']->prepare('DELETE FROM a1, a2 USING users AS a1 INNER JOIN asignaciones AS a2
+WHERE a1.usuario_id=a2.usuario_id AND a1.usuario_id LIKE ?');
+			$sentencia->execute(array($User_id));
+			if($sentencia->rowCount() > 0) 
+				return true;
+			else{ 
+				$sentencia= $GLOBALS['DB']->prepare('DELETE FROM users WHERE usuario_id = ? ');
+				$sentencia->execute(array($User_id));
+				if($sentencia->rowCount() > 0) 
+					return true;
+				else 
+					return false;
+			}
+
+		}		
+		else if($role=="establecimiento"){
+			$sentencia= $GLOBALS['DB']->prepare('DELETE FROM codigos WHERE pincho_id = ( SELECT pincho_id
+FROM pinchos
+WHERE usuario_id LIKE ?) ');
+			$sentencia->execute(array($User_id));
+			$sentencia= $GLOBALS['DB']->prepare('DELETE FROM pinchos WHERE usuario_id LIKE ?');
+			$sentencia->execute(array($User_id));
+			$sentencia= $GLOBALS['DB']->prepare('DELETE FROM establecimientos WHERE usuario_id LIKE ?');
+			$sentencia->execute(array($User_id));
+			$sentencia= $GLOBALS['DB']->prepare('DELETE FROM users WHERE usuario_id LIKE ?');
+			$sentencia->execute(array($User_id));
+			if($sentencia->rowCount() > 0) 
+				return true;
+			else 
+				return false;
+		}
+		else{
+			$sentencia= $GLOBALS['DB']->prepare('DELETE FROM users WHERE usuario_id = ? ');
+			$sentencia->execute(array($User_id));
+			if($sentencia->rowCount() > 0) 
+				return true;
+			else 
+				return false;
+		}		
 	}
 	public function getName($id){
 		$sentencia= $GLOBALS['DB']->prepare('SELECT  name FROM users WHERE usuario_id = ? ');
