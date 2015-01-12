@@ -19,7 +19,7 @@
 						<table class="table">
 							<tr>
 								<th>
-									Establecimiento
+									<?= $_SESSION['user']['name'] ?>
 								</th>
 								<th>
 									Codigo
@@ -27,7 +27,7 @@
 							</tr>
 							<tr>
 								<td>
-									<?= $_SESSION['user']['name'] ?>
+									<?= $voto['nombre']; ?>
 								</td>
 								<td>
 									<?= $voto['pincho_id'].'-'.$voto['codigo_id'] ?>

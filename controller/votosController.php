@@ -32,7 +32,7 @@ function generarCodigos(){
 	$voto->generarVotos($_POST['numCodigos']);
 	
 	$votos = $voto->getUltimosVotos($_POST['numCodigos']);
-	
+
 	include_once($GLOBALS['TEMPLATES_PATH'].'establecimiento/codigos.php');
 
 }

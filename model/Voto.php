@@ -73,12 +73,13 @@ class Voto extends Model{
 
 	
 	public function getUltimosVotos($num){
-		$sentencia= $GLOBALS['DB']->prepare('SELECT *
-								FROM votos
-								WHERE pincho_id = ? 
-								ORDER BY codigo_id DESC
-								LIMIT 0 , 30' );
-		$sentencia->execute(array($this->pincho_id));
+		$sentencia= $GLOBALS['DB']->prepare("SELECT v . * , p.nombre
+											FROM votos v, pinchos p
+											WHERE v.pincho_id = :pincho_id
+											AND p.usuario_id = v.pincho_id
+											ORDER BY v.codigo_id DESC 
+											LIMIT 0 , $num");
+		$sentencia->execute(array( ':pincho_id' => $this->pincho_id ));
 		$result=$sentencia->fetchall();
 	
 		if($sentencia->rowCount() > 0){
